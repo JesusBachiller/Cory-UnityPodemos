@@ -23,7 +23,6 @@ public class ActualizaEscenario : MonoBehaviour {
             if (suelo.transform.position.z == Pos.z && suelo.transform.position.y == Pos.y && suelo.transform.position.x == 0)
             {
                 Instantiate(Muelle, suelo.transform.position, Quaternion.identity);
-
                 Destroy(suelo);
             }
         }
