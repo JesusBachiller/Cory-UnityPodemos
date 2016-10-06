@@ -17,6 +17,7 @@ public class ActualizaEscenario : MonoBehaviour {
 
         Debug.Log(Pos);
         ArraySuelos = GameObject.FindGameObjectsWithTag("Suelo");
+		//Modificao
 
         foreach (GameObject suelo in ArraySuelos)
         {
