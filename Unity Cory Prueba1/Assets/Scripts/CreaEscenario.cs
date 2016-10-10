@@ -3,17 +3,19 @@ using System.Collections;
 
 public class CreaEscenario : MonoBehaviour {
 
-    private const int aire = 0;
+    private const int AIRE = 0;
     private const int PIEDRA = 1;
-    private const int SUELO = 2;
+    private const int CESPED = 2;
     private const int AGUA = 3;
     private const int BOLA = 4;
 
-    private int[,] mapa = {  {  PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA},
-                            {   SUELO,  SUELO,  AGUA,   SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  AGUA,   AGUA,   SUELO,  PIEDRA, PIEDRA, SUELO,  SUELO,  SUELO,  SUELO,  SUELO,  PIEDRA},
-                            {   aire,   BOLA,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   PIEDRA, PIEDRA, aire,   aire,   aire,   aire,   aire,   SUELO},
-                            {   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   PIEDRA, PIEDRA, aire,   aire,   aire,   aire,   aire,   aire},
-                            {   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   aire,   SUELO,  SUELO,  aire,   aire,   aire,   aire,   aire,   aire}};
+    private int[,] mapa = {
+        { PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA},
+        { CESPED, CESPED, AGUA, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, AGUA, AGUA, CESPED, PIEDRA, PIEDRA, CESPED, CESPED, CESPED, CESPED, CESPED, PIEDRA},
+        { AIRE, BOLA, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, PIEDRA, PIEDRA, AIRE, AIRE, AIRE, AIRE, AIRE, CESPED},
+        { AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, PIEDRA, PIEDRA, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE},
+        { AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, CESPED, CESPED, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE}
+    };
 
     private int numCol = 26;
     private int numFil = 5;
@@ -22,54 +24,38 @@ public class CreaEscenario : MonoBehaviour {
     public GameObject Suelo;
     public GameObject Piedra;
     public GameObject Agua;
-
     public GameObject Bola;
+    public Camera CamaraPrincipal;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         
         for (int i = 0; i < numFil; i++)
         {
             for(int j = 0; j < numCol; j++)
             {
-                Vector3 posAtras2 = new Vector3(-2, i, j);
-                Vector3 posAtras1 = new Vector3(-1, i, j);
-                Vector3 posCentral = new Vector3(0, i+1, j);
-                Vector3 posDelante1 = new Vector3(1, i, j);
-                Vector3 posDelante2 = new Vector3(2, i, j);
-
+                Vector3 posCentral = new Vector3(j, i+1, 0);
+                
                 if (mapa[i,j] == PIEDRA)
                 {
-                    Instantiate(Piedra, posAtras2, Quaternion.identity);
-                    Instantiate(Piedra, posAtras1, Quaternion.identity);
                     Instantiate(Piedra, posCentral, Quaternion.identity);
-                    Instantiate(Piedra, posDelante1, Quaternion.identity);
-                    Instantiate(Piedra, posDelante2, Quaternion.identity);
                 }
                 if (mapa[i, j] == AGUA)
                 {
-                    Instantiate(Agua, posAtras2, Quaternion.identity);
-                    Instantiate(Agua, posAtras1, Quaternion.identity);
                     Instantiate(Agua, posCentral, Quaternion.identity);
-                    Instantiate(Agua, posDelante1, Quaternion.identity);
-                    Instantiate(Agua, posDelante2, Quaternion.identity);
                 }
-                if (mapa[i, j] == SUELO)
+                if (mapa[i, j] == CESPED)
                 {
-                    Instantiate(Suelo, posAtras2, Quaternion.identity);
-                    Instantiate(Suelo, posAtras1, Quaternion.identity);
                     Instantiate(Suelo, posCentral, Quaternion.identity);
-                    Instantiate(Suelo, posDelante1, Quaternion.identity);
-                    Instantiate(Suelo, posDelante2, Quaternion.identity);
                 }
                 if (mapa[i, j] == BOLA)
                 {
-                    Instantiate(Bola, posCentral, Quaternion.identity);
-
+                    Instantiate(Bola, posCentral, Quaternion.Euler(new Vector3(0, 45, 120)));
+                    Vector3 posCamara = new Vector3(posCentral.x + 15, posCentral.y + 10, posCentral.z -25);
+                    Instantiate(CamaraPrincipal, posCamara, Quaternion.Euler(new Vector3(15, -20, -2)));
                 }
             }
         }
 	}
 
-    
 }

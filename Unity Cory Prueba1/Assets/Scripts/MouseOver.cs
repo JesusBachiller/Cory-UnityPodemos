@@ -16,7 +16,7 @@ public class MouseOver : MonoBehaviour {
 
     void OnMouseEnter()
     {
-        if (GetComponent<Transform>().position.x == 0)
+        if (GetComponent<Transform>().position.z == 0)
         {
             GetComponent<Renderer>().material.color = Color.red;
             
@@ -34,7 +34,7 @@ public class MouseOver : MonoBehaviour {
 
     void OnMouseExit()
     {
-        if (GetComponent<Transform>().position.x == 0)
+        if (GetComponent<Transform>().position.z == 0)
         {
             GetComponent<Renderer>().material.color = colorInicial;
         }

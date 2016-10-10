@@ -46,19 +46,19 @@ public class lanzamiento : MonoBehaviour {
         moduloVelocidad = Mathf.Sqrt((velocidad.x * velocidad.x) + (velocidad.y * velocidad.y));
         if (moduloVelocidad < maxDistancia)
         {
-            Debug.Log(moduloVelocidad);
-            rb.AddForce(velocidad.z, velocidad.y * fuerzaExtra, velocidad.x * fuerzaExtra);
+            //Debug.Log(moduloVelocidad);
+            rb.AddForce(velocidad.x * fuerzaExtra, velocidad.y * fuerzaExtra, velocidad.z);
         }
         else
         {
-            Debug.Log(velocidad.x);
-            Debug.Log(velocidad.y);
+            //Debug.Log(velocidad.x);
+            //Debug.Log(velocidad.y);
             velocidad.x = velocidad.x * maxDistancia / moduloVelocidad;
             velocidad.y = velocidad.y * maxDistancia / moduloVelocidad;
-            Debug.Log(velocidad.x);
-            Debug.Log(velocidad.y);
+            //Debug.Log(velocidad.x);
+            //Debug.Log(velocidad.y);
 
-            rb.AddForce(velocidad.z, velocidad.y * fuerzaExtra, velocidad.x * fuerzaExtra);
+            rb.AddForce(velocidad.x * fuerzaExtra, velocidad.y * fuerzaExtra, velocidad.z);
         }		
 	}
 }

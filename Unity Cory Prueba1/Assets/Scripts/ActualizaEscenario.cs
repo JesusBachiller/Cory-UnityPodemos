@@ -15,13 +15,12 @@ public class ActualizaEscenario : MonoBehaviour {
         posMouseClick_x = (int)Pos.x;
         posMouseClick_y = (int)Pos.y;
 
-        Debug.Log(Pos);
+        //Debug.Log(Pos);
         ArraySuelos = GameObject.FindGameObjectsWithTag("Suelo");
-		//Modificao
 
         foreach (GameObject suelo in ArraySuelos)
         {
-            if (suelo.transform.position.z == Pos.z && suelo.transform.position.y == Pos.y && suelo.transform.position.x == 0)
+            if (suelo.transform.position.x == Pos.x && suelo.transform.position.y == Pos.y && suelo.transform.position.z == 0)
             {
                 Instantiate(Muelle, suelo.transform.position, Quaternion.identity);
                 Destroy(suelo);
