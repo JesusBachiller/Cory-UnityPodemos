@@ -51,8 +51,8 @@ public class CreaEscenario : MonoBehaviour {
                 if (mapa[i, j] == BOLA)
                 {
                     Instantiate(Bola, posCentral, Quaternion.Euler(new Vector3(0, 45, 120)));
-                    Vector3 posCamara = new Vector3(posCentral.x + 15, posCentral.y + 10, posCentral.z -25);
-                    Instantiate(CamaraPrincipal, posCamara, Quaternion.Euler(new Vector3(15, -20, -2)));
+                    Vector3 posCamara = new Vector3(posCentral.x + 15, posCentral.y + 10, posCentral.z -20);
+                    Instantiate(CamaraPrincipal, posCamara, Quaternion.Euler(new Vector3(15, -12, -2)));
                 }
             }
         }
