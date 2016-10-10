@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CreaEscenario : MonoBehaviour {
 
@@ -9,18 +10,6 @@ public class CreaEscenario : MonoBehaviour {
     private const int AGUA = 3;
     private const int BOLA = 4;
 
-    private int[,] mapa = {
-        { PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA, PIEDRA},
-        { CESPED, CESPED, AGUA, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, CESPED, AGUA, AGUA, CESPED, PIEDRA, PIEDRA, CESPED, CESPED, CESPED, CESPED, CESPED, PIEDRA},
-        { AIRE, BOLA, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, PIEDRA, PIEDRA, AIRE, AIRE, AIRE, AIRE, AIRE, CESPED},
-        { AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, PIEDRA, PIEDRA, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE},
-        { AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE, CESPED, CESPED, AIRE, AIRE, AIRE, AIRE, AIRE, AIRE}
-    };
-
-    private int numCol = 26;
-    private int numFil = 5;
-
-
     public GameObject Suelo;
     public GameObject Piedra;
     public GameObject Agua;
@@ -29,33 +18,43 @@ public class CreaEscenario : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
-        for (int i = 0; i < numFil; i++)
+
+        LevelContainer lc = LevelContainer.Load();
+        /*
+         * Get selected Level to Play from previous Scene (Map)
+         * For the moment, we save a test number in levelToLoad
+         */
+
+        int levelToLoad = 0;
+        Level actualLevel = lc.levels[levelToLoad];
+
+        for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
-            for(int j = 0; j < numCol; j++)
+            for (int j = 0; j < actualLevel.mapElements[i].Count; j++)
             {
-                Vector3 posCentral = new Vector3(j, i+1, 0);
-                
-                if (mapa[i,j] == PIEDRA)
+                Vector3 posCentral = new Vector3(j, i + 1, 0);
+
+                if (actualLevel.mapElements[i][j] == PIEDRA)
                 {
                     Instantiate(Piedra, posCentral, Quaternion.identity);
                 }
-                if (mapa[i, j] == AGUA)
+                if (actualLevel.mapElements[i][j] == AGUA)
                 {
                     Instantiate(Agua, posCentral, Quaternion.identity);
                 }
-                if (mapa[i, j] == CESPED)
+                if (actualLevel.mapElements[i][j] == CESPED)
                 {
                     Instantiate(Suelo, posCentral, Quaternion.identity);
                 }
-                if (mapa[i, j] == BOLA)
+                if (actualLevel.mapElements[i][j] == BOLA)
                 {
                     Instantiate(Bola, posCentral, Quaternion.Euler(new Vector3(0, 45, 120)));
-                    Vector3 posCamara = new Vector3(posCentral.x + 15, posCentral.y + 10, posCentral.z -20);
+                    Vector3 posCamara = new Vector3(posCentral.x + 15, posCentral.y + 10, posCentral.z - 20);
                     Instantiate(CamaraPrincipal, posCamara, Quaternion.Euler(new Vector3(15, -12, -2)));
                 }
             }
         }
+        
 	}
 
 }

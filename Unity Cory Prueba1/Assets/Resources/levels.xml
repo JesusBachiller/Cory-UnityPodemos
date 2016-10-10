@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<WorldMap>
+  <Levels>
+    <Level name="Tutorial Uno">
+      <MapElements>
+
+        111111111111111111111111111111-
+        232223333222222222222222222222-
+        400200000000000000000000000002-
+        000200000000000000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+
+      </MapElements>
+      <AvailableTools>012</AvailableTools>
+      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <MaxScore>0</MaxScore>
+      <FastestTime>0</FastestTime>
+    </Level>
+    <Level name="Tutorial Dos">
+      <MapElements>
+
+        111111111111111111111111111111-
+        232223333222222222222222222222-
+        400200000000000000000000000002-
+        000200000000000000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+
+      </MapElements>
+      <AvailableTools>012</AvailableTools>
+      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <MaxScore>0</MaxScore>
+      <FastestTime>0</FastestTime>
+    </Level>
+    <Level name="Tutorial Tres">
+      <MapElements>
+
+        111111111111111111111111111111-
+        232223333222222222222222222222-
+        400200000000000000000000000002-
+        000200000000000000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+        000000000000002000000000000002-
+
+      </MapElements>
+      <AvailableTools>012</AvailableTools>
+      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <MaxScore>0</MaxScore>
+      <FastestTime>0</FastestTime>
+    </Level>
+  </Levels>
+</WorldMap>
