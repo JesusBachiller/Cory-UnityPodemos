@@ -3,11 +3,11 @@ using System.Collections;
 
 public class RebotaMuelle : MonoBehaviour {
     
-    void OnCollisionEnter(Collision col)
+    void OnCollisionExit(Collision col)
     {
         if (col.gameObject.tag == "Player")
         {
-            int fuerzaEnX = 6;
+            /*int fuerzaEnX = 6;
             int fuerzaEnY = 10;
             int fuerzaEnZ = 0;
 
@@ -19,8 +19,12 @@ public class RebotaMuelle : MonoBehaviour {
             {
                 fuerzaEnY *= -1; // Impulsar hacia abajo
             }
-
-            col.gameObject.GetComponent<Rigidbody>().AddForce(fuerzaEnX, fuerzaEnY, fuerzaEnZ, ForceMode.Impulse);
+            */
+            col.gameObject.GetComponent<Rigidbody>().AddForce(col.gameObject.GetComponent<Rigidbody>().velocity.x * 1.05f,
+                                                              col.gameObject.GetComponent<Rigidbody>().velocity.y * 1.05f,
+                                                              col.gameObject.GetComponent<Rigidbody>().velocity.z,
+                                                              ForceMode.Impulse);
+            Debug.Log(col.gameObject.GetComponent<Rigidbody>().velocity);
         }
     }
 }
