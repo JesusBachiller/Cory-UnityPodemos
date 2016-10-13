@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<WorldMap>
+<Stadium>
   <Levels>
     <Level name="Tutorial Uno">
       <MapElements>
@@ -16,6 +16,7 @@
 
       </MapElements>
       <AvailableTools>012</AvailableTools>
+      <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
@@ -34,6 +35,7 @@
 
       </MapElements>
       <AvailableTools>012</AvailableTools>
+      <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
@@ -52,9 +54,10 @@
 
       </MapElements>
       <AvailableTools>012</AvailableTools>
+      <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
     </Level>
   </Levels>
-</WorldMap>
+</Stadium>

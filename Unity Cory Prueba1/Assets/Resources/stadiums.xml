@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<WorldMap>
+  <Stadiums>
+    <Stadium name="Tutorial Stadium">
+      <XmlLevelsPath>1-tutorial-stadium-levels</XmlLevelsPath>
+      <MinStarsToUnlock>0</MinStarsToUnlock>
+    </Stadium>
+  </Stadiums>
+</WorldMap>

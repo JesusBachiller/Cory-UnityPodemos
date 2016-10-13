@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 
-[XmlRoot("WorldMap")]
+[XmlRoot("Stadium")]
 public class LevelContainer {
 
     [XmlArray("Levels")]
