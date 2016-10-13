@@ -6,5 +6,9 @@
       <XmlLevelsPath>1-tutorial-stadium-levels</XmlLevelsPath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
     </Stadium>
+    <Stadium name="Football Stadium">
+      <XmlLevelsPath>2-football-stadium-levels</XmlLevelsPath>
+      <MinStarsToUnlock>3</MinStarsToUnlock>
+    </Stadium>
   </Stadiums>
 </WorldMap>

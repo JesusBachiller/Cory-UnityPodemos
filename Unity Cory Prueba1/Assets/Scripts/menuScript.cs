@@ -33,8 +33,7 @@ public class menuScript : MonoBehaviour {
 
     public void StartMapScene()
     {
-        //SceneManager.LoadScene("WorldMap");
-        SceneManager.LoadScene("TutorialStadium");
+        SceneManager.LoadScene("WorldMap");
     }
 
     public void ExitGame()

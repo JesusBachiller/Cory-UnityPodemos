@@ -26,7 +26,10 @@ public class Level {
 
     [XmlElement("FastestTime")]
     public int fastestTime;
-    
+
+    [XmlElement("SceneName")]
+    public string sceneName;
+
     public List<List<int>> mapElements;
     public int[] availableTools;
 

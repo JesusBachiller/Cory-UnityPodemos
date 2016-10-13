@@ -2,12 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 
 public class WorldMapStadium : MonoBehaviour {
-
-    private const int BOXES_PER_ROW = 3;
-
+    
     public int stadiumNumber;
     public Canvas levelSelector;
     private Stadium stadium;
@@ -42,10 +40,9 @@ public class WorldMapStadium : MonoBehaviour {
             levelBox.GetComponent<Canvas>().enabled = false;
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
 
+    // Update is called once per frame
+    void Update() {
     }
 
     void OnMouseDown()
@@ -66,6 +63,8 @@ public class WorldMapStadium : MonoBehaviour {
             if (levelNumber <= levelBoxes.Count - 1)
             {
                 currentLevelBox.GetComponent<Canvas>().enabled = true;
+                //currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(level.sceneName));
+                currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene("TutorialUno"));
 
                 /*Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
                 levelPreviewImage.sprite = Resources.Load<Sprite>("LevelPreviewImages/" + level.previewImagePath) as Sprite;*/
@@ -105,6 +104,11 @@ public class WorldMapStadium : MonoBehaviour {
         {
             levelBox.GetComponent<Canvas>().enabled = false;
         }
+    }
+
+    public void changeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
 }
