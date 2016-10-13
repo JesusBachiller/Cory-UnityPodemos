@@ -71,14 +71,15 @@ public class WorldMapStadium : MonoBehaviour {
                 string sceneName = level.sceneName;
                 currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName));
 
+                Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
+                levelPreviewImage.sprite = Resources.Load<Sprite>("LevelPreviewImages/" + level.previewImagePath) as Sprite;
+
+
                 /*Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
-                levelPreviewImage.sprite = Resources.Load<Sprite>("LevelPreviewImages/" + level.previewImagePath) as Sprite;*/
-
-
-                GameObject levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject;
+                levelPreviewImage.sprite.name = level.previewImagePath;
                 Sprite levelSprite = new Sprite();
                 SpriteRenderer renderer = levelPreviewImage.GetComponent<SpriteRenderer>();
-                renderer.sprite = Resources.Load("LevelPreviewImages/" + level.previewImagePath, typeof(Sprite)) as Sprite;
+                renderer.sprite = Resources.Load("LevelPreviewImages/" + level.previewImagePath, typeof(Sprite)) as Sprite;*/
 
                 // Load from Savegame how many Stars has the player achieved
                 Image firstStar = currentLevelBox.transform.FindChild("FirstStar").gameObject.GetComponent<Image>();
