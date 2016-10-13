@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CreaEscenario : MonoBehaviour {
     
@@ -26,15 +27,13 @@ public class CreaEscenario : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        LevelContainer lc = LevelContainer.Load();
         /*
          * Get selected Level to Play from previous Scene (Map)
          * For the moment, we save a test number in levelToLoad
          */
-
-        int levelToLoad = 1;
-        Level actualLevel = lc.levels[levelToLoad];
+        
+        Level actualLevel = Game.getCurrentLevel();
+        Debug.Log(actualLevel.xmlMapElements);
 
         for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
@@ -79,5 +78,11 @@ public class CreaEscenario : MonoBehaviour {
         }
         
 	}
-
+    void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) //Free Camera
+        {
+            SceneManager.LoadScene("WorldMap");
+        }
+    }
 }

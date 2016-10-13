@@ -19,7 +19,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>FootballOne</SceneName>
     </Level>
     <Level name="Football Two">
       <MapElements>
@@ -40,7 +39,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>FootballTwo</SceneName>
     </Level>
     <Level name="Football Three">
       <MapElements>
@@ -60,7 +58,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>FootballThree</SceneName>
     </Level>
     <Level name="Football Four">
       <MapElements>
@@ -79,7 +76,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>FootballFour</SceneName>
     </Level>
     <Level name="Football Five">
       <MapElements>
@@ -100,7 +96,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>FootballFive</SceneName>
     </Level>
     <Level name="Football Six">
       <MapElements>
@@ -120,7 +115,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>FootballSix</SceneName>
     </Level>
   </Levels>
 </Stadium>

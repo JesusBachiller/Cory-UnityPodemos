@@ -16,6 +16,9 @@ public class Stadium
     [XmlElement("MinStarsToUnlock")]
     public int minStarsToUnlock;
 
+    [XmlElement("SceneName")]
+    public string sceneName;
+
     public List<Level> levels;
 
 

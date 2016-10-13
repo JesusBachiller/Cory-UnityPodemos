@@ -5,10 +5,12 @@
     <Stadium name="Tutorial Stadium">
       <XmlLevelsPath>1-tutorial-stadium-levels</XmlLevelsPath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
+      <SceneName>Tutorial</SceneName>
     </Stadium>
     <Stadium name="Football Stadium">
       <XmlLevelsPath>2-football-stadium-levels</XmlLevelsPath>
       <MinStarsToUnlock>3</MinStarsToUnlock>
+      <SceneName>Football</SceneName>
     </Stadium>
   </Stadiums>
 </WorldMap>

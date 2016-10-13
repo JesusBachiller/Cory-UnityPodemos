@@ -45,8 +45,9 @@ public class WorldMapStadium : MonoBehaviour {
     void Update() {
     }
 
-    public void changeScene(string sceneName)
+    public void changeScene(string sceneName, Level actualLevel)
     {
+        Game.setCurrentLevel(actualLevel);
         SceneManager.LoadScene(sceneName);
     }
 
@@ -68,8 +69,9 @@ public class WorldMapStadium : MonoBehaviour {
             if (levelNumber <= levelBoxes.Count - 1)
             {
                 currentLevelBox.GetComponent<Canvas>().enabled = true;
-                string sceneName = level.sceneName;
-                currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName));
+                string sceneName = stadium.sceneName;
+                Level actualLevel = level;
+                currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName, actualLevel));
 
                 Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
                 levelPreviewImage.sprite = Resources.Load<Sprite>("LevelPreviewImages/" + level.previewImagePath) as Sprite;

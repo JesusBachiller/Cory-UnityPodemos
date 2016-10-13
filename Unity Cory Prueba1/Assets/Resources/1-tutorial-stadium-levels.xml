@@ -19,7 +19,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>TutorialUno</SceneName>
     </Level>
     <Level name="Tutorial Dos">
       <MapElements>
@@ -40,7 +39,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>TutorialDos</SceneName>
     </Level>
     <Level name="Tutorial Tres">
       <MapElements>
@@ -60,7 +58,6 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <MaxScore>0</MaxScore>
       <FastestTime>0</FastestTime>
-      <SceneName>TutorialTres</SceneName>
     </Level>
   </Levels>
 </Stadium>
