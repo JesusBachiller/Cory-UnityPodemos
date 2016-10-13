@@ -4,18 +4,29 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
     private GameObject player;
+    private Camera camera;
     private Vector3 offset;
     private Vector3 mousePosition;
     private Vector2 gameWindowResolution;
     private float responsiveMousePercentage;
     private bool cameraFollowsPlayer;
 
+    private int maxFOV;
+    private int minFOV;
+
     // Use this for initialization
     void Start () {
         if (GameObject.FindGameObjectsWithTag("Player").Length > 0)
         {
             player = GameObject.FindGameObjectsWithTag("Player")[0];
+
+            GameObject c = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+            camera = c.GetComponent<Camera>();
+
             offset = transform.position - player.transform.position;
+
+            maxFOV = 50;
+            minFOV = 30;
         }
 
         mousePosition = Input.mousePosition;
@@ -26,9 +37,25 @@ public class CameraController : MonoBehaviour {
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) //Free Camera
         {
             if (cameraFollowsPlayer) { cameraFollowsPlayer = false; } else { cameraFollowsPlayer = true; }
+        }
+
+        var d = Input.GetAxis("Mouse ScrollWheel");
+        if (d > 0f)
+        {
+            if(camera.fieldOfView > minFOV)
+            {
+                camera.fieldOfView--;
+            }
+        }
+        else if (d < 0f)
+        {
+            if(camera.fieldOfView < maxFOV)
+            {
+                camera.fieldOfView++;
+            }
         }
 
         if (cameraFollowsPlayer)
@@ -79,4 +106,6 @@ public class CameraController : MonoBehaviour {
         System.Object Res = GetSizeOfMainGameView.Invoke(null, null);
         return (Vector2)Res;
     }
+
+    
 }

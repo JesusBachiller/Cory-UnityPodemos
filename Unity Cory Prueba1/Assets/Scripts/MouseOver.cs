@@ -3,13 +3,14 @@ using System.Collections;
 
 public class MouseOver : MonoBehaviour {
 
-    private Color colorInicial;
+    private Material[] materiales;
+    
     private bool clickOK;
     public GameObject creaEscenario;
  
     void Start()
     {
-        colorInicial = GetComponent<Renderer>().material.color;
+        materiales = GetComponent<Renderer>().materials;
 
         clickOK = false;
     }
@@ -18,6 +19,11 @@ public class MouseOver : MonoBehaviour {
     {
         if (GetComponent<Transform>().position.z == 0)
         {
+            foreach(Material m in materiales)
+            {
+                m.color = Color.red;
+            }
+
             GetComponent<Renderer>().material.color = Color.red;
             
             //creaEscenario.SetMouseClick(transform.position);
@@ -36,7 +42,11 @@ public class MouseOver : MonoBehaviour {
     {
         if (GetComponent<Transform>().position.z == 0)
         {
-            GetComponent<Renderer>().material.color = colorInicial;
+            foreach (Material m in materiales)
+            {
+                m.color = Color.white;
+            }
+            //GetComponent<Renderer>().material.color = colorInicial;
         }
     }
 }

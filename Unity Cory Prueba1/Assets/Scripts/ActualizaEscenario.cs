@@ -24,6 +24,7 @@ public class ActualizaEscenario : MonoBehaviour {
             {
                 Instantiate(Muelle, suelo.transform.position, Quaternion.identity);
                 Destroy(suelo);
+                break;
             }
         }
     }
