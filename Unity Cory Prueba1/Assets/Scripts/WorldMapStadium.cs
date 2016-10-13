@@ -45,7 +45,12 @@ public class WorldMapStadium : MonoBehaviour {
     void Update() {
     }
 
-    void OnMouseDown()
+    public void changeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void OnMouseDown()
     {
         // Instantiate Canvas
         levelSelector.enabled = true;
@@ -63,8 +68,8 @@ public class WorldMapStadium : MonoBehaviour {
             if (levelNumber <= levelBoxes.Count - 1)
             {
                 currentLevelBox.GetComponent<Canvas>().enabled = true;
-                //currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(level.sceneName));
-                currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene("TutorialUno"));
+                string sceneName = level.sceneName;
+                currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName));
 
                 /*Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
                 levelPreviewImage.sprite = Resources.Load<Sprite>("LevelPreviewImages/" + level.previewImagePath) as Sprite;*/
@@ -104,11 +109,6 @@ public class WorldMapStadium : MonoBehaviour {
         {
             levelBox.GetComponent<Canvas>().enabled = false;
         }
-    }
-
-    public void changeScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 
 }
