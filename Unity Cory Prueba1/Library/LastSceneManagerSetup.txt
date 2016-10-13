@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Escenas/TutorialStadium.unity
+- path: Assets/Escenas/WorldMap.unity
   isLoaded: 1
   isActive: 1
