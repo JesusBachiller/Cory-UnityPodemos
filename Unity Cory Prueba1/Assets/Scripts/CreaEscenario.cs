@@ -82,6 +82,7 @@ public class CreaEscenario : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape)) //Free Camera
         {
+            Game.resetAllValues();
             SceneManager.LoadScene("WorldMap");
         }
     }

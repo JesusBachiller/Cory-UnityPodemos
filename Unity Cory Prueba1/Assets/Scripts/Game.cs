@@ -20,4 +20,12 @@ public class Game  {
     {
         currentLevel = level;
     }
+
+    public static void resetAllValues()
+    {
+        currentLevel = null;
+        cameraFollowsPlayer = true;
+        coryDie = false;
+        coryFly = false;
+    }
 }

@@ -142,6 +142,8 @@ public class lanzamiento : MonoBehaviour
             }
             else
             {
+                Game.coryFly = true;
+
                 ReturnHome();
                 freeze = false;
                 ShowHideIndicators(false);
