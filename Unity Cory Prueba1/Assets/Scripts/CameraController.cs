@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour {
     private Vector2 gameWindowResolution;
     private float responsiveMousePercentage;
     private bool cameraFollowsPlayer;
+    private float speedFreeCamera;
 
     private int maxFOV;
     private int minFOV;
@@ -32,6 +33,7 @@ public class CameraController : MonoBehaviour {
         mousePosition = Input.mousePosition;
         cameraFollowsPlayer = true;
         responsiveMousePercentage = 0.05f;
+        speedFreeCamera = 5.0f;
     }
 
 
@@ -66,35 +68,47 @@ public class CameraController : MonoBehaviour {
             }
         } else
         {
-            moveCameraWithMouse();
+            if (!Game.coryDie)
+            {
+                moveCameraWithMouse();
+            }
         }
+
+        if (Game.coryFly)
+        {
+            cameraFollowsPlayer = true;
+        }
+        if (Game.coryDie)
+        {
+            cameraFollowsPlayer = false;
+        }
+
     }
 
     private void moveCameraWithMouse()
     {
         mousePosition = Input.mousePosition;
         gameWindowResolution = GetMainGameViewSize();
-        float speed = 5;
 
 
-        if (mousePosition.x <= gameWindowResolution.x * responsiveMousePercentage) // Si toca por la izquierda
+        if (mousePosition.x <= gameWindowResolution.x * responsiveMousePercentage && transform.position.x >= 7.0f) // Si toca por la izquierda
         {
-            transform.position += new Vector3(-speed, 0, 0) * Time.deltaTime;
+            transform.position += new Vector3(-speedFreeCamera, 0, 0) * Time.deltaTime;
         }
 
-        if (mousePosition.x >= gameWindowResolution.x - (gameWindowResolution.x * responsiveMousePercentage)) // Si toca por la derecha
+        if (mousePosition.x >= gameWindowResolution.x - (gameWindowResolution.x * responsiveMousePercentage) && transform.position.x <= 55.0f) // Si toca por la derecha
         {
-            transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+            transform.position += new Vector3(speedFreeCamera, 0, 0) * Time.deltaTime;
         }
 
-        if (mousePosition.y >= gameWindowResolution.y * responsiveMousePercentage) // Si toca por arriba
+        if (mousePosition.y >= gameWindowResolution.y * responsiveMousePercentage && transform.position.y <= 16.0f) // Si toca por arriba
         {
-            transform.position += new Vector3(0, speed, 0) * Time.deltaTime;
+            transform.position += new Vector3(0, speedFreeCamera, 0) * Time.deltaTime;
         }
 
-        if (mousePosition.y <= gameWindowResolution.y - (gameWindowResolution.y * responsiveMousePercentage)) // Si toca por abajo
+        if (mousePosition.y <= gameWindowResolution.y - (gameWindowResolution.y * responsiveMousePercentage) && transform.position.y >= 9.0f) // Si toca por abajo
         {
-            transform.position += new Vector3(0, -speed, 0) * Time.deltaTime;
+            transform.position += new Vector3(0, -speedFreeCamera, 0) * Time.deltaTime;
         }
         //Debug.Log(transform.position);
     }
@@ -107,5 +121,8 @@ public class CameraController : MonoBehaviour {
         return (Vector2)Res;
     }
 
-    
+    public void setCameraFollowPlayer(bool b)
+    {
+        cameraFollowsPlayer = b;
+    }
 }

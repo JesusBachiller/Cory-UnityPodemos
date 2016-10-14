@@ -4,21 +4,21 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class CreaEscenario : MonoBehaviour {
-    
+
     private const int AIRE = 0;
     private const int TIERRA = 1;
-    private const int CESPED_LARGO = 2;
-    private const int CESPED = 3;
-    private const int AGUA_LARGO = 4;
-    private const int AGUA = 5;
-    private const int CORY = 6;
+    private const int CESPED = 2;
+    private const int AGUA = 3;
+    private const int PINCHO = 4;
+    private const int PLATAFORMA_ROTATORIA = 5;
+    private const int CORY = 9;
 
 
     public GameObject Tierra;
-    public GameObject Cesped_largo;
     public GameObject Cesped;
-    public GameObject Agua_largo;
     public GameObject Agua;
+    public GameObject Pincho;
+    public GameObject PlataformaRotatoria;
     public GameObject Cory;
 
     public Camera CamaraPrincipal;
@@ -33,7 +33,7 @@ public class CreaEscenario : MonoBehaviour {
          */
         
         Level actualLevel = Game.getCurrentLevel();
-        Debug.Log(actualLevel.xmlMapElements);
+        //Debug.Log(actualLevel.xmlMapElements);
 
         for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
@@ -44,10 +44,6 @@ public class CreaEscenario : MonoBehaviour {
                 if (actualLevel.mapElements[i][j] == TIERRA)
                 {
                     Instantiate(Tierra, posCentral, Quaternion.identity);
-                }
-                if (actualLevel.mapElements[i][j] == CESPED_LARGO)
-                {
-                    Instantiate(Cesped_largo, posCentral, Quaternion.Euler(new Vector3(0 , 90, 0)));
                 }
                 if (actualLevel.mapElements[i][j] == CESPED)
                 {
@@ -60,13 +56,17 @@ public class CreaEscenario : MonoBehaviour {
                         Instantiate(Cesped, posCentral, Quaternion.identity);
                     }
                 }
-                if (actualLevel.mapElements[i][j] == AGUA_LARGO)
-                {
-                    Instantiate(Agua_largo, posCentral, Quaternion.Euler(new Vector3(0, 90, 0)));
-                }
                 if (actualLevel.mapElements[i][j] == AGUA)
                 {
                     Instantiate(Agua, posCentral, Quaternion.identity);
+                }
+                if (actualLevel.mapElements[i][j] == PINCHO)
+                {
+                    Instantiate(Pincho, posCentral, Quaternion.identity);
+                }
+                if (actualLevel.mapElements[i][j] == PLATAFORMA_ROTATORIA)
+                {
+                    Instantiate(PlataformaRotatoria, posCentral, Quaternion.identity);
                 }
                 if (actualLevel.mapElements[i][j] == CORY)
                 {

@@ -41,10 +41,6 @@ public class WorldMapStadium : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
-    void Update() {
-    }
-
     public void changeScene(string sceneName, Level actualLevel)
     {
         Game.setCurrentLevel(actualLevel);

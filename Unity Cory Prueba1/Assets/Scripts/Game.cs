@@ -5,6 +5,12 @@ public class Game  {
 
     private static Level currentLevel;
     //private static bool camFollowsPlayer;
+    public static bool cameraFollowsPlayer = true;
+
+    public static bool coryDie = false;
+
+    public static bool coryFly = false;
+
 
     public static Level getCurrentLevel()
     {
