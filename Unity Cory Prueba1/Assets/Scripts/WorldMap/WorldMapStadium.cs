@@ -19,6 +19,8 @@ public class WorldMapStadium : MonoBehaviour {
         levelSelector = levelSelector.GetComponent<Canvas>();
         levelSelector.enabled = false;
 
+
+        // Molaria uni todo esto en una funcion de (por ejemplo) una clase "Xml" o "Util"
         StadiumContainer sc = StadiumContainer.Load();
         if(stadiumNumber <= sc.stadiums.Count - 1) // Check object number to avoid out of range exception
         {
@@ -27,7 +29,8 @@ public class WorldMapStadium : MonoBehaviour {
             LevelContainer lc = LevelContainer.Load(stadiumLevelsPath);
             stadiumLevels = lc.levels;
         }
-        
+        // Fin de --> Molaria uni todo esto en una funcion de (por ejemplo) una clase "Xml" o "Util"
+
         levelBoxes = new List<GameObject>();
         levelBoxes.Add(levelSelector.transform.Find("BackgroundLevelSelector").Find("Level1").gameObject);
         levelBoxes.Add(levelSelector.transform.Find("BackgroundLevelSelector").Find("Level2").gameObject);
@@ -72,30 +75,31 @@ public class WorldMapStadium : MonoBehaviour {
                 Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
                 levelPreviewImage.sprite = Resources.Load<Sprite>("LevelPreviewImages/" + level.previewImagePath) as Sprite;
 
-
-                /*Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
-                levelPreviewImage.sprite.name = level.previewImagePath;
-                Sprite levelSprite = new Sprite();
-                SpriteRenderer renderer = levelPreviewImage.GetComponent<SpriteRenderer>();
-                renderer.sprite = Resources.Load("LevelPreviewImages/" + level.previewImagePath, typeof(Sprite)) as Sprite;*/
-
                 // Load from Savegame how many Stars has the player achieved
                 Image firstStar = currentLevelBox.transform.FindChild("FirstStar").gameObject.GetComponent<Image>();
-                /*if (firstStar is not achieved){
-                    firstStar.color = Color.gray;
-                }*/
+                if (!SaveLoad.savegame.stadiumsSavedData[stadium.index].levelSavedData[level.index].firstStarAchieved)
+                {
+                    firstStar.color = Color.red;
+                }
                 Image secondStar = currentLevelBox.transform.FindChild("SecondStar").gameObject.GetComponent<Image>();
-                /*if (secondStar is not achieved){
-                    secondStar.color = Color.gray;
-                }*/
+                if (!SaveLoad.savegame.stadiumsSavedData[stadium.index].levelSavedData[level.index].secondStarAchieved)
+                {
+                    secondStar.color = Color.red;
+                }
                 Image thirdStar = currentLevelBox.transform.FindChild("ThirdStar").gameObject.GetComponent<Image>();
-                /*if (thirdStar is not achieved){
-                    thirdStar.color = Color.gray;
-                }*/
+                if (!SaveLoad.savegame.stadiumsSavedData[stadium.index].levelSavedData[level.index].thirdStarAchieved)
+                {
+                    thirdStar.color = Color.red;
+                }
 
                 Text levelName = currentLevelBox.transform.FindChild("LevelName").gameObject.GetComponent<Text>();
                 levelName.text = level.name;
-            }
+
+                if (SaveLoad.savegame.starsAchieved < level.minStarsToUnlock)
+                {
+                    levelName.text = "BLOQUEADO " + levelName.text;
+                }
+        }
 
             levelNumber++;
         }
@@ -110,4 +114,11 @@ public class WorldMapStadium : MonoBehaviour {
         }
     }
 
+    void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Intro");
+        }
+    }
 }

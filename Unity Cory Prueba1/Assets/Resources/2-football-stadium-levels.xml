@@ -2,7 +2,7 @@
 
 <Stadium>
   <Levels>
-    <Level name="Football One">
+    <Level name="Football One" index="0">
       <MapElements>
 
         3333355555333333333311133333113333333333-
@@ -17,10 +17,8 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
     </Level>
-    <Level name="Football Two">
+    <Level name="Football Two" index="1">
       <MapElements>
 
         1113355555333333333335555555533333333333-
@@ -37,10 +35,8 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
     </Level>
-    <Level name="Football Three">
+    <Level name="Football Three" index="2">
       <MapElements>
 
         111111111111111111111111111111-
@@ -56,10 +52,8 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
     </Level>
-    <Level name="Football Four">
+    <Level name="Football Four" index="3">
       <MapElements>
 
         3333355555333333333311133333113333333333-
@@ -74,10 +68,8 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
     </Level>
-    <Level name="Football Five">
+    <Level name="Football Five" index="4">
       <MapElements>
 
         1113355555333333333335555555533333333333-
@@ -94,10 +86,8 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
     </Level>
-    <Level name="Football Six">
+    <Level name="Football Six" index="5">
       <MapElements>
 
         111111111111111111111111111111-
@@ -113,8 +103,6 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
     </Level>
   </Levels>
 </Stadium>

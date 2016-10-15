@@ -6,6 +6,9 @@ using System.Xml.Serialization;
 
 public class Level {
 
+    [XmlAttribute("index")]
+    public int index;
+
     [XmlAttribute("name")]
     public string name;
 
@@ -20,15 +23,10 @@ public class Level {
 
     [XmlElement("PreviewImagePath")]
     public string previewImagePath;
-
-    [XmlElement("MaxScore")]
-    public int maxScore;
-
-    [XmlElement("FastestTime")]
-    public int fastestTime;
     
     public List<List<int>> mapElements;
     public int[] availableTools;
+    public LevelSavedData levelSavedData;
 
     public void parseXmlMapElements()
     {

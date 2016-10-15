@@ -2,7 +2,7 @@
 
 <Stadium>
   <Levels>
-    <Level name="Tutorial Uno">
+    <Level name="Tutorial Uno" index="0">
       <MapElements>
 
         111222222222222222221113333322222222222222-
@@ -17,11 +17,8 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
-      <SceneName>TutorialUno</SceneName>
     </Level>
-    <Level name="Tutorial Dos">
+    <Level name="Tutorial Dos" index="1">
       <MapElements>
 
         111222222222222222222333333333333333311222222222222-
@@ -41,11 +38,8 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
-      <SceneName>TutorialDos</SceneName>
     </Level>
-    <Level name="Tutorial Tres">
+    <Level name="Tutorial Tres" index="2">
       <MapElements>
 
         111222222222222222222333333333333333322222222222222-
@@ -65,9 +59,6 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <MaxScore>0</MaxScore>
-      <FastestTime>0</FastestTime>
-      <SceneName>TutorialTres</SceneName>
     </Level>
   </Levels>
 </Stadium>

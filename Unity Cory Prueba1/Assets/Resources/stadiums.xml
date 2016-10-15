@@ -2,15 +2,17 @@
 
 <WorldMap>
   <Stadiums>
-    <Stadium name="Tutorial Stadium">
+    <Stadium name="Tutorial Stadium" index="0">
       <XmlLevelsPath>1-tutorial-stadium-levels</XmlLevelsPath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <SceneName>Tutorial</SceneName>
+      <InitiallyUnlocked>true</InitiallyUnlocked>
     </Stadium>
-    <Stadium name="Football Stadium">
+    <Stadium name="Football Stadium" index="1">
       <XmlLevelsPath>2-football-stadium-levels</XmlLevelsPath>
       <MinStarsToUnlock>3</MinStarsToUnlock>
       <SceneName>Football</SceneName>
+      <InitiallyUnlocked>false</InitiallyUnlocked>
     </Stadium>
   </Stadiums>
 </WorldMap>

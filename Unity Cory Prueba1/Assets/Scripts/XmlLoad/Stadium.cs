@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 public class Stadium
 {
 
+    [XmlAttribute("index")]
+    public int index;
+
     [XmlAttribute("name")]
     public string name;
     

@@ -11,9 +11,7 @@ public class MataCoryAgua : MonoBehaviour {
     {
         cory = GameObject.FindGameObjectWithTag("Player");
     }
-
-
-    // Update is called once per frame
+    
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == cory.tag && !Game.coryDie)
@@ -22,6 +20,9 @@ public class MataCoryAgua : MonoBehaviour {
             Game.coryFly = false;
             StartCoroutine(changePositionCory(2));
             cory.GetComponent<TrailRenderer>().enabled = false;
+
+            SaveLoad.savegame.timesDied += 1;
+            SaveLoad.Save();
         }
     }
 

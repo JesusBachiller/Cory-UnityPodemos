@@ -11,6 +11,8 @@ public class menuScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        SaveLoad.Load();
+
         quitMenu = quitMenu.GetComponent<Canvas>(); 
         startText = startText.GetComponent<Button>();
         exitText = exitText.GetComponent<Button>();
@@ -33,6 +35,8 @@ public class menuScript : MonoBehaviour {
 
     public void StartMapScene()
     {
+        SaveLoad.savegame.vecesClickadasBotonPlay += 1;
+        SaveLoad.Save();
         SceneManager.LoadScene("WorldMap");
     }
 
