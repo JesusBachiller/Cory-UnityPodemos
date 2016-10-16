@@ -16,8 +16,8 @@ public class MataCoryPincho : MonoBehaviour {
     {
         if (col.gameObject.tag == cory.tag)
         {
-            Game.coryDie = true;
-            Game.coryFly = false;
+            Game.setCoryDie(true);
+            Game.setCoryFly(false);
             StartCoroutine(changePositionCory(2));
             cory.GetComponent<TrailRenderer>().enabled = false;
         }
@@ -34,7 +34,7 @@ public class MataCoryPincho : MonoBehaviour {
 
         cory.GetComponent<Rigidbody>().isKinematic = false;
         cory.GetComponent<TrailRenderer>().enabled = true;
-        Game.coryDie = false;
+        Game.setCoryDie(false);
 
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().setCameraFollowPlayer(true);
         

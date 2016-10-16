@@ -9,16 +9,17 @@ public class menuScript : MonoBehaviour {
     public Button startText;
     public Button exitText;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         SaveLoad.Load();
 
         quitMenu = quitMenu.GetComponent<Canvas>(); 
         startText = startText.GetComponent<Button>();
         exitText = exitText.GetComponent<Button>();
         quitMenu.enabled = false;
+        
     }
-	
+
     public void  ExitPress()
     {
         quitMenu.enabled = true;

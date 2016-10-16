@@ -17,36 +17,39 @@ public class MouseOver : MonoBehaviour {
 
     void OnMouseEnter()
     {
-        if (GetComponent<Transform>().position.z == 0)
+        if(Game.getSelectedTool() == "Muelle")
         {
-            foreach(Material m in materiales)
+            if (GetComponent<Transform>().position.z == 0)
             {
-                m.color = Color.red;
+                foreach (Material m in materiales)
+                {
+                    m.color = Color.red;
+                }
+                GetComponent<Renderer>().material.color = Color.red;
             }
-
-            GetComponent<Renderer>().material.color = Color.red;
-            
-            //creaEscenario.SetMouseClick(transform.position);
-            
         }
         
     }
 
     void OnMouseDown()
     {
-        creaEscenario.GetComponent<ActualizaEscenario>().SetMouseClick(transform.position);
-            
+        if (Game.getSelectedTool() == "Muelle")
+        {
+            creaEscenario.GetComponent<ActualizaEscenario>().SetMouseClick(transform.position);
+        }
     }
 
     void OnMouseExit()
     {
-        if (GetComponent<Transform>().position.z == 0)
+        if (Game.getSelectedTool() != "")
         {
-            foreach (Material m in materiales)
+            if (GetComponent<Transform>().position.z == 0)
             {
-                m.color = Color.white;
+                foreach (Material m in materiales)
+                {
+                    m.color = Color.white;
+                }
             }
-            //GetComponent<Renderer>().material.color = colorInicial;
         }
     }
 }

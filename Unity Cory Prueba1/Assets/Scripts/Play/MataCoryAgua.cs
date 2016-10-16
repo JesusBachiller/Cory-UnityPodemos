@@ -4,7 +4,7 @@ using System.Collections;
 public class MataCoryAgua : MonoBehaviour {
 
     
-    public GameObject cory;
+    private GameObject cory;
 
     // Use this for initialization
     void Start()
@@ -14,10 +14,10 @@ public class MataCoryAgua : MonoBehaviour {
     
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == cory.tag && !Game.coryDie)
+        if (col.gameObject.tag == cory.tag && !Game.getCoryDie())
         {
-            Game.coryDie = true;
-            Game.coryFly = false;
+            Game.setCoryDie(true);
+            Game.setCoryFly(false);
             StartCoroutine(changePositionCory(2));
             cory.GetComponent<TrailRenderer>().enabled = false;
 
@@ -39,7 +39,7 @@ public class MataCoryAgua : MonoBehaviour {
         cory.GetComponent<Rigidbody>().isKinematic = false;
         cory.GetComponent<TrailRenderer>().enabled = true;
 
-        Game.coryDie = false;
+        Game.setCoryDie(false);
 
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().setCameraFollowPlayer(true);
     }

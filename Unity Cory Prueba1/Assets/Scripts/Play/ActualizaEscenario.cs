@@ -9,6 +9,7 @@ public class ActualizaEscenario : MonoBehaviour {
     public int posMouseClick_y;
     
     private GameObject[] ArraySuelos;
+    
 
     public void SetMouseClick(Vector3 Pos)
     {

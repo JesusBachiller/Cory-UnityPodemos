@@ -68,17 +68,21 @@ public class CameraController : MonoBehaviour {
             }
         } else
         {
-            if (!Game.coryDie)
+            if (!Game.getCoryDie())
             {
                 moveCameraWithMouse();
             }
         }
 
-        if (Game.coryFly)
+        if (Game.getCoryFly())
         {
             cameraFollowsPlayer = true;
         }
-        if (Game.coryDie)
+        if (Game.getCoryDie())
+        {
+            cameraFollowsPlayer = false;
+        }
+        if (Game.getCoryEnd())
         {
             cameraFollowsPlayer = false;
         }
