@@ -19,6 +19,7 @@ public class HUDHerramientas : MonoBehaviour
         selectToolBoolean = false;
         selectedToolString = "";
     }
+    
 
     public bool getSelectToolBoolean()
     {
@@ -39,60 +40,62 @@ public class HUDHerramientas : MonoBehaviour
     }
 
 
-    private void changeMuelleOnSelect()
+    public void changeMuelleOnSelect()
     {
-        if (!selectToolBoolean)
+        if (!Game.getCoryFly() && !Game.getCoryDie() && !Game.getCoryEnd())
         {
-            ColorBlock cb = MuelleButton.colors;
-            cb.normalColor = Color.Lerp(Color.white, Color.black, 0.50f);
-            cb.highlightedColor = Color.Lerp(Color.white, Color.black, 0.50f);
-            MuelleButton.colors = cb;
-
-            selectToolBoolean = true;
-            selectedToolString = "Muelle";
-            Game.setSelectedTool(selectedToolString);
-        }
-        else
-        {
-            if(selectedToolString == "Muelle")
+            if (!selectToolBoolean)
             {
                 ColorBlock cb = MuelleButton.colors;
-                cb.normalColor = Color.white;
-                cb.highlightedColor = Color.white;
+                cb.normalColor = Color.Lerp(Color.white, Color.black, 0.20f);
+                cb.highlightedColor = Color.Lerp(Color.white, Color.black, 0.20f);
                 MuelleButton.colors = cb;
 
-                selectToolBoolean = false;
-                selectedToolString = "";
-                Game.setSelectedTool(selectedToolString);
+                selectToolBoolean = true;
+                selectedToolString = "Muelle";
+            }
+            else
+            {
+                if (selectedToolString == "Muelle")
+                {
+                    ColorBlock cb = MuelleButton.colors;
+                    cb.normalColor = Color.white;
+                    cb.highlightedColor = Color.white;
+                    MuelleButton.colors = cb;
+
+                    selectToolBoolean = false;
+                    selectedToolString = "";
+                }
             }
         }
     }
 
     public void changeAceleradorOnSelect()
     {
-        if (!selectToolBoolean)
+        if (!Game.getCoryFly() && !Game.getCoryDie() && !Game.getCoryEnd())
         {
-            ColorBlock cb = AceleradorButton.colors;
-            cb.normalColor = Color.Lerp(Color.white, Color.black, 0.50f);
-            cb.highlightedColor = Color.Lerp(Color.white, Color.black, 0.50f);
-            AceleradorButton.colors = cb;
-
-            selectToolBoolean = true;
-            selectedToolString = "Acelerador";
-            Game.setSelectedTool(selectedToolString);
-        }
-        else
-        {
-            if (selectedToolString == "Acelerador")
+            if (!selectToolBoolean)
             {
                 ColorBlock cb = AceleradorButton.colors;
-                cb.normalColor = Color.white;
-                cb.highlightedColor = Color.white;
+                cb.normalColor = Color.Lerp(Color.white, Color.black, 0.20f);
+                cb.highlightedColor = Color.Lerp(Color.white, Color.black, 0.20f);
                 AceleradorButton.colors = cb;
 
-                selectToolBoolean = false;
-                selectedToolString = "";
-                Game.setSelectedTool(selectedToolString);
+                selectToolBoolean = true;
+                selectedToolString = "Acelerador";
+            }
+            else
+            {
+                if (selectedToolString == "Acelerador")
+                {
+                    ColorBlock cb = AceleradorButton.colors;
+                    cb.normalColor = Color.white;
+                    cb.highlightedColor = Color.white;
+                    AceleradorButton.colors = cb;
+
+                    selectToolBoolean = false;
+                    selectedToolString = "";
+                }
             }
         }
     }

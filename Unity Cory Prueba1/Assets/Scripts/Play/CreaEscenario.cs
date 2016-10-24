@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CreaEscenario : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class CreaEscenario : MonoBehaviour {
     private const int CORY = 9;
 
 
+    public GameObject Aire;
     public GameObject Tierra;
     public GameObject Cesped;
     public GameObject Agua;
@@ -23,18 +25,46 @@ public class CreaEscenario : MonoBehaviour {
     public GameObject Cory;
     public GameObject LevelEnd;
 
-    public Camera CamaraPrincipal;
+    public GameObject CanvasButtons;
+    public GameObject ButtonMuelle;
+    public GameObject ButtonAcelerador;
 
+    public Camera CamaraPrincipal;
     public PhysicMaterial ReboteMaterial;
+
+    Level actualLevel;
 
     // Use this for initialization
     void Start () {
+
+        /*
+            Creation button and positioning at screen (top right)
+        */
+        for (int i = 0; i < Game.getNumMuelles(); i++)
+        {
+            Instantiate(ButtonMuelle,Vector3.zero, Quaternion.identity);
+            GameObject BM = GameObject.FindGameObjectsWithTag("BotonMuelle")[i];
+            BM.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
+            BM.transform.parent = CanvasButtons.transform;
+            BM.GetComponent<buttonClick>().setIndex(i);
+            BM.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - BM.GetComponent<RectTransform>().sizeDelta.x * BM.GetComponent<RectTransform>().localScale.x * i, -20, 0);
+        }
+        for (int i = 0; i < Game.getNumAceleradores(); i++)
+        {
+            Instantiate(ButtonAcelerador, Vector3.zero, Quaternion.identity);
+            GameObject BA = GameObject.FindGameObjectsWithTag("BotonAcelerador")[i];
+            BA.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
+            BA.transform.parent = CanvasButtons.transform;
+            BA.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles());
+            BA.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * BA.GetComponent<RectTransform>().sizeDelta.x * BA.GetComponent<RectTransform>().localScale.x - BA.GetComponent<RectTransform>().sizeDelta.x * BA.GetComponent<RectTransform>().localScale.x * i, -20, 0);
+        }
+
         /*
          * Get selected Level to Play from previous Scene (Map)
          * For the moment, we save a test number in levelToLoad
          */
 
-        Level actualLevel = Game.getCurrentLevel();
+        actualLevel = Game.getCurrentLevel();
 
         for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
@@ -42,6 +72,10 @@ public class CreaEscenario : MonoBehaviour {
             {
                 Vector3 position = new Vector3(j, i + 1, 0);
 
+                if (actualLevel.mapElements[i][j] == AIRE)
+                {
+                    Instantiate(Aire, position, Quaternion.identity);
+                }
                 if (actualLevel.mapElements[i][j] == TIERRA)
                 {
                     Instantiate(Tierra, position, Quaternion.identity);
@@ -83,6 +117,7 @@ public class CreaEscenario : MonoBehaviour {
         }
         
 	}
+
     void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -90,8 +125,5 @@ public class CreaEscenario : MonoBehaviour {
             Game.resetAllValues();
             SceneManager.LoadScene("WorldMap");
         }
-
-
-
     }
 }

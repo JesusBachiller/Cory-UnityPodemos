@@ -14,7 +14,15 @@ public class Game  {
     private static bool coryFly = false;
     private static bool coryEnd = false;
 
-    private static string selectedTool = "";
+    private static int numMuellesTotales = 2;
+    private static bool[] muellePuesto = new bool[numMuellesTotales];
+    private static bool[] botonMuelleActivo = new bool[numMuellesTotales];
+
+    private static int numAceleradoresTotales = 3;
+    private static bool[] aceleradorPuesto = new bool[numAceleradoresTotales];
+    private static bool[] botonAceleradorActivo = new bool[numAceleradoresTotales];
+    
+
 
     public static List<Level> getStadiumLevels()
     {
@@ -60,14 +68,61 @@ public class Game  {
     {
         coryFly = B;
     }
+    
 
-    public static string getSelectedTool()
+    public static int getNumMuelles()
     {
-        return selectedTool;
+        return numMuellesTotales;
     }
-    public static void setSelectedTool(string S)
+    public static void setNumMuelles(int N)
     {
-        selectedTool = S;
+        numMuellesTotales = N;
+    }
+
+    public static int getNumAceleradores()
+    {
+        return numAceleradoresTotales;
+    }
+    public static void setNumAceleradores(int N)
+    {
+        numAceleradoresTotales = N;
+    }
+
+    public static bool getMuellePuesto(int index)
+    {
+        return muellePuesto[index];
+    }
+    public static void setMuellePuesto(int index, bool b)
+    {
+        muellePuesto[index] = b;
+    }
+
+    public static bool getAceleradorPuesto(int index)
+    {
+        return aceleradorPuesto[index-numMuellesTotales];
+    }
+    public static void setAceleradorPuesto(int index, bool b)
+    {
+        aceleradorPuesto[index - numMuellesTotales] = b;
+    }
+
+
+    public static bool getBotonMuelleActivado(int index)
+    {
+        return botonMuelleActivo[index];
+    }
+    public static void setBotonMuelleActivado(int index, bool b)
+    {
+        botonMuelleActivo[index] = b;
+    }
+
+    public static bool getBotonAceleradorActivado(int index)
+    {
+        return botonAceleradorActivo[index - numMuellesTotales];
+    }
+    public static void setBotonAceleradorActivado(int index, bool b)
+    {
+        botonAceleradorActivo[index - numMuellesTotales] = b;
     }
 
     public static void resetAllValues()
@@ -76,6 +131,13 @@ public class Game  {
         coryDie = false;
         coryFly = false;
         coryEnd = false;
-        selectedTool = "";
+
+        numMuellesTotales = 2;
+        muellePuesto = new bool[numMuellesTotales];
+        botonMuelleActivo = new bool[numMuellesTotales];
+
+        numAceleradoresTotales = 3;
+        aceleradorPuesto = new bool[numAceleradoresTotales];
+        botonAceleradorActivo = new bool[numAceleradoresTotales];
     }
 }
