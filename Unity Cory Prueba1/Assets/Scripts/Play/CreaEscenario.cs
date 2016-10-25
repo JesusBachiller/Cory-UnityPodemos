@@ -19,6 +19,7 @@ public class CreaEscenario : MonoBehaviour {
     public GameObject Aire;
     public GameObject Tierra;
     public GameObject Cesped;
+    public GameObject PlanoSuelo;
     public GameObject Agua;
     public GameObject Pincho;
     public GameObject PlataformaRotatoria;
@@ -65,6 +66,13 @@ public class CreaEscenario : MonoBehaviour {
          */
 
         actualLevel = Game.getCurrentLevel();
+        int tamanoPlanoSobreCesped = 0;
+        float sumaX = 0;
+        float xMediaPlanoSobreCesped = 0;
+        float iPlanoSobreCesped = 0;
+        GameObject planoInstanciado = new GameObject();
+        Vector3 positionPlanoSobreCesped = new Vector3();
+
 
         for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
@@ -80,6 +88,21 @@ public class CreaEscenario : MonoBehaviour {
                 {
                     Instantiate(Tierra, position, Quaternion.identity);
                 }
+                if (actualLevel.mapElements[i][j] != CESPED || iPlanoSobreCesped != i)
+                {
+                    if (tamanoPlanoSobreCesped != 0)
+                    {
+                        xMediaPlanoSobreCesped = sumaX / tamanoPlanoSobreCesped;
+                        planoInstanciado.transform.position = new Vector3(xMediaPlanoSobreCesped, positionPlanoSobreCesped.y, positionPlanoSobreCesped.z);
+                        planoInstanciado.transform.localScale = new Vector3(0.1f*tamanoPlanoSobreCesped, 0.1f, 0.1f);
+
+                        tamanoPlanoSobreCesped = 0;
+                        sumaX = 0;
+                        xMediaPlanoSobreCesped = 0;
+                        planoInstanciado = new GameObject();
+                        positionPlanoSobreCesped = new Vector3();
+                    }
+                }
                 if (actualLevel.mapElements[i][j] == CESPED)
                 {
                     if(i != 0 && actualLevel.mapElements[i-1][j] == AIRE)
@@ -89,6 +112,17 @@ public class CreaEscenario : MonoBehaviour {
                     else
                     {
                         Instantiate(Cesped, position, Quaternion.identity);
+                        if(tamanoPlanoSobreCesped == 0)
+                        {
+                            positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
+                            planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.identity) as GameObject;
+                            sumaX = position.x;
+                            tamanoPlanoSobreCesped += 1;
+                            iPlanoSobreCesped = i;
+                        } else {
+                            tamanoPlanoSobreCesped += 1;
+                            sumaX += position.x;
+                        }
                     }
                 }
                 if (actualLevel.mapElements[i][j] == AGUA)
