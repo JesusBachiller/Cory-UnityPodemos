@@ -35,6 +35,7 @@ public class MataCoryAgua : MonoBehaviour {
 
         Vector3 posInit = cory.GetComponent<lanzamiento>().getPosInitCory();
         cory.transform.position = posInit;
+        cory.transform.rotation = Quaternion.Euler(new Vector3(0, 45, 120));
 
         cory.GetComponent<Rigidbody>().isKinematic = false;
         cory.GetComponent<TrailRenderer>().enabled = true;

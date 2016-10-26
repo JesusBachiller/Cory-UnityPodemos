@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -67,16 +67,13 @@ public class CreaEscenario : MonoBehaviour
          * For the moment, we save a test number in levelToLoad
          */
 
-        
-        // ESTO PINTA PLANOS SOBRE LOS CUBOS
         actualLevel = Game.getCurrentLevel();
-        int tamanoPlanoSobreCesped = 0;
+        int tamanoCesped = 0;
         float sumaX = 0;
-        float xMediaPlanoSobreCesped = 0;
-        float iPlanoSobreCesped = 0;
-        GameObject planoInstanciado = new GameObject();
+        float xMediaCesped = 0;
+        float yCesped = 0;
+        GameObject cespedInstanciado = new GameObject();
         Vector3 positionPlanoSobreCesped = new Vector3();
-
 
         for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
@@ -92,43 +89,36 @@ public class CreaEscenario : MonoBehaviour
                 {
                     Instantiate(Tierra, position, Quaternion.identity);
                 }
-                if (actualLevel.mapElements[i][j] != CESPED || iPlanoSobreCesped != i)
-                {
-                    if (tamanoPlanoSobreCesped != 0)
-                    {
-                        xMediaPlanoSobreCesped = sumaX / tamanoPlanoSobreCesped;
-                        planoInstanciado.transform.position = new Vector3(xMediaPlanoSobreCesped, positionPlanoSobreCesped.y, positionPlanoSobreCesped.z);
-                        planoInstanciado.transform.localScale = new Vector3(0.1f * tamanoPlanoSobreCesped, 0.1f, 0.1f);
-
-                        tamanoPlanoSobreCesped = 0;
-                        sumaX = 0;
-                        xMediaPlanoSobreCesped = 0;
-                        planoInstanciado = new GameObject();
-                        positionPlanoSobreCesped = new Vector3();
-                    }
-                }
                 if (actualLevel.mapElements[i][j] == CESPED)
                 {
-                    if (i != 0 && actualLevel.mapElements[i - 1][j] == AIRE)
+                    positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
+                    Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.identity);
+                    if (tamanoCesped == 0)
                     {
-                        Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180)));
+                        cespedInstanciado = Instantiate(Cesped, position, Quaternion.identity) as GameObject;
+                        sumaX = position.x;
+                        tamanoCesped += 1;
+                        yCesped = i;
+                        Debug.Log(position);
                     }
                     else
                     {
-                        Instantiate(Cesped, position, Quaternion.identity);
-                        if (tamanoPlanoSobreCesped == 0)
-                        {
-                            positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
-                            planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.identity) as GameObject;
-                            sumaX = position.x;
-                            tamanoPlanoSobreCesped += 1;
-                            iPlanoSobreCesped = i;
+                        tamanoCesped += 1;
+                        sumaX += position.x;
+                    }
+
+                    if (j+1 >= actualLevel.mapElements[i].Count || (j+1 < actualLevel.mapElements[i].Count && actualLevel.mapElements[i][j + 1] != CESPED) )
+                    {
+                        xMediaCesped = sumaX / tamanoCesped;
+                        cespedInstanciado.transform.position = new Vector3(xMediaCesped, cespedInstanciado.transform.position.y, cespedInstanciado.transform.position.z);
+                        cespedInstanciado.transform.localScale = new Vector3(cespedInstanciado.transform.localScale.x * tamanoCesped, cespedInstanciado.transform.localScale.y, cespedInstanciado.transform.localScale.z);
+                        foreach (Material m in cespedInstanciado.GetComponent<Renderer>().materials) {
+                            m.mainTextureScale = new Vector2(tamanoCesped, 1);
                         }
-                        else
-                        {
-                            tamanoPlanoSobreCesped += 1;
-                            sumaX += position.x;
-                        }
+                        tamanoCesped = 0;
+                        sumaX = 0;
+                        xMediaCesped = 0;
+                        cespedInstanciado = new GameObject();
                     }
                 }
                 if (actualLevel.mapElements[i][j] == AGUA)
@@ -155,6 +145,7 @@ public class CreaEscenario : MonoBehaviour
                 }
             }
         }
+
     }
 
     void LateUpdate()

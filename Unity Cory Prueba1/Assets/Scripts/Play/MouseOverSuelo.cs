@@ -47,6 +47,11 @@ public class MouseOverSuelo : MonoBehaviour {
         {
             creaEscenario.GetComponent<ActualizaEscenario>().InstanciateMuelle(transform.position, index);
             Game.setMuellePuesto(index, true);
+
+            foreach (Material m in materiales)
+            {
+                m.color = Color.white;
+            }
         }
     }
 
