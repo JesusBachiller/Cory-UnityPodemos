@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CameraController : MonoBehaviour {
-    
+
+    public GameObject camButtons;
     private GameObject player;
     private Camera camera;
     private Vector3 offset;
@@ -35,12 +36,8 @@ public class CameraController : MonoBehaviour {
             maxFOV = 50;
             minFOV = 30;
         }
-        
-        foreach ( GameObject arrow in GameObject.FindGameObjectsWithTag("CamButtons"))
-        {
-            Debug.Log(arrow.name);
-            arrow.GetComponent<Canvas>().enabled = false;
-        }
+
+        camButtons.GetComponent<Canvas>().enabled = false;
 
         mousePosition = Input.mousePosition;
         cameraFollowsPlayer = true;
@@ -56,20 +53,14 @@ public class CameraController : MonoBehaviour {
         if (movingDown) { moveDown(); }
         if (movingUp) { moveUp(); }
 
-        if (Input.GetKeyDown(KeyCode.Space)) //Free Camera
+        if (Input.GetKeyDown(KeyCode.Space) && !Game.getCoryFly() && !Game.getCoryDie() && !Game.getCoryEnd()) //Free Camera
         {
             if (cameraFollowsPlayer) {
                 cameraFollowsPlayer = false;
-                foreach (GameObject arrow in GameObject.FindGameObjectsWithTag("CamButtons"))
-                {
-                    arrow.GetComponent<Canvas>().enabled = true;
-                }
+                camButtons.GetComponent<Canvas>().enabled = true;
             } else {
                 cameraFollowsPlayer = true;
-                foreach (GameObject arrow in GameObject.FindGameObjectsWithTag("CamButtons"))
-                {
-                    arrow.GetComponent<Canvas>().enabled = false;
-                }
+                camButtons.GetComponent<Canvas>().enabled = false;
             }
         }
 
@@ -106,14 +97,17 @@ public class CameraController : MonoBehaviour {
         if (Game.getCoryFly())
         {
             cameraFollowsPlayer = true;
+            camButtons.GetComponent<Canvas>().enabled = false;
         }
         if (Game.getCoryDie())
         {
             cameraFollowsPlayer = false;
+            camButtons.GetComponent<Canvas>().enabled = false;
         }
         if (Game.getCoryEnd())
         {
             cameraFollowsPlayer = false;
+            camButtons.GetComponent<Canvas>().enabled = false;
         }
 
     }
