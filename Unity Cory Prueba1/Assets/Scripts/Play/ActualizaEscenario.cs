@@ -129,6 +129,8 @@ public class ActualizaEscenario : MonoBehaviour
             if (tamanoPlanoSobreCesped == 0 && suelosCesped[i].GetComponent<Renderer>().enabled )
             {
                 // Creamos una nueva tira (plano sobre cesped)
+                Vector3 posicionPlanoLateralIzquierdo = suelosCesped[i].transform.position + new Vector3(-0.51f, 0, 0);
+                Instantiate(PlanoSuelo, posicionPlanoLateralIzquierdo, Quaternion.Euler(new Vector3(0, 0, 90)));
                 positionPlanoSobreCesped = suelosCesped[i].transform.position + new Vector3(0, 0.51f, 0);
                 planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.identity) as GameObject;
             }
@@ -145,6 +147,8 @@ public class ActualizaEscenario : MonoBehaviour
                     (i+1 < suelosCesped.Length && suelosCesped[i].transform.position.y != suelosCesped[i+1].transform.position.y)
                 )
             {
+                Vector3 posicionPlanoLateralDerecho = suelosCesped[i].transform.position + new Vector3(+0.51f, 0, 0);
+                Instantiate(PlanoSuelo, posicionPlanoLateralDerecho, Quaternion.Euler(new Vector3(0, 0, -90)));
                 // Se ha acabado una tira (plano sobre cesped)
                 xMediaPlanoSobreCesped = sumaX / tamanoPlanoSobreCesped;
                 planoInstanciado.transform.position = new Vector3(xMediaPlanoSobreCesped, positionPlanoSobreCesped.y, positionPlanoSobreCesped.z);

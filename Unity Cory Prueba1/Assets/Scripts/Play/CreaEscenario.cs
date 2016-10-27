@@ -73,7 +73,6 @@ public class CreaEscenario : MonoBehaviour
         int tamanoPlanoSobreCesped = 0;
         float sumaX = 0;
         float xMediaPlanoSobreCesped = 0;
-        float iPlanoSobreCesped = 0;
         GameObject planoInstanciado = new GameObject();
         Vector3 positionPlanoSobreCesped = new Vector3();
 
@@ -92,45 +91,60 @@ public class CreaEscenario : MonoBehaviour
                 {
                     Instantiate(Tierra, position, Quaternion.identity);
                 }
-                if (actualLevel.mapElements[i][j] != CESPED || iPlanoSobreCesped != i)
-                {
-                    if (tamanoPlanoSobreCesped != 0)
-                    {
-                        xMediaPlanoSobreCesped = sumaX / tamanoPlanoSobreCesped;
-                        planoInstanciado.transform.position = new Vector3(xMediaPlanoSobreCesped, positionPlanoSobreCesped.y, positionPlanoSobreCesped.z);
-                        planoInstanciado.transform.localScale = new Vector3(0.1f * tamanoPlanoSobreCesped, 0.1f, 0.1f);
-
-                        tamanoPlanoSobreCesped = 0;
-                        sumaX = 0;
-                        xMediaPlanoSobreCesped = 0;
-                        planoInstanciado = new GameObject();
-                        positionPlanoSobreCesped = new Vector3();
-                    }
-                }
+                /***/
                 if (actualLevel.mapElements[i][j] == CESPED)
                 {
+                    Vector3 rotacionPlano = new Vector3();
                     if (i != 0 && actualLevel.mapElements[i - 1][j] == AIRE)
                     {
                         Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180)));
+
+                        // Ponemos plano debajo y sin rotado 180
+                        positionPlanoSobreCesped = position + new Vector3(0, -0.51f, 0);
+                        rotacionPlano = new Vector3(0, 0, 180);
                     }
                     else
                     {
                         Instantiate(Cesped, position, Quaternion.identity);
-                        if (tamanoPlanoSobreCesped == 0)
+
+                        // Ponemos plano encima y sin rotarlo
+                        positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
+                        rotacionPlano = new Vector3(0, 0, 0);
+                    }
+                    if (tamanoPlanoSobreCesped == 0)
+                    {
+                        Vector3 posicionPlanoLateralIzquierdo = position + new Vector3(-0.51f, 0, 0);
+                        Instantiate(PlanoSuelo, posicionPlanoLateralIzquierdo, Quaternion.Euler(new Vector3(0, 0, 90)));
+                        planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.Euler(rotacionPlano)) as GameObject;
+                        sumaX = position.x;
+                        tamanoPlanoSobreCesped += 1;
+                        Debug.Log(position);
+                    }
+                    else
+                    {
+                        tamanoPlanoSobreCesped += 1;
+                        sumaX += position.x;
+                    }
+
+                    if (j + 1 >= actualLevel.mapElements[i].Count || (j + 1 < actualLevel.mapElements[i].Count && actualLevel.mapElements[i][j + 1] != CESPED))
+                    {
+                        Vector3 posicionPlanoLateralDerecho = position + new Vector3(+0.51f, 0, 0);
+                        Instantiate(PlanoSuelo, posicionPlanoLateralDerecho, Quaternion.Euler(new Vector3(0, 0, -90)));
+
+                        xMediaPlanoSobreCesped = sumaX / tamanoPlanoSobreCesped;
+                        planoInstanciado.transform.position = new Vector3(xMediaPlanoSobreCesped, planoInstanciado.transform.position.y, planoInstanciado.transform.position.z);
+                        planoInstanciado.transform.localScale = new Vector3(planoInstanciado.transform.localScale.x * tamanoPlanoSobreCesped, planoInstanciado.transform.localScale.y, planoInstanciado.transform.localScale.z);
+                        foreach (Material m in planoInstanciado.GetComponent<Renderer>().materials)
                         {
-                            positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
-                            planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.identity) as GameObject;
-                            sumaX = position.x;
-                            tamanoPlanoSobreCesped += 1;
-                            iPlanoSobreCesped = i;
+                            m.mainTextureScale = new Vector2(tamanoPlanoSobreCesped, 1);
                         }
-                        else
-                        {
-                            tamanoPlanoSobreCesped += 1;
-                            sumaX += position.x;
-                        }
+                        tamanoPlanoSobreCesped = 0;
+                        sumaX = 0;
+                        xMediaPlanoSobreCesped = 0;
+                        planoInstanciado = new GameObject();
                     }
                 }
+                /***/
                 if (actualLevel.mapElements[i][j] == AGUA)
                 {
                     Instantiate(Agua, position, Quaternion.identity);

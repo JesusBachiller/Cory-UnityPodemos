@@ -1,14 +1,10 @@
 fileFormatVersion: 2
 guid: 58e1e615e3a39554489c4cc8c14074a5
-timeCreated: 1477484103
+timeCreated: 1474829981
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - Muelle: {instanceID: 0}
-  - PosibleAceleradores: {instanceID: 0}
-  - Acelerador: {instanceID: 0}
-  - PlanoSuelo: {fileID: 197784, guid: e598b8bee3538bc45b0f013b23c40322, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
