@@ -91,7 +91,6 @@ public class CreaEscenario : MonoBehaviour
                 {
                     Instantiate(Tierra, position, Quaternion.identity);
                 }
-                /***/
                 if (actualLevel.mapElements[i][j] == CESPED)
                 {
                     Vector3 rotacionPlano = new Vector3();
@@ -118,7 +117,6 @@ public class CreaEscenario : MonoBehaviour
                         planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.Euler(rotacionPlano)) as GameObject;
                         sumaX = position.x;
                         tamanoPlanoSobreCesped += 1;
-                        Debug.Log(position);
                     }
                     else
                     {
@@ -144,7 +142,6 @@ public class CreaEscenario : MonoBehaviour
                         planoInstanciado = new GameObject();
                     }
                 }
-                /***/
                 if (actualLevel.mapElements[i][j] == AGUA)
                 {
                     Instantiate(Agua, position, Quaternion.identity);
@@ -165,7 +162,9 @@ public class CreaEscenario : MonoBehaviour
                 {
                     Instantiate(Cory, position, Quaternion.Euler(new Vector3(0, 45, 120)));
                     Vector3 posCamara = new Vector3(position.x + 15, position.y + 10, position.z - 20);
-                    Instantiate(CamaraPrincipal, posCamara, Quaternion.Euler(new Vector3(15, -12, -2)));
+                    CamaraPrincipal.transform.localPosition = posCamara;
+                    CamaraPrincipal.transform.rotation = Quaternion.Euler(new Vector3(15, -12, -2));
+                    //Instantiate(CamaraPrincipal, posCamara, Quaternion.Euler(new Vector3(15, -12, -2)));
                 }
             }
         }

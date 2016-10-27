@@ -9,6 +9,7 @@ public class Game  {
     private static List<Level> StadiumLevels;
     
     public static bool cameraFollowsPlayer = true;
+    public const float speedFreeCamera = 5.0f;
 
     private static bool coryDie = false;
     private static bool coryFly = false;
