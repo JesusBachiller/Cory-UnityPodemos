@@ -41,7 +41,7 @@ public class lanzamiento : MonoBehaviour
         argo = new GameObject[samples];
         for (var i = 0; i < argo.Length; i++)
         {
-            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.GetComponent<Collider>().enabled = false;
             go.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
             argo[i] = go;
