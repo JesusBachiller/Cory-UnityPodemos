@@ -141,10 +141,10 @@ public class ActualizaEscenario : MonoBehaviour
                 sumaX += suelosCesped[i].transform.position.x;
             }
             if (
-                    (i + 1 >= suelosCesped.Length) ||
-                    (i+1 < suelosCesped.Length && (suelosCesped[i+1].transform.position.x - suelosCesped[i].transform.position.x) > 1) ||
-                    (i+1 < suelosCesped.Length && !suelosCesped[i+1].GetComponent<Renderer>().enabled) || 
-                    (i+1 < suelosCesped.Length && suelosCesped[i].transform.position.y != suelosCesped[i+1].transform.position.y)
+                    (i + 1 < suelosCesped.Length && suelosCesped[i].GetComponent<Renderer>().enabled && ((suelosCesped[i + 1].transform.position.x - suelosCesped[i].transform.position.x) > 1) && suelosCesped[i + 1].GetComponent<Renderer>().enabled) ||
+                    (i + 1 < suelosCesped.Length && suelosCesped[i].GetComponent<Renderer>().enabled && !suelosCesped[i + 1].GetComponent<Renderer>().enabled) ||
+                    (i + 1 < suelosCesped.Length && suelosCesped[i].GetComponent<Renderer>().enabled && suelosCesped[i].transform.position.y != suelosCesped[i + 1].transform.position.y) ||
+                    (i + 1 >= suelosCesped.Length && suelosCesped[i].GetComponent<Renderer>().enabled)
                 )
             {
                 Vector3 posicionPlanoLateralDerecho = suelosCesped[i].transform.position + new Vector3(+0.51f, 0, 0);
