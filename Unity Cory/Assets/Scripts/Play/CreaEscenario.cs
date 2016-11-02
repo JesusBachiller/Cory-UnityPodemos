@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class CreaEscenario : MonoBehaviour
 {
 
-    private const int AIRE = 0;
-    private const int TIERRA = 1;
-    private const int CESPED = 2;
-    private const int AGUA = 3;
-    private const int PINCHO = 4;
-    private const int PLATAFORMA_ROTATORIA = 5;
-    private const int LEVEL_END = 8;
-    private const int CORY = 9;
+    private const char AIRE = '0';
+    private const char TIERRA = '1';
+    private const char CESPED = '2';
+    private const char AGUA = '3';
+    private const char PINCHO = '4';
+    private const char PLATAFORMA_ROTATORIA = '5';
+    private const char LEVEL_END = '8';
+    private const char CORY = '9';
 
 
     public GameObject Aire;

@@ -24,25 +24,25 @@ public class Level {
     [XmlElement("PreviewImagePath")]
     public string previewImagePath;
     
-    public List<List<int>> mapElements;
+    public List<List<char>> mapElements;
     public int[] availableTools;
     public LevelSavedData levelSavedData;
 
     public void parseXmlMapElements()
     {
-        mapElements = new List<List<int>>();
-        List<int> actualRow = new List<int>();
+        mapElements = new List<List<char>>();
+        List<char> actualRow = new List<char>();
         foreach (char c in xmlMapElements)
         {
             if (c != '-') {
-                if (char.IsDigit(c))
+                if ((char.IsDigit(c) || char.IsLetter(c)) && !char.IsWhiteSpace(c))
                 {
-                    actualRow.Add((int)char.GetNumericValue(c));
+                    actualRow.Add(c);
                 }
             } else
             {
                 mapElements.Add(actualRow); // Copies the reference -and not the complete content- of the list actualRow.
-                actualRow = new List<int>(); // That's why we create a new List here.
+                actualRow = new List<char>(); // That's why we create a new List here.
             }
         }
         mapElements.Add(actualRow); // Add the final row that doesn't end with a '-'
