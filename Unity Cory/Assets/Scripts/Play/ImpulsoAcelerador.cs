@@ -4,18 +4,35 @@ using System.Collections;
 public class ImpulsoAcelerador : MonoBehaviour {
 
     public float fuerza;
+    private float maxVelocity;
+
+    private Vector3 vectorDirectorNormalized;
+
+    private float timeStayTrigger = 0;
 
     void Start()
     {
-        fuerza = 5f;
+        fuerza = 2f;
+        maxVelocity = 15f;
+
+        vectorDirectorNormalized = Vector3.up;
     }
 
-    void OnTriggerEnter(Collider other)
+    public void changeForce(Vector3 Vnormal)
     {
-        Vector3 velocity = other.GetComponent<Rigidbody>().velocity;
-        velocity.x += fuerza;
-        velocity.y *= 0.85f;
-        other.GetComponent<Rigidbody>().velocity = velocity;
+        vectorDirectorNormalized = Vnormal;
+        Debug.Log(vectorDirectorNormalized);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        Vector3 velocity = other.gameObject.GetComponent<Rigidbody>().velocity;
+
+        float magnitude = velocity.magnitude;
+        magnitude += fuerza;
+        Debug.Log("m: " + Mathf.Min(magnitude, maxVelocity));
+
+        other.gameObject.GetComponent<Rigidbody>().velocity = vectorDirectorNormalized * (Mathf.Min(magnitude, maxVelocity));
     }
 
 }

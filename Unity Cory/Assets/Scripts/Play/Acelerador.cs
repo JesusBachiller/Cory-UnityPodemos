@@ -46,11 +46,13 @@ public class Acelerador : MonoBehaviour {
             {
                 Game.setAceleradorPuesto(index, false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleAcelerador();
+                GetComponent<BoxCollider>().size = new Vector3(1f, 1f, 1f);
             }
             else
             {
                 Game.setAceleradorPuesto(index, true);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleAceleradores();
+                GetComponent<BoxCollider>().size = new Vector3(0.5f, 0.5f, 0.5f);
             }
         }
     }

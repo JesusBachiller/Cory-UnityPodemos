@@ -152,7 +152,11 @@ public class CreaEscenario : MonoBehaviour
                 }
                 if (actualLevel.mapElements[i][j] == PLATAFORMA_ROTATORIA)
                 {
-                    Instantiate(PlataformaRotatoria, position, Quaternion.identity);
+                    GameObject PR = Instantiate(PlataformaRotatoria, position, Quaternion.identity) as GameObject;
+
+                    /*PR.GetComponent<PlataformaRotatoria>().index = GameObject.FindGameObjectsWithTag("PlataformaRotatoria").Length - 1;
+                    PR.name = "PlataformaRotatoria" + PR.GetComponent<PlataformaRotatoria>().index.ToString();
+                    PR.GetComponentInChildren<RotarPlataformaRotatoria>().index = PR.GetComponent<PlataformaRotatoria>().index;*/
                 }
                 if (actualLevel.mapElements[i][j] == LEVEL_END)
                 {
