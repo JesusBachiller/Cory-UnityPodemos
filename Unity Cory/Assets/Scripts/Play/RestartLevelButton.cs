@@ -19,7 +19,7 @@ public class RestartLevelButton : MonoBehaviour {
             cory.transform.position = posInit;
             cory.transform.rotation = Quaternion.Euler(new Vector3(0, 45, 120));
 
-            cory.GetComponent<TrailRenderer>().enabled = true;
+            cory.GetComponent<TrailRenderer>().Clear();
             cory.GetComponent<Rigidbody>().isKinematic = false;
             Game.setCoryDie(false);
 

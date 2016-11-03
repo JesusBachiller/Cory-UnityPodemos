@@ -165,9 +165,9 @@ public class CreaEscenario : MonoBehaviour
                 if (actualLevel.mapElements[i][j] == CORY)
                 {
                     Instantiate(Cory, position, Quaternion.Euler(new Vector3(0, 45, 120)));
-                    Vector3 posCamara = new Vector3(position.x + 15, position.y + 10, position.z - 20);
+                    Vector3 posCamara = new Vector3(position.x + 1, position.y + 6, position.z - 20.57f);
                     CamaraPrincipal.transform.localPosition = posCamara;
-                    CamaraPrincipal.transform.rotation = Quaternion.Euler(new Vector3(15, -12, -2));
+                    CamaraPrincipal.transform.rotation = Quaternion.Euler(new Vector3(7.5f, 22, 0));
                     //Instantiate(CamaraPrincipal, posCamara, Quaternion.Euler(new Vector3(15, -12, -2)));
                 }
             }

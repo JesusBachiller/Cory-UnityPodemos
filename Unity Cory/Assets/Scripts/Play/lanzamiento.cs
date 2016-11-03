@@ -9,6 +9,7 @@ public class lanzamiento : MonoBehaviour
     private Vector3 posFinal_Mouse;
 
     private float fuerzaExtra;
+    private float factorEscalado;
 
     private int maxDistancia;
 
@@ -48,9 +49,9 @@ public class lanzamiento : MonoBehaviour
         }
 
 
-        maxDistancia = 90;
+        maxDistancia = 775;
 
-        fuerzaExtra = 9.1f;
+        fuerzaExtra = 40f;
 
         velocidad = new Vector3(0f, 0f, 0f);
 
@@ -77,6 +78,9 @@ public class lanzamiento : MonoBehaviour
 
     private void DisplayIndicators()
     {
+        Debug.Log(velocidad.x + ", " + velocidad.y);
+        velocidad /= 9.15f;
+        Debug.Log(velocidad.x + ", " + velocidad.y);
         argo[0].transform.position = transform.position;
         Vector3 v3 = transform.position;
         float y = velocidad.y;
@@ -118,6 +122,9 @@ public class lanzamiento : MonoBehaviour
                     posFinal_Mouse = Input.mousePosition;
 
                     velocidad = posInicial_Mouse - posFinal_Mouse;
+                    velocidad.x = ((velocidad.x * 100) / Screen.width) * fuerzaExtra;
+                    velocidad.y = ((velocidad.y * 100) / Screen.height) * fuerzaExtra;
+
                     moduloVelocidad = Mathf.Sqrt((velocidad.x * velocidad.x) + (velocidad.y * velocidad.y));
                     if (moduloVelocidad >= maxDistancia)
                     {
@@ -153,18 +160,20 @@ public class lanzamiento : MonoBehaviour
                 Rigidbody rb = GetComponent<Rigidbody>();
 
                 velocidad = posInicial_Mouse - posFinal_Mouse;
+                velocidad.x = ((velocidad.x * 100) / Screen.width) * fuerzaExtra;
+                velocidad.y = ((velocidad.y * 100) / Screen.height) * fuerzaExtra;
 
                 moduloVelocidad = Mathf.Sqrt((velocidad.x * velocidad.x) + (velocidad.y * velocidad.y));
                 if (moduloVelocidad < maxDistancia)
                 {
-                    rb.AddForce(velocidad.x * fuerzaExtra, velocidad.y * fuerzaExtra, velocidad.z);
+                    rb.AddForce(velocidad.x, velocidad.y, velocidad.z);
                 }
                 else
                 {
                     velocidad.x = velocidad.x * maxDistancia / moduloVelocidad;
                     velocidad.y = velocidad.y * maxDistancia / moduloVelocidad;
 
-                    rb.AddForce(velocidad.x * fuerzaExtra, velocidad.y * fuerzaExtra, velocidad.z);
+                    rb.AddForce(velocidad.x, velocidad.y, velocidad.z);
                 }
             }
         }
