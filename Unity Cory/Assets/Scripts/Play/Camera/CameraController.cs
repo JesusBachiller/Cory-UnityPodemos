@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour {
         mousePosition = Input.mousePosition;
         cameraFollowsPlayer = true;
         responsiveMousePercentage = 0.05f;
-        speedFreeCamera = 5.0f;
+        speedFreeCamera = 10.0f;
     }
 
 
@@ -221,4 +221,5 @@ public class CameraController : MonoBehaviour {
     {
         movingUp = false;
     }
+
 }
