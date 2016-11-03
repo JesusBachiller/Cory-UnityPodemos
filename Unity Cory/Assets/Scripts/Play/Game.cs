@@ -5,15 +5,19 @@ using System.Collections.Generic;
 public class Game  {
 
     private static Level currentLevel;
+    private static Stadium currentStadium;
 
     private static List<Level> StadiumLevels;
     
     public static bool cameraFollowsPlayer = true;
-    public const float speedFreeCamera = 5.0f;
 
     private static bool coryDie = false;
     private static bool coryFly = false;
     private static bool coryEnd = false;
+
+    private static bool firstStarOfLevelAchieved = false;
+    private static bool secondStarOfLevelAchieved = false;
+    private static bool thirdStarOfLevelAchieved = false;
 
     private static int numMuellesTotales = 2;
     private static bool[] muellePuesto = new bool[numMuellesTotales];
@@ -42,6 +46,14 @@ public class Game  {
     {
         currentLevel = level;
     }
+    public static Stadium getCurrentStadium()
+    {
+        return currentStadium;
+    }
+    public static void setCurrentStadium(Stadium stadium)
+    {
+        currentStadium = stadium;
+    }
 
     public static bool getCoryEnd()
     {
@@ -60,7 +72,33 @@ public class Game  {
     {
         coryDie = B;
     }
-    
+
+    public static bool getFirstStarOfLevelAchieved()
+    {
+        return firstStarOfLevelAchieved;
+    }
+    public static void setFirstStarOfLevelAchieved(bool B)
+    {
+        firstStarOfLevelAchieved = B;
+    }
+
+    public static bool getSecondStarOfLevelAchieved()
+    {
+        return secondStarOfLevelAchieved;
+    }
+    public static void setSecondStarOfLevelAchieved(bool B)
+    {
+        secondStarOfLevelAchieved = B;
+    }
+    public static bool getThirdStarOfLevelAchieved()
+    {
+        return thirdStarOfLevelAchieved;
+    }
+    public static void setThirdStarOfLevelAchieved(bool B)
+    {
+        thirdStarOfLevelAchieved = B;
+    }
+
     public static bool getCoryFly()
     {
         return coryFly;

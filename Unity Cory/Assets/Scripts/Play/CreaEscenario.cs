@@ -15,7 +15,9 @@ public class CreaEscenario : MonoBehaviour
     private const char PLATAFORMA_ROTATORIA = '5';
     private const char LEVEL_END = '8';
     private const char CORY = '9';
-
+    private const char ESTRELLA_UNO = 'a';
+    private const char ESTRELLA_DOS = 'b';
+    private const char ESTRELLA_TRES = 'c';
 
     public GameObject Aire;
     public GameObject Tierra;
@@ -26,6 +28,9 @@ public class CreaEscenario : MonoBehaviour
     public GameObject PlataformaRotatoria;
     public GameObject Cory;
     public GameObject LevelEnd;
+    public GameObject EstrellaUno;
+    public GameObject EstrellaDos;
+    public GameObject EstrellaTres;
 
     public GameObject CanvasButtons;
     public GameObject ButtonMuelle;
@@ -83,6 +88,19 @@ public class CreaEscenario : MonoBehaviour
             {
                 Vector3 position = new Vector3(j, i + 1, 0);
 
+                if (actualLevel.mapElements[i][j] == ESTRELLA_UNO)
+                {
+                    Instantiate(EstrellaUno, position, Quaternion.identity);
+
+                }
+                if (actualLevel.mapElements[i][j] == ESTRELLA_DOS)
+                {
+                    Instantiate(EstrellaDos, position, Quaternion.identity);
+                }
+                if (actualLevel.mapElements[i][j] == ESTRELLA_TRES)
+                {
+                    Instantiate(EstrellaTres, position, Quaternion.identity);
+                }
                 if (actualLevel.mapElements[i][j] == AIRE)
                 {
                     Instantiate(Aire, position, Quaternion.identity);

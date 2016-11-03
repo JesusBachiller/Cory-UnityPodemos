@@ -78,9 +78,7 @@ public class lanzamiento : MonoBehaviour
 
     private void DisplayIndicators()
     {
-        Debug.Log(velocidad.x + ", " + velocidad.y);
         velocidad /= 9.15f;
-        Debug.Log(velocidad.x + ", " + velocidad.y);
         argo[0].transform.position = transform.position;
         Vector3 v3 = transform.position;
         float y = velocidad.y;

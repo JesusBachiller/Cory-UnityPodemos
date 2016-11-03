@@ -26,7 +26,6 @@ public class Level {
     
     public List<List<char>> mapElements;
     public int[] availableTools;
-    public LevelSavedData levelSavedData;
 
     public void parseXmlMapElements()
     {

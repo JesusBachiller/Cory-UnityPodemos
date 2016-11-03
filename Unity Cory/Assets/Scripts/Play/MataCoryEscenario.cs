@@ -31,7 +31,7 @@ public class MataCoryEscenario : MonoBehaviour {
     IEnumerator changePositionCory(float s)
     {
         yield return new WaitForSeconds(s);
-
+        
         cory.GetComponent<Rigidbody>().isKinematic = true;
 
         Vector3 posInit = cory.GetComponent<lanzamiento>().getPosInitCory();
