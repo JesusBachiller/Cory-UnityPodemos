@@ -126,7 +126,7 @@ public class CameraController : MonoBehaviour {
 
     public void moveRight()
     {
-        if (transform.position.x <= 55.0f)
+        if (transform.position.x <= 30.0f)
         {
             transform.position += new Vector3(speedFreeCamera, 0, 0) * Time.deltaTime;
         }
@@ -134,11 +134,11 @@ public class CameraController : MonoBehaviour {
 
     public void moveLeft()
     {
-        if (transform.position.x >= 7.0f)
+        if (transform.position.x >= -2.0f)
         {
             transform.position += new Vector3(-speedFreeCamera, 0, 0) * Time.deltaTime;
         }
-    }
+    } 
 
     public void moveUp()
     {
@@ -150,7 +150,7 @@ public class CameraController : MonoBehaviour {
 
     public void moveDown()
     {
-        if (transform.position.y >= 9.0f)
+        if (transform.position.y >= 5.0f)
         {
             transform.position += new Vector3(0, -speedFreeCamera, 0) * Time.deltaTime;
         }
