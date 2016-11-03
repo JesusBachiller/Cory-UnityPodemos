@@ -15,8 +15,10 @@ public class RotarPlataformaRotatoria : MonoBehaviour {
 
     void Update()
     {
+        
         if (Input.GetMouseButtonDown(1))
         {
+            //Debug.Log("AAAA");
             OnRightClick();
             if (CentroPR != null)
             {
@@ -67,7 +69,7 @@ public class RotarPlataformaRotatoria : MonoBehaviour {
             if (hitPoint.collider == this.GetComponent<Collider>())
             {
                 // Put code for the right click event
-                Debug.Log("Right Clicked on " + this.name);
+                //Debug.Log("Right Clicked on " + this.name);
                 CentroPR = this.gameObject;
             }
         }

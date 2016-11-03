@@ -11,7 +11,6 @@ public class CameraController : MonoBehaviour {
     private Vector3 mousePosition;
     private Vector2 gameWindowResolution;
     private float responsiveMousePercentage;
-    private bool cameraFollowsPlayer;
     private float speedFreeCamera;
 
     private bool movingRight = false;
@@ -40,7 +39,7 @@ public class CameraController : MonoBehaviour {
         camButtons.GetComponent<Canvas>().enabled = false;
 
         mousePosition = Input.mousePosition;
-        cameraFollowsPlayer = true;
+        Game.cameraFollowsPlayer = true;
         responsiveMousePercentage = 0.05f;
         speedFreeCamera = 10.0f;
     }
@@ -55,15 +54,15 @@ public class CameraController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && !Game.getCoryFly() && !Game.getCoryDie() && !Game.getCoryEnd()) //Free Camera
         {
-            if (cameraFollowsPlayer) {
-                cameraFollowsPlayer = false;
+            if (Game.cameraFollowsPlayer) {
+                Game.cameraFollowsPlayer = false;
                 camButtons.GetComponent<Canvas>().enabled = true;
             } else {
-                cameraFollowsPlayer = true;
+                Game.cameraFollowsPlayer = true;
                 camButtons.GetComponent<Canvas>().enabled = false;
             }
         }
-
+        
         var d = Input.GetAxis("Mouse ScrollWheel");
         if (d > 0f)
         {
@@ -80,7 +79,7 @@ public class CameraController : MonoBehaviour {
             }
         }
 
-        if (cameraFollowsPlayer)
+        if (Game.cameraFollowsPlayer)
         {
             if (player != null)
             {
@@ -96,49 +95,21 @@ public class CameraController : MonoBehaviour {
 
         if (Game.getCoryFly())
         {
-            cameraFollowsPlayer = true;
+            Game.cameraFollowsPlayer = true;
             camButtons.GetComponent<Canvas>().enabled = false;
         }
         if (Game.getCoryDie())
         {
-            cameraFollowsPlayer = false;
+            Game.cameraFollowsPlayer = false;
             camButtons.GetComponent<Canvas>().enabled = false;
         }
         if (Game.getCoryEnd())
         {
-            cameraFollowsPlayer = false;
+            Game.cameraFollowsPlayer = false;
             camButtons.GetComponent<Canvas>().enabled = false;
         }
 
     }
-
-    /*private void moveCameraWithMouse()
-    {
-        mousePosition = Input.mousePosition;
-        gameWindowResolution = GetMainGameViewSize();
-
-
-        if (mousePosition.x <= gameWindowResolution.x * responsiveMousePercentage && transform.position.x >= 7.0f) // Si toca por la izquierda
-        {
-            transform.position += new Vector3(-speedFreeCamera, 0, 0) * Time.deltaTime;
-        }
-
-        if (mousePosition.x >= gameWindowResolution.x - (gameWindowResolution.x * responsiveMousePercentage) && transform.position.x <= 55.0f) // Si toca por la derecha
-        {
-            transform.position += new Vector3(speedFreeCamera, 0, 0) * Time.deltaTime;
-        }
-
-        if (mousePosition.y >= gameWindowResolution.y * responsiveMousePercentage && transform.position.y <= 16.0f) // Si toca por arriba
-        {
-            transform.position += new Vector3(0, speedFreeCamera, 0) * Time.deltaTime;
-        }
-
-        if (mousePosition.y <= gameWindowResolution.y - (gameWindowResolution.y * responsiveMousePercentage) && transform.position.y >= 9.0f) // Si toca por abajo
-        {
-            transform.position += new Vector3(0, -speedFreeCamera, 0) * Time.deltaTime;
-        }
-        //Debug.Log(transform.position);
-    }*/
 
     public static Vector2 GetMainGameViewSize()
     {
@@ -150,12 +121,11 @@ public class CameraController : MonoBehaviour {
 
     public void setCameraFollowPlayer(bool b)
     {
-        cameraFollowsPlayer = b;
+        Game.cameraFollowsPlayer = b;
     }
 
     public void moveRight()
     {
-        Debug.Log("Derecha");
         if (transform.position.x <= 55.0f)
         {
             transform.position += new Vector3(speedFreeCamera, 0, 0) * Time.deltaTime;
@@ -164,7 +134,6 @@ public class CameraController : MonoBehaviour {
 
     public void moveLeft()
     {
-        Debug.Log("Left");
         if (transform.position.x >= 7.0f)
         {
             transform.position += new Vector3(-speedFreeCamera, 0, 0) * Time.deltaTime;
@@ -173,7 +142,6 @@ public class CameraController : MonoBehaviour {
 
     public void moveUp()
     {
-        Debug.Log("Up");
         if (transform.position.y <= 16.0f)
         {
             transform.position += new Vector3(0, speedFreeCamera, 0) * Time.deltaTime;
@@ -182,7 +150,6 @@ public class CameraController : MonoBehaviour {
 
     public void moveDown()
     {
-        Debug.Log("Down");
         if (transform.position.y >= 9.0f)
         {
             transform.position += new Vector3(0, -speedFreeCamera, 0) * Time.deltaTime;

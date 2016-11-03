@@ -40,7 +40,7 @@ public class PlataformaRotatoria : MonoBehaviour {
 
                 transform.eulerAngles = new Vector3(0f, 0f, -degrees);
 
-                Debug.Log(transform.eulerAngles);
+                //Debug.Log(transform.eulerAngles);
             }
 
         }

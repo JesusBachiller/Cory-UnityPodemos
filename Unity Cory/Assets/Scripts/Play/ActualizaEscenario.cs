@@ -158,7 +158,7 @@ public class ActualizaEscenario : MonoBehaviour
                 sumaX = 0;
                 xMediaPlanoSobreCesped = 0;
                 planoInstanciado = new GameObject();
-                positionPlanoSobreCesped = new Vector3();                Debug.Log("Cubo x:" + suelosCesped[i].transform.position.x + " y:" + suelosCesped[i].transform.position.y + "else if");
+                positionPlanoSobreCesped = new Vector3();                //Debug.Log("Cubo x:" + suelosCesped[i].transform.position.x + " y:" + suelosCesped[i].transform.position.y + "else if");
             }
         }
 

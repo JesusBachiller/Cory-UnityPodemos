@@ -21,7 +21,7 @@ public class ImpulsoAcelerador : MonoBehaviour {
     public void changeForce(Vector3 Vnormal)
     {
         vectorDirectorNormalized = Vnormal;
-        Debug.Log(vectorDirectorNormalized);
+        //Debug.Log(vectorDirectorNormalized);
     }
 
     void OnTriggerStay(Collider other)
@@ -30,7 +30,7 @@ public class ImpulsoAcelerador : MonoBehaviour {
 
         float magnitude = velocity.magnitude;
         magnitude += fuerza;
-        Debug.Log("m: " + Mathf.Min(magnitude, maxVelocity));
+        //Debug.Log("m: " + Mathf.Min(magnitude, maxVelocity));
 
         other.gameObject.GetComponent<Rigidbody>().velocity = vectorDirectorNormalized * (Mathf.Min(magnitude, maxVelocity));
     }

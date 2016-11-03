@@ -66,7 +66,7 @@ public class RotarAcelerador : MonoBehaviour {
             if (hitPoint.collider == this.GetComponent<Collider>())
             {
                 // Put code for the right click event
-                Debug.Log("Right Clicked on " + this.name);
+                //Debug.Log("Right Clicked on " + this.name);
                 Acelerador = this.gameObject;
             }
         }

@@ -26,7 +26,7 @@ public class Acelerador : MonoBehaviour {
             {
                 if (i != index)
                 {
-                    Debug.Log(i);
+                    //Debug.Log(i);
                     if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                     {
                         permite = false;

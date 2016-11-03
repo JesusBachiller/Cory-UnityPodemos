@@ -14,7 +14,7 @@ public class SaveLoad : MonoBehaviour {
     {
         //SaveLoad.savegames.Add(Savegame.current);
         BinaryFormatter bf = new BinaryFormatter();
-        //Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
+        //Application.persistentDataPath is a string, so if you wanted you can put that into //Debug.Log if you want to know where save games are located
         FileStream file = File.Create(Application.persistentDataPath + "/savedGame.gd"); //you can call it anything you want
         bf.Serialize(file, SaveLoad.savegame);
         //bf.Serialize(file, SaveLoad.savegames);
@@ -25,16 +25,16 @@ public class SaveLoad : MonoBehaviour {
     {
         if (!File.Exists(Application.persistentDataPath + "/savedGame.gd"))
         {
-            Debug.Log("Voy a crear savegame ya que no tengo");
+            //Debug.Log("Voy a crear savegame ya que no tengo");
             StadiumContainer sc = StadiumContainer.Load();
             foreach(Stadium s in sc.stadiums)
             {
-                Debug.Log("Guardo Estadio " + s.name);
+                //Debug.Log("Guardo Estadio " + s.name);
                 LevelContainer lc = LevelContainer.Load(s.xmlLevelsPath);
                 StadiumSavedData ssd = new StadiumSavedData();
                 foreach(Level l in lc.levels)
                 {
-                    Debug.Log("Guardo Nivel "+l.name);
+                    //Debug.Log("Guardo Nivel "+l.name);
                     LevelSavedData lsd = new LevelSavedData();
                     ssd.levelSavedData.Add(lsd);
                 }
