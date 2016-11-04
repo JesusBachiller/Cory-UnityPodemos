@@ -12,7 +12,7 @@ public class EstrellaTres : MonoBehaviour
 
     void Update()
     {
-        if (Game.getCoryDie())
+        if (Game.getCoryDie() || Game.getRestarting())
         {
             StartCoroutine(waitAndCheckIfAchieved(2f));
         }

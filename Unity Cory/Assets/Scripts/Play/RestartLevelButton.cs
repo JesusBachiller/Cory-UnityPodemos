@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RestartLevelButton : MonoBehaviour {
+public class RestartLevelButton : MonoBehaviour
+{
 
-	public void RestartLevel()
+    public void RestartLevel()
     {
-        //Debug.Log(!(Game.getCoryDie() || Game.getCoryEnd()));
         if (!(Game.getCoryDie() || Game.getCoryEnd()))
         {
+            //Game.setRestarting(true);
             GameObject cory = GameObject.FindGameObjectWithTag("Player");
 
             Game.setCoryDie(true);
@@ -24,6 +25,7 @@ public class RestartLevelButton : MonoBehaviour {
             Game.setCoryDie(false);
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().setCameraFollowPlayer(true);
+            //Game.setRestarting(false);
         }
     }
 }

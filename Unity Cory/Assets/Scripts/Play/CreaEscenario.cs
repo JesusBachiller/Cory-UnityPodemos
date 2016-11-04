@@ -12,12 +12,15 @@ public class CreaEscenario : MonoBehaviour
     private const char CESPED = '2';
     private const char AGUA = '3';
     private const char PINCHO = '4';
-    private const char PLATAFORMA_ROTATORIA = '5';
-    private const char LEVEL_END = '8';
+    private const char PLATAFORMA_ROTATORIA_DOS = '5';
+    private const char PLATAFORMA_ROTATORIA_TRES = '6';
+    private const char PLATAFORMA_ROTATORIA_CUATRO = '7';
+    private const char PLATAFORMA_ROTATORIA_CINCO = '8';
     private const char CORY = '9';
     private const char ESTRELLA_UNO = 'a';
     private const char ESTRELLA_DOS = 'b';
     private const char ESTRELLA_TRES = 'c';
+    private const char LEVEL_END = 'f';
 
     public GameObject Aire;
     public GameObject Tierra;
@@ -25,7 +28,10 @@ public class CreaEscenario : MonoBehaviour
     public GameObject PlanoSuelo;
     public GameObject Agua;
     public GameObject Pincho;
-    public GameObject PlataformaRotatoria;
+    public GameObject PlataformaRotatoriaDos;
+    public GameObject PlataformaRotatoriaTres;
+    public GameObject PlataformaRotatoriaCuatro;
+    public GameObject PlataformaRotatoriaCinco;
     public GameObject Cory;
     public GameObject LevelEnd;
     public GameObject EstrellaUno;
@@ -168,9 +174,21 @@ public class CreaEscenario : MonoBehaviour
                 {
                     Instantiate(Pincho, position, Quaternion.identity);
                 }
-                if (actualLevel.mapElements[i][j] == PLATAFORMA_ROTATORIA)
+                if (actualLevel.mapElements[i][j] == PLATAFORMA_ROTATORIA_DOS)
                 {
-                    GameObject PR = Instantiate(PlataformaRotatoria, position, Quaternion.identity) as GameObject;
+                    GameObject PR = Instantiate(PlataformaRotatoriaDos, position, Quaternion.identity) as GameObject;
+                }
+                if (actualLevel.mapElements[i][j] == PLATAFORMA_ROTATORIA_TRES)
+                {
+                    GameObject PR = Instantiate(PlataformaRotatoriaTres, position, Quaternion.identity) as GameObject;
+                }
+                if (actualLevel.mapElements[i][j] == PLATAFORMA_ROTATORIA_CUATRO)
+                {
+                    GameObject PR = Instantiate(PlataformaRotatoriaCuatro, position, Quaternion.identity) as GameObject;
+                }
+                if (actualLevel.mapElements[i][j] == PLATAFORMA_ROTATORIA_CINCO)
+                {
+                    GameObject PR = Instantiate(PlataformaRotatoriaCinco, position, Quaternion.identity) as GameObject;
 
                     /*PR.GetComponent<PlataformaRotatoria>().index = GameObject.FindGameObjectsWithTag("PlataformaRotatoria").Length - 1;
                     PR.name = "PlataformaRotatoria" + PR.GetComponent<PlataformaRotatoria>().index.ToString();
