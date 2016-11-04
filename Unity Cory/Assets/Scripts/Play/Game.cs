@@ -172,6 +172,10 @@ public class Game  {
         coryFly = false;
         coryEnd = false;
 
+        firstStarOfLevelAchieved = false;
+        secondStarOfLevelAchieved = false;
+        thirdStarOfLevelAchieved = false;
+
         numMuellesTotales = 2;
         muellePuesto = new bool[numMuellesTotales];
         botonMuelleActivo = new bool[numMuellesTotales];
