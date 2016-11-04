@@ -12,9 +12,13 @@ public class EstrellaDos : MonoBehaviour
 
     void Update()
     {
-        if (Game.getCoryDie() || Game.getRestarting())
+        if (Game.getCoryDie())
         {
             StartCoroutine(waitAndCheckIfAchieved(2f));
+        }
+        if (!Game.getCoryFly())
+        {
+            checkIfAchieved();
         }
     }
 
@@ -23,6 +27,7 @@ public class EstrellaDos : MonoBehaviour
 
         if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].secondStarAchieved)
         {
+            Game.setSecondStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.cyan;
@@ -30,6 +35,7 @@ public class EstrellaDos : MonoBehaviour
         }
         else
         {
+            Game.setSecondStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.red;
@@ -43,6 +49,7 @@ public class EstrellaDos : MonoBehaviour
 
         if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].secondStarAchieved)
         {
+            Game.setSecondStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.cyan;
@@ -50,6 +57,7 @@ public class EstrellaDos : MonoBehaviour
         }
         else
         {
+            Game.setSecondStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.red;
@@ -63,12 +71,11 @@ public class EstrellaDos : MonoBehaviour
         {
             if (!Game.getCoryDie())
             {
+                Game.setSecondStarOfLevelAchieved(true);
                 foreach (Material m in GetComponent<Renderer>().materials)
                 {
                     m.color = Color.white;
                 }
-
-                Game.setSecondStarOfLevelAchieved(true);
             }
         }
     }

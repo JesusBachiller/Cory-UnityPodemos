@@ -11,9 +11,13 @@ public class EstrellaUno : MonoBehaviour {
 
     void Update()
     {
-        if (Game.getCoryDie() || Game.getRestarting())
+        if (Game.getCoryDie())
         {
             StartCoroutine(waitAndCheckIfAchieved(2f));
+        }
+        if (!Game.getCoryFly())
+        {
+            checkIfAchieved();
         }
     }
 
@@ -21,6 +25,7 @@ public class EstrellaUno : MonoBehaviour {
     {
         if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].firstStarAchieved)
         {
+            Game.setFirstStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.cyan;
@@ -28,6 +33,7 @@ public class EstrellaUno : MonoBehaviour {
         }
         else
         {
+            Game.setFirstStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.red;
@@ -45,6 +51,7 @@ public class EstrellaUno : MonoBehaviour {
             {
                 m.color = Color.cyan;
             }
+            Game.setFirstStarOfLevelAchieved(true);
         }
         else
         {
@@ -52,6 +59,7 @@ public class EstrellaUno : MonoBehaviour {
             {
                 m.color = Color.red;
             }
+            Game.setFirstStarOfLevelAchieved(false);
         }
     }
 
@@ -65,7 +73,6 @@ public class EstrellaUno : MonoBehaviour {
                 {
                     m.color = Color.white;
                 }
-
                 Game.setFirstStarOfLevelAchieved(true);
             }
         }

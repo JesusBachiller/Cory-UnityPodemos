@@ -12,9 +12,13 @@ public class EstrellaTres : MonoBehaviour
 
     void Update()
     {
-        if (Game.getCoryDie() || Game.getRestarting())
+        if (Game.getCoryDie())
         {
             StartCoroutine(waitAndCheckIfAchieved(2f));
+        }
+        if (!Game.getCoryFly())
+        {
+            checkIfAchieved();
         }
     }
 
@@ -25,6 +29,7 @@ public class EstrellaTres : MonoBehaviour
         {
             foreach (Material m in GetComponent<Renderer>().materials)
             {
+                Game.setThirdStarOfLevelAchieved(true);
                 m.color = Color.cyan;
             }
         }
@@ -32,6 +37,7 @@ public class EstrellaTres : MonoBehaviour
         {
             foreach (Material m in GetComponent<Renderer>().materials)
             {
+                Game.setThirdStarOfLevelAchieved(false);
                 m.color = Color.red;
             }
         }
@@ -43,6 +49,7 @@ public class EstrellaTres : MonoBehaviour
 
         if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].thirdStarAchieved)
         {
+            Game.setThirdStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.cyan;
@@ -50,6 +57,7 @@ public class EstrellaTres : MonoBehaviour
         }
         else
         {
+            Game.setThirdStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 m.color = Color.red;
@@ -62,12 +70,11 @@ public class EstrellaTres : MonoBehaviour
         {
             if (!Game.getCoryDie())
             {
+                Game.setThirdStarOfLevelAchieved(true);
                 foreach (Material m in GetComponent<Renderer>().materials)
                 {
                     m.color = Color.white;
                 }
-
-                Game.setThirdStarOfLevelAchieved(true);
             }
 
         }

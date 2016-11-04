@@ -21,6 +21,10 @@ public class LevelEnd : MonoBehaviour {
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].secondStarAchieved = Game.getSecondStarOfLevelAchieved();
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].thirdStarAchieved = Game.getThirdStarOfLevelAchieved();
             SaveLoad.Save();
+
+            Game.setFirstStarOfLevelAchieved(false);
+            Game.setSecondStarOfLevelAchieved(false);
+            Game.setThirdStarOfLevelAchieved(false);
         }
     }
 

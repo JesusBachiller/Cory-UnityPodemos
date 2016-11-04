@@ -15,8 +15,6 @@ public class Game  {
     private static bool coryFly = false;
     private static bool coryEnd = false;
 
-    private static bool restarting = false;
-
     private static bool firstStarOfLevelAchieved = false;
     private static bool secondStarOfLevelAchieved = false;
     private static bool thirdStarOfLevelAchieved = false;
@@ -92,15 +90,7 @@ public class Game  {
     {
         secondStarOfLevelAchieved = B;
     }
-
-    public static bool getRestarting()
-    {
-        return restarting;
-    }
-    public static void setRestarting(bool B)
-    {
-        restarting = B;
-    }
+    
     public static bool getThirdStarOfLevelAchieved()
     {
         return thirdStarOfLevelAchieved;

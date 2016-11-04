@@ -8,7 +8,6 @@ public class RestartLevelButton : MonoBehaviour
     {
         if (!(Game.getCoryDie() || Game.getCoryEnd()))
         {
-            //Game.setRestarting(true);
             GameObject cory = GameObject.FindGameObjectWithTag("Player");
 
             Game.setCoryDie(true);
@@ -25,7 +24,6 @@ public class RestartLevelButton : MonoBehaviour
             Game.setCoryDie(false);
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().setCameraFollowPlayer(true);
-            //Game.setRestarting(false);
         }
     }
 }
