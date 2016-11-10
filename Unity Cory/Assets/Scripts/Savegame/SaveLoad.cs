@@ -26,13 +26,11 @@ public class SaveLoad : MonoBehaviour {
         if (!File.Exists(Application.persistentDataPath + "/savedGame.gd"))
         {
             //Debug.Log("Voy a crear savegame ya que no tengo");
-            StadiumContainer sc = StadiumContainer.Load();
-            foreach(Stadium s in sc.stadiums)
+            foreach(Stadium s in Game.stadiums)
             {
                 //Debug.Log("Guardo Estadio " + s.name);
-                LevelContainer lc = LevelContainer.Load(s.xmlLevelsPath);
                 StadiumSavedData ssd = new StadiumSavedData();
-                foreach(Level l in lc.levels)
+                foreach(Level l in s.levels)
                 {
                     //Debug.Log("Guardo Nivel "+l.name);
                     LevelSavedData lsd = new LevelSavedData();

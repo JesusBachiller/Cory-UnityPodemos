@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -10,7 +11,9 @@ public class menuScript : MonoBehaviour {
     public Button exitText;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        Game.LoadStadiums();
         SaveLoad.Load();
 
         quitMenu = quitMenu.GetComponent<Canvas>(); 

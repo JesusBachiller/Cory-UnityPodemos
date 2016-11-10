@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class Game  {
 
+    public static List<Stadium> stadiums;
     private static Level currentLevel;
     private static Stadium currentStadium;
-
-    private static List<Level> StadiumLevels;
     
     public static bool cameraFollowsPlayer = true;
 
@@ -27,15 +26,21 @@ public class Game  {
     private static bool[] aceleradorPuesto = new bool[numAceleradoresTotales];
     private static bool[] botonAceleradorActivo = new bool[numAceleradoresTotales];
     
+    public static void LoadStadiums()
+    {
+        StadiumContainer sc = StadiumContainer.Load();
+        sc.LoadLevelsOfStadiums();
+        stadiums = sc.stadiums;
+    }
 
+    public static int getCurrentStadiumLevelQuatity()
+    {
+        return stadiums[currentStadium.index].levels.Count;
+    }
 
     public static List<Level> getStadiumLevels()
     {
-        return StadiumLevels;
-    }
-    public static void setStadiumLevels(List<Level> SL)
-    {
-        StadiumLevels = SL;
+        return stadiums[currentStadium.index].levels;
     }
 
     public static Level getCurrentLevel()

@@ -26,11 +26,18 @@ public class StadiumContainer
 
         StringReader reader = new StringReader(_xml.text);
 
-        StadiumContainer stadiums = serializer.Deserialize(reader) as StadiumContainer;
+        StadiumContainer sc = serializer.Deserialize(reader) as StadiumContainer;
 
         reader.Close();
 
-        return stadiums;
+        return sc;
     }
     
+    public void LoadLevelsOfStadiums()
+    {
+        foreach(Stadium stadium in stadiums)
+        {
+            stadium.levels = LevelContainer.Load(stadium.xmlLevelsPath).levels;
+        }
+    }
 }

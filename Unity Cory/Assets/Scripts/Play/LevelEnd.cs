@@ -34,7 +34,7 @@ public class LevelEnd : MonoBehaviour {
         yield return new WaitForSeconds(s);
 
 
-        if (Game.getCurrentLevel().index == Game.getStadiumLevels().Count - 1)
+        if (Game.getCurrentLevel().index >= Game.getCurrentStadiumLevelQuatity() - 1)
         {
             Game.setCurrentLevel(null);
             SceneManager.LoadScene("WorldMap");
