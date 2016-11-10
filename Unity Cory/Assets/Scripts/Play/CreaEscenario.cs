@@ -169,6 +169,7 @@ public class CreaEscenario : MonoBehaviour
                 }
                 if (actualLevel.mapElements[i][j] == AGUA)
                 {
+                    position.y -= 0.1f;
                     Instantiate(Agua, position, Quaternion.identity);
                 }
                 if (actualLevel.mapElements[i][j] == PINCHO)
