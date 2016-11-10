@@ -23,7 +23,7 @@ public class buttonClick : MonoBehaviour {
                     if (Game.getBotonMuelleActivado(i) == true && Game.getMuellePuesto(i) == false)
                     {
                         permite = false;
-                        break;
+                        return permite; 
                     }
                 }
             }
@@ -37,12 +37,19 @@ public class buttonClick : MonoBehaviour {
                         if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                         {
                             permite = false;
-                            break;
+                            return permite;
                         }
                     }
                 }
             }
         }
+
+        if(Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie())
+        {
+            permite = false;
+            return permite;
+        }
+
         return permite;
     }
     
