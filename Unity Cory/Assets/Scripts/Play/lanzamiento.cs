@@ -59,6 +59,44 @@ public class lanzamiento : MonoBehaviour
 
     }
 
+    private bool permitirClick()
+    {
+        bool permite = false;
+        if (!Game.getCommentsEnabled())
+        {
+
+            permite = true;
+
+            for (int i = 0; i < Game.getNumMuelles(); i++)
+            {
+                if (Game.getBotonMuelleActivado(i) == true && Game.getMuellePuesto(i) == false)
+                    {
+                        permite = false;
+                        return permite;
+                    }
+            }
+            if (permite)
+            {
+                for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
+                {
+                    if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
+                    {
+                        permite = false;
+                        return permite;
+                    }
+                }
+            }
+        }
+
+        if (Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie())
+        {
+            permite = false;
+            return permite;
+        }
+
+        return permite;
+    }
+
     private void ReturnHome()
     {
         for (var i = 0; i < argo.Length; i++)
@@ -95,7 +133,7 @@ public class lanzamiento : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!Game.getCoryFly() && !Game.getCommentsEnabled())
+        if (permitirClick())
         {
             posInicial_Mouse = Input.mousePosition;
             ShowHideIndicators(true);
@@ -105,7 +143,7 @@ public class lanzamiento : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (!Game.getCoryFly() && !Game.getCommentsEnabled())
+        if (permitirClick())
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -139,7 +177,7 @@ public class lanzamiento : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (!Game.getCoryFly() && !Game.getCommentsEnabled())
+        if (permitirClick())
         {
             if (AnuladoLanzamiento)
             {
