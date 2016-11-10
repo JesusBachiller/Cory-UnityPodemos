@@ -20,14 +20,16 @@ public class Game  {
     
     private static bool commentsEnabled = false;
 
-    private static int numMuellesTotales = 2;
-    private static bool[] muellePuesto = new bool[numMuellesTotales];
-    private static bool[] botonMuelleActivo = new bool[numMuellesTotales];
+    /* Esto coge valor al arrancar un nivel en setCurrentLevel y se resetea en resetAllValues */
+    private static int numMuellesTotales = 0;
+    private static bool[] muellePuesto = null;
+    private static bool[] botonMuelleActivo = null;
 
-    private static int numAceleradoresTotales = 3;
-    private static bool[] aceleradorPuesto = new bool[numAceleradoresTotales];
-    private static bool[] botonAceleradorActivo = new bool[numAceleradoresTotales];
-    
+    private static int numAceleradoresTotales = 0;
+    private static bool[] aceleradorPuesto = null;
+    private static bool[] botonAceleradorActivo = null;
+    /* Esto coge valor al arrancar un nivel en setCurrentLevel y se resetea en resetAllValues */
+
     public static void LoadStadiums()
     {
         StadiumContainer sc = StadiumContainer.Load();
@@ -61,6 +63,14 @@ public class Game  {
     }
     public static void setCurrentLevel(Level level)
     {
+        numMuellesTotales = level.availableSprings;
+        muellePuesto = new bool[numMuellesTotales];
+        botonMuelleActivo = new bool[numMuellesTotales];
+
+        numAceleradoresTotales = level.availableAccelerators;
+        aceleradorPuesto = new bool[numAceleradoresTotales];
+        botonAceleradorActivo = new bool[numAceleradoresTotales];
+
         currentLevel = level;
     }
     public static Stadium getCurrentStadium()
@@ -202,12 +212,12 @@ public class Game  {
         secondStarOfLevelAchieved = false;
         thirdStarOfLevelAchieved = false;
 
-        numMuellesTotales = 2;
-        muellePuesto = new bool[numMuellesTotales];
-        botonMuelleActivo = new bool[numMuellesTotales];
+        numMuellesTotales = 0;
+        muellePuesto = null;
+        botonMuelleActivo = null;
 
-        numAceleradoresTotales = 3;
-        aceleradorPuesto = new bool[numAceleradoresTotales];
-        botonAceleradorActivo = new bool[numAceleradoresTotales];
+        numAceleradoresTotales = 0;
+        aceleradorPuesto = null;
+        botonAceleradorActivo = null;
     }
 }

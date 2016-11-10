@@ -14,7 +14,9 @@
         0000000000000000000000000000330000000000-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>0</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
     </Level>
@@ -32,7 +34,9 @@
         0000000000000003000000000000000000000000-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>0</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
     </Level>
@@ -65,7 +69,9 @@
         0000000000000000000000000000330000000000-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>0</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
     </Level>
@@ -83,7 +89,9 @@
         0000000000000003000000000000000000000000-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>0</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
     </Level>
@@ -100,7 +108,9 @@
         000000000000002000000000000002-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>0</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
     </Level>

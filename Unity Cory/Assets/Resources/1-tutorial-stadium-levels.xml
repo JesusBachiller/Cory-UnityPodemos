@@ -16,7 +16,9 @@
         000000000000000000000000000000000000000000-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>0</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-0</XmlCommentsPath>
@@ -38,7 +40,9 @@
         000000000000000000000000000000000000000000000000000-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>2</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-1</XmlCommentsPath>
@@ -60,7 +64,9 @@
         000000000000000000000000000000000000000000000000000-
 
       </MapElements>
-      <AvailableTools>012</AvailableTools>
+      <AvailableSprings>1</AvailableSprings>
+      <AvailableAccelerators>3</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-2</XmlCommentsPath>

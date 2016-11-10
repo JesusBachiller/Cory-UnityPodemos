@@ -15,8 +15,14 @@ public class Level {
     [XmlElement("MapElements")]
     public string xmlMapElements;
 
-    [XmlElement("AvailableTools")]
-    public string xmlAvailableTools;
+    [XmlElement("AvailableSprings")]
+    public int availableSprings;
+
+    [XmlElement("AvailableAccelerators")]
+    public int availableAccelerators;
+
+    [XmlElement("AvailablePortals")]
+    public int availablePortals;
 
     [XmlElement("MinStarsToUnlock")]
     public int minStarsToUnlock;
@@ -28,7 +34,6 @@ public class Level {
     public string xmlCommentsPath;
 
     public List<List<char>> mapElements;
-    public int[] availableTools;
     public List<Comment> comments;
 
     public void parseXmlMapElements()
