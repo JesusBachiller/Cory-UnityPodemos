@@ -17,6 +17,8 @@ public class Game  {
     private static bool firstStarOfLevelAchieved = false;
     private static bool secondStarOfLevelAchieved = false;
     private static bool thirdStarOfLevelAchieved = false;
+    
+    private static bool commentsEnabled = false;
 
     private static int numMuellesTotales = 2;
     private static bool[] muellePuesto = new bool[numMuellesTotales];
@@ -31,6 +33,16 @@ public class Game  {
         StadiumContainer sc = StadiumContainer.Load();
         sc.LoadLevelsOfStadiums();
         stadiums = sc.stadiums;
+        foreach (Stadium s in stadiums)
+        {
+            foreach(Level l in s.levels)
+            {
+                if(l.xmlCommentsPath != null && l.xmlCommentsPath != "")
+                {
+                    l.comments = CommentsContainer.Load(l.xmlCommentsPath).comments;
+                }
+            }
+        }
     }
 
     public static int getCurrentStadiumLevelQuatity()
@@ -76,6 +88,15 @@ public class Game  {
     public static void setCoryDie(bool B)
     {
         coryDie = B;
+    }
+    
+    public static bool getCommentsEnabled()
+    {
+        return commentsEnabled;
+    }
+    public static void setCommentsEnabled(bool B)
+    {
+        commentsEnabled = B;
     }
 
     public static bool getFirstStarOfLevelAchieved()

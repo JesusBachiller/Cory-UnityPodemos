@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Level>
+  <Comments>
+    <Comment>
+      <Text>Hi! I'm Cory. Nice to meet you. I need your help to show everyone that I could be a nice ball for represent any sport.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>People always treated me different because of my corner edges. Just because I'm not round... But this is NOT a problem! We will make them change their opinions.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>We have some work to do. Our objective is to arrive till the end of each level, avoiding any obstacle and danger on the way.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+    
+    <Comment>
+      <Text>Sorry to tell you that I can not touch the water</Text>
+      <ImagePath>Comments/agua</ImagePath>
+    </Comment>
+    
+    <Comment>
+      <Text>I need you to launch me forward by left-clicking over me, dragging to the direction you think, and releasing your left-click.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+    
+    <Comment>
+      <Text>You can also throw me to a spring, which will make me arrive further.</Text>
+      <ImagePath>Comments/muelle</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>Just click on the spring at the top right corner, put your mouse over the piece of grass you want to, and click to transform that grass cube into a spring.</Text>
+      <ImagePath>Comments/muelle</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>If you forgot to add a spring or any other tool to the level in the middle of a launching, you can deactivate the launch by right-clicking before release the left-click.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>It can be useful to use the Free Camera. To change between Free Camera and Cory Camera, use Espace. Leave your mouse over an arrow to move to that direction.</Text>
+      <ImagePath>Comments/camara</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>In both Free Camera and Cory Camera mode, use the scroll of your mouse to zoom in and out the image.</Text>
+      <ImagePath>Comments/camara</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>Oh! Don't forget to get as much Stars as you can. These Stars allow us to unlock new Stadiums and Levels.</Text>
+      <ImagePath>Comments/estrellas</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>Now its time for you to help me. Good luck!</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+  </Comments>
+</Level>

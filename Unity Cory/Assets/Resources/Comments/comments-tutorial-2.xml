@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Level>
+  <Comments>
+    <Comment>
+      <Text>Oh oh.. We have some new friends in this level.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>I do not want to think about touching these Spikes. Please help me to avoid touching them.</Text>
+      <ImagePath>Comments/pinchos</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>There are some Rotating Platforms that can both stop our way or help us to go forward.</Text>
+      <ImagePath>Comments/plataformarotatoria</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>Rotate them the same way as the Accelerator. Right-click over the center axis, drag around and drop.</Text>
+      <ImagePath>Comments/plataformarotatoria</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>Good luck mate!</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+  </Comments>
+</Level>

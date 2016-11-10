@@ -23,9 +23,13 @@ public class Level {
 
     [XmlElement("PreviewImagePath")]
     public string previewImagePath;
-    
+
+    [XmlElement("XmlCommentsPath")]
+    public string xmlCommentsPath;
+
     public List<List<char>> mapElements;
     public int[] availableTools;
+    public List<Comment> comments;
 
     public void parseXmlMapElements()
     {

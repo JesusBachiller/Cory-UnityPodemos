@@ -42,4 +42,12 @@ public class LevelContainer {
             level.parseXmlMapElements();
         }
     }
+    
+    public void LoadCommentsOfLevels()
+    {
+        foreach (Level l in levels)
+        {
+            l.comments = CommentsContainer.Load(l.xmlCommentsPath).comments;
+        }
+    }
 }

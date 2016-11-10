@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Level>
+  <Comments>
+    <Comment>
+      <Text>Look at that! We have another tool to use.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>The Accelerator is something incredible. This tool remains "flying in the air" and impulses you to the direction of the arrow.</Text>
+      <ImagePath>Comments/acelerador</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>You can select it in the right-top corner by left-clicking. Move your mouse where you want and do a left-click to leave it there.</Text>
+      <ImagePath>Comments/acelerador</ImagePath>
+    </Comment>
+    
+    <Comment>
+      <Text>You can rotate the Accelerator to the direction you want with the right-click. Drag your mouse around the Accelerator and drop the right-click.</Text>
+      <ImagePath>Comments/acelerador</ImagePath>
+    </Comment>
+
+    <Comment>
+      <Text>Try to pass this level. With this tool, everything will be much easier.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+  </Comments>
+</Level>

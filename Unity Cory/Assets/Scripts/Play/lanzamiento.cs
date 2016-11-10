@@ -95,7 +95,7 @@ public class lanzamiento : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!Game.getCoryFly())
+        if (!Game.getCoryFly() && !Game.getCommentsEnabled())
         {
             posInicial_Mouse = Input.mousePosition;
             ShowHideIndicators(true);
@@ -105,7 +105,7 @@ public class lanzamiento : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (!Game.getCoryFly())
+        if (!Game.getCoryFly() && !Game.getCommentsEnabled())
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -139,7 +139,7 @@ public class lanzamiento : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (!Game.getCoryFly())
+        if (!Game.getCoryFly() && !Game.getCommentsEnabled())
         {
             if (AnuladoLanzamiento)
             {

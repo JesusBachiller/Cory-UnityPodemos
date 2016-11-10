@@ -11,28 +11,34 @@ public class buttonClick : MonoBehaviour {
 
     private bool permitirClick()
     {
-        bool permite = true;
-        for (int i = 0; i < Game.getNumMuelles(); i++)
+        bool permite = false;
+        if (!Game.getCommentsEnabled())
         {
-            if(i != indexButton)
-                {
-                if (Game.getBotonMuelleActivado(i) == true && Game.getMuellePuesto(i) == false)
-                {
-                    permite = false;
-                    break;
-                }
-            }
-        }
-        if (permite) {
-            for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
+            permite = true;
+
+            for (int i = 0; i < Game.getNumMuelles(); i++)
             {
                 if (i != indexButton)
                 {
-                    //Debug.Log(i);
-                    if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
+                    if (Game.getBotonMuelleActivado(i) == true && Game.getMuellePuesto(i) == false)
                     {
                         permite = false;
                         break;
+                    }
+                }
+            }
+            if (permite)
+            {
+                for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
+                {
+                    if (i != indexButton)
+                    {
+                        //Debug.Log(i);
+                        if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
+                        {
+                            permite = false;
+                            break;
+                        }
                     }
                 }
             }

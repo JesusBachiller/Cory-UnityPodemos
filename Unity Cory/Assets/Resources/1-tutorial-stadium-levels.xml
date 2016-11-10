@@ -19,6 +19,7 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
+      <XmlCommentsPath>Comments/comments-tutorial-0</XmlCommentsPath>
     </Level>
     <Level name="Tutorial Dos" index="1">
       <MapElements>
@@ -40,6 +41,7 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
+      <XmlCommentsPath>Comments/comments-tutorial-1</XmlCommentsPath>
     </Level>
     <Level name="Tutorial Tres" index="2">
       <MapElements>
@@ -61,6 +63,7 @@
       <AvailableTools>012</AvailableTools>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
+      <XmlCommentsPath>Comments/comments-tutorial-2</XmlCommentsPath>
     </Level>
   </Levels>
 </Stadium>

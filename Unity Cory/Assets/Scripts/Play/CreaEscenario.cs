@@ -38,6 +38,7 @@ public class CreaEscenario : MonoBehaviour
     public GameObject EstrellaDos;
     public GameObject EstrellaTres;
 
+    public GameObject CanvasComments;
     public GameObject CanvasButtons;
     public GameObject ButtonMuelle;
     public GameObject ButtonAcelerador;
@@ -78,7 +79,7 @@ public class CreaEscenario : MonoBehaviour
          * For the moment, we save a test number in levelToLoad
          */
 
-        
+
         // ESTO PINTA PLANOS SOBRE LOS CUBOS
         actualLevel = Game.getCurrentLevel();
         int tamanoPlanoSobreCesped = 0;
