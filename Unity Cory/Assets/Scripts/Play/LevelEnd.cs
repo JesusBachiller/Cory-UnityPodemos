@@ -34,6 +34,8 @@ public class LevelEnd : MonoBehaviour {
         yield return new WaitForSeconds(s);
 
 
+        Game.resetAllValues();
+
         if (Game.getCurrentLevel().index >= Game.getCurrentStadiumLevelQuatity() - 1)
         {
             Game.setCurrentLevel(null);
@@ -54,7 +56,6 @@ public class LevelEnd : MonoBehaviour {
         }
 
 
-        Game.resetAllValues();
 
 
     }
