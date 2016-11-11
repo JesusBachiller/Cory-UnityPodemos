@@ -63,16 +63,29 @@ public class Game  {
     }
     public static void setCurrentLevel(Level level)
     {
-        numMuellesTotales = level.availableSprings;
-        muellePuesto = new bool[numMuellesTotales];
-        botonMuelleActivo = new bool[numMuellesTotales];
+        if (level == null)
+        {
+            numMuellesTotales = 0;
+            muellePuesto = null;
+            botonMuelleActivo = null;
 
-        numAceleradoresTotales = level.availableAccelerators;
-        aceleradorPuesto = new bool[numAceleradoresTotales];
-        botonAceleradorActivo = new bool[numAceleradoresTotales];
+            numAceleradoresTotales = 0;
+            aceleradorPuesto = null;
+            botonAceleradorActivo = null;
+        } else
+        {
+            numMuellesTotales = level.availableSprings;
+            muellePuesto = new bool[numMuellesTotales];
+            botonMuelleActivo = new bool[numMuellesTotales];
+
+            numAceleradoresTotales = level.availableAccelerators;
+            aceleradorPuesto = new bool[numAceleradoresTotales];
+            botonAceleradorActivo = new bool[numAceleradoresTotales];
+        }
 
         currentLevel = level;
     }
+
     public static Stadium getCurrentStadium()
     {
         return currentStadium;
