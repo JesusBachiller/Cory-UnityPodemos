@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class CreaEscenario : MonoBehaviour
 {
 
+    private const int buttonOffset = 4;
+
     private const char AIRE = '0';
     private const char TIERRA = '1';
     private const char CESPED = '2';
@@ -62,7 +64,7 @@ public class CreaEscenario : MonoBehaviour
             BM.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
             BM.transform.parent = CanvasButtons.transform;
             BM.GetComponent<buttonClick>().setIndex(i);
-            BM.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - BM.GetComponent<RectTransform>().sizeDelta.x * BM.GetComponent<RectTransform>().localScale.x * i, -20, 0);
+            BM.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - (BM.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BM.GetComponent<RectTransform>().localScale.x * i, -20, 0);
         }
         for (int i = 0; i < Game.getNumAceleradores(); i++)
         {
@@ -71,7 +73,7 @@ public class CreaEscenario : MonoBehaviour
             BA.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
             BA.transform.parent = CanvasButtons.transform;
             BA.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles());
-            BA.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * BA.GetComponent<RectTransform>().sizeDelta.x * BA.GetComponent<RectTransform>().localScale.x - BA.GetComponent<RectTransform>().sizeDelta.x * BA.GetComponent<RectTransform>().localScale.x * i, -20, 0);
+            BA.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BA.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BA.GetComponent<RectTransform>().localScale.x - (BA.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BA.GetComponent<RectTransform>().localScale.x * i, -20, 0);
         }
 
         /*

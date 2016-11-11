@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour {
     void Start () {
 
         camera = this.GetComponent<Camera>();
+
         if (GameObject.FindGameObjectsWithTag("Player").Length > 0)
         {
             player = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -32,9 +33,10 @@ public class CameraController : MonoBehaviour {
 
             offset = transform.position - player.transform.position;
 
-            maxFOV = 50;
-            minFOV = 30;
         }
+
+        maxFOV = 50;
+        minFOV = 30;
 
         camButtons.GetComponent<Canvas>().enabled = false;
 
@@ -66,7 +68,7 @@ public class CameraController : MonoBehaviour {
         var d = Input.GetAxis("Mouse ScrollWheel");
         if (d > 0f)
         {
-            if(camera.fieldOfView > minFOV)
+            if (camera.fieldOfView > minFOV)
             {
                 camera.fieldOfView--;
             }

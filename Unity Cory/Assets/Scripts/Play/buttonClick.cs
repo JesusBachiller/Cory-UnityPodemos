@@ -122,8 +122,8 @@ public class buttonClick : MonoBehaviour {
     private void DarkColor()
     {
         ColorBlock cb = gameObject.GetComponent<Button>().colors;
-        cb.normalColor = Color.Lerp(Color.white, Color.black, 0.20f);
-        cb.highlightedColor = Color.Lerp(Color.white, Color.black, 0.20f);
+        cb.normalColor = Color.Lerp(Color.white, Color.black, 0.70f);
+        cb.highlightedColor = Color.Lerp(Color.white, Color.black, 0.70f);
         gameObject.GetComponent<Button>().colors = cb;
     }
 
