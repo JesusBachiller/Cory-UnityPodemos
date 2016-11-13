@@ -6,6 +6,8 @@ public class Acelerador : MonoBehaviour {
     public int index;
     public GameObject creaEscenario;
 
+    public GameObject aireBlock; // Block of air where I am
+
     private bool permitirClick()
     {
         bool permite = true;
@@ -26,7 +28,6 @@ public class Acelerador : MonoBehaviour {
             {
                 if (i != index)
                 {
-                    //Debug.Log(i);
                     if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                     {
                         permite = false;
@@ -34,7 +35,26 @@ public class Acelerador : MonoBehaviour {
                     }
                 }
             }
+            if (permite)
+            {
+                for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
+                {
+                    if (i != index)
+                    {
+                        if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
+                        {
+                            permite = false;
+                            break;
+                        }
+                    }
+                }
+            }
         }
+        if (Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie())
+        {
+            permite = false;
+        }
+
         return permite;
     }
 
@@ -45,12 +65,14 @@ public class Acelerador : MonoBehaviour {
             if (Game.getAceleradorPuesto(index))
             {
                 Game.setAceleradorPuesto(index, false);
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleAcelerador();
                 GetComponent<BoxCollider>().size = new Vector3(1f, 1f, 1f);
             }
             else
             {
                 Game.setAceleradorPuesto(index, true);
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleAceleradores();
                 GetComponent<BoxCollider>().size = new Vector3(0.5f, 0.5f, 0.5f);
             }
@@ -64,5 +86,10 @@ public class Acelerador : MonoBehaviour {
     public int getIndex()
     {
         return index;
+    }
+
+    public void setAireBlock(GameObject A)
+    {
+        aireBlock = A;
     }
 }

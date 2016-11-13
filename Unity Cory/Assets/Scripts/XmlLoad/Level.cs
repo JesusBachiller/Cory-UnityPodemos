@@ -24,6 +24,12 @@ public class Level {
     [XmlElement("AvailablePortals")]
     public int availablePortals;
 
+    [XmlElement("AvailableFireState")]
+    public int availableFireState;
+
+    [XmlElement("AvailableIceState")]
+    public int availableIceState;
+
     [XmlElement("MinStarsToUnlock")]
     public int minStarsToUnlock;
 

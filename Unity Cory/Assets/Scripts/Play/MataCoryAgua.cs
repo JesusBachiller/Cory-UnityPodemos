@@ -21,6 +21,27 @@ public class MataCoryAgua : MonoBehaviour {
             StartCoroutine(changePositionCory(2));
             cory.GetComponent<TrailRenderer>().enabled = false;
 
+
+            Game.setCoryState("noState");
+
+            foreach (GameObject PS in GameObject.FindGameObjectsWithTag("ParticleFire"))
+            {
+                PS.GetComponent<ParticleSystem>().Stop();
+                PS.GetComponent<ParticleSystemFollowCory>().setIsStopped(true);
+            }
+
+            Material[] M = cory.GetComponent<MeshRenderer>().materials;
+            M[0].color = Color.white;
+            M[1].color = Color.white;
+            M[2].color = Color.white;
+            M[3].color = Color.white;
+            M[4].color = Color.white;
+
+            foreach (GameObject h in GameObject.FindGameObjectsWithTag("Hielo"))
+            {
+                h.GetComponent<BoxCollider>().enabled = true;
+            }
+
             SaveLoad.savegame.timesDied += 1;
             SaveLoad.Save();
         }

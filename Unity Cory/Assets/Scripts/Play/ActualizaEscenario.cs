@@ -8,6 +8,7 @@ public class ActualizaEscenario : MonoBehaviour
     public GameObject PosibleAceleradores;
     public GameObject Acelerador;
     public GameObject PlanoSuelo;
+    public GameObject FireState;
 
     private GameObject[] ArraySuelos;
 
@@ -15,7 +16,50 @@ public class ActualizaEscenario : MonoBehaviour
     public int posMouseClick_y;
 
 
+    public void InstanciateFireState(int indexButton)
+    {
+        Instantiate(FireState, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject[] FireStates = GameObject.FindGameObjectsWithTag(FireState.tag);
+        FireStates[FireStates.Length - 1].GetComponent<fireState>().setIndex(indexButton);
+    }
+    public void EnablePossibleFireState()
+    {
+        GameObject[] PossiblesFireState = GameObject.FindGameObjectsWithTag("Aire");
 
+        foreach (GameObject PFS in PossiblesFireState)
+        {
+            PFS.GetComponent<BoxCollider>().enabled = true;
+            PFS.GetComponent<MouseOverPossibleAcelerador>().findObject(FireState.tag);
+        }
+
+    }
+    public void NotEnableDestroyPossibleFireState()
+    {
+        GameObject[] PossiblesFireStates = GameObject.FindGameObjectsWithTag("Aire");
+
+        foreach (GameObject PFS in PossiblesFireStates)
+        {
+            PFS.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+    public void DestroyFireState(int indexButton)
+    {
+        GameObject[] FireStates = GameObject.FindGameObjectsWithTag(FireState.tag);
+        foreach (GameObject FS in FireStates)
+        {
+            if (FS.GetComponent<fireState>().getIndex() == indexButton)
+            {
+                Destroy(FS);
+            }
+        }
+    }
+
+    public void InstanciateAcelerador(int indexButton)
+    {
+        Instantiate(Acelerador, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject[] Aceleradores = GameObject.FindGameObjectsWithTag(Acelerador.tag);
+        Aceleradores[Aceleradores.Length - 1].GetComponent<Acelerador>().setIndex(indexButton);
+    }
     public void EnablePossibleAcelerador()
     {
         GameObject[] PossiblesAceleradores = GameObject.FindGameObjectsWithTag("Aire");
@@ -23,19 +67,10 @@ public class ActualizaEscenario : MonoBehaviour
         foreach (GameObject PA in PossiblesAceleradores)
         {
             PA.GetComponent<BoxCollider>().enabled = true;
-            PA.GetComponent<MouseOverPossibleAcelerador>().findAcelerador();
+            PA.GetComponent<MouseOverPossibleAcelerador>().findObject(Acelerador.tag);
         }
 
     }
-
-    public void InstanciateAcelerador(int indexButton)
-    {
-        Instantiate(Acelerador, new Vector3(-1f, -1f, -1f), Quaternion.identity);
-        GameObject[] Aceleradores = GameObject.FindGameObjectsWithTag("Acelerador");
-        Aceleradores[Aceleradores.Length - 1].GetComponent<Acelerador>().setIndex(indexButton);
-
-    }
-
     public void NotEnableDestroyPossibleAceleradores()
     {
         GameObject[] PossiblesAceleradores = GameObject.FindGameObjectsWithTag("Aire");
@@ -44,13 +79,10 @@ public class ActualizaEscenario : MonoBehaviour
         {
             PA.GetComponent<BoxCollider>().enabled = false;
         }
-
-
     }
-
     public void DestroyAcelerador(int indexButton)
     {
-        GameObject[] Aceleradores = GameObject.FindGameObjectsWithTag("Acelerador");
+        GameObject[] Aceleradores = GameObject.FindGameObjectsWithTag(Acelerador.tag);
         foreach (GameObject A in Aceleradores)
         {
             if (A.GetComponent<Acelerador>().getIndex() == indexButton)

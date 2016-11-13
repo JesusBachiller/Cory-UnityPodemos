@@ -33,11 +33,24 @@ public class buttonClick : MonoBehaviour {
                 {
                     if (i != indexButton)
                     {
-                        //Debug.Log(i);
                         if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                         {
                             permite = false;
                             return permite;
+                        }
+                    }
+                }
+                if (permite)
+                {
+                    for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
+                    {
+                        if (i != indexButton)
+                        {
+                            if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
+                            {
+                                permite = false;
+                                return permite;
+                            }
                         }
                     }
                 }
@@ -111,6 +124,39 @@ public class buttonClick : MonoBehaviour {
             }
         }
     }
+
+    public void onClickFireState()
+    {
+        bool permiteClick = permitirClick();
+
+        if (permiteClick)
+        {
+            if (!Game.getBotonFireStateActivado(indexButton))
+            {
+                DarkColor();
+
+                Game.setBotonFireStateActivado(indexButton, true);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().InstanciateFireState(indexButton);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleFireState();
+
+            }
+            else
+            {
+                ClearColor();
+
+                Game.setBotonFireStateActivado(indexButton, false);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().DestroyFireState(indexButton);
+
+                Game.setFireStatePuesto(indexButton, false);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleFireState();
+            }
+        }
+    }
+
 
     private void ClearColor()
     {

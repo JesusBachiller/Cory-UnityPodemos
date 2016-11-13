@@ -14,11 +14,14 @@ public class Game  {
     private static bool coryFly = false;
     private static bool coryEnd = false;
 
+    private static string coryState = "noState";
+
     private static bool firstStarOfLevelAchieved = false;
     private static bool secondStarOfLevelAchieved = false;
     private static bool thirdStarOfLevelAchieved = false;
     
     private static bool commentsEnabled = false;
+
 
     /* Esto coge valor al arrancar un nivel en setCurrentLevel y se resetea en resetAllValues */
     private static int numMuellesTotales = 0;
@@ -28,6 +31,14 @@ public class Game  {
     private static int numAceleradoresTotales = 0;
     private static bool[] aceleradorPuesto = null;
     private static bool[] botonAceleradorActivo = null;
+
+    private static int numFireStateTotales = 0;
+    private static bool[] FireStatePuesto = null;
+    private static bool[] botonFireStateActivo = null;
+    
+    private static int numIceStateTotales = 0;
+    private static bool[] IceStatePuesto = null;
+    private static bool[] botonIceStateActivo = null;
     /* Esto coge valor al arrancar un nivel en setCurrentLevel y se resetea en resetAllValues */
 
     public static void LoadStadiums()
@@ -72,6 +83,14 @@ public class Game  {
             numAceleradoresTotales = 0;
             aceleradorPuesto = null;
             botonAceleradorActivo = null;
+               
+            numFireStateTotales = 0;
+            FireStatePuesto = null;
+            botonFireStateActivo = null;
+
+            numIceStateTotales = 0;
+            IceStatePuesto = null;
+            botonIceStateActivo = null;
         } else
         {
             numMuellesTotales = level.availableSprings;
@@ -81,6 +100,14 @@ public class Game  {
             numAceleradoresTotales = level.availableAccelerators;
             aceleradorPuesto = new bool[numAceleradoresTotales];
             botonAceleradorActivo = new bool[numAceleradoresTotales];
+
+            numFireStateTotales = level.availableFireState;
+            FireStatePuesto = new bool[numFireStateTotales];
+            botonFireStateActivo = new bool[numFireStateTotales];
+
+            numIceStateTotales = level.availableIceState;
+            IceStatePuesto = new bool[numIceStateTotales];
+            botonIceStateActivo = new bool[numIceStateTotales];
         }
 
         currentLevel = level;
@@ -94,6 +121,7 @@ public class Game  {
     {
         currentStadium = stadium;
     }
+
 
     public static bool getCoryEnd()
     {
@@ -112,7 +140,26 @@ public class Game  {
     {
         coryDie = B;
     }
-    
+
+    public static bool getCoryFly()
+    {
+        return coryFly;
+    }
+    public static void setCoryFly(bool B)
+    {
+        coryFly = B;
+    }
+
+    public static string getCoryState()
+    {
+        return coryState;
+    }
+    public static void setCoryState(string s)
+    {
+        coryState = s;
+    }
+
+
     public static bool getCommentsEnabled()
     {
         return commentsEnabled;
@@ -121,6 +168,7 @@ public class Game  {
     {
         commentsEnabled = B;
     }
+
 
     public static bool getFirstStarOfLevelAchieved()
     {
@@ -149,16 +197,7 @@ public class Game  {
         thirdStarOfLevelAchieved = B;
     }
 
-    public static bool getCoryFly()
-    {
-        return coryFly;
-    }
-    public static void setCoryFly(bool B)
-    {
-        coryFly = B;
-    }
     
-
     public static int getNumMuelles()
     {
         return numMuellesTotales;
@@ -177,6 +216,25 @@ public class Game  {
         numAceleradoresTotales = N;
     }
 
+    public static int getNumFireState()
+    {
+        return numFireStateTotales;
+    }
+    public static void setNumFireState(int N)
+    {
+        numFireStateTotales = N;
+    }
+
+    public static int getNumIceState()
+    {
+        return numIceStateTotales;
+    }
+    public static void setNumIceState(int N)
+    {
+        numIceStateTotales = N;
+    }
+
+
     public static bool getMuellePuesto(int index)
     {
         return muellePuesto[index];
@@ -188,11 +246,29 @@ public class Game  {
 
     public static bool getAceleradorPuesto(int index)
     {
-        return aceleradorPuesto[index-numMuellesTotales];
+        return aceleradorPuesto[index -  numMuellesTotales];
     }
     public static void setAceleradorPuesto(int index, bool b)
     {
         aceleradorPuesto[index - numMuellesTotales] = b;
+    }
+
+    public static bool getFireStatePuesto(int index)
+    {
+        return FireStatePuesto[index - numMuellesTotales - numAceleradoresTotales];
+    }
+    public static void setFireStatePuesto(int index, bool b)
+    {
+        FireStatePuesto[index - numMuellesTotales - numAceleradoresTotales] = b;
+    }
+
+    public static bool getIceStatePuesto(int index)
+    {
+        return IceStatePuesto[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales];
+    }
+    public static void setIceStatePuesto(int index, bool b)
+    {
+        IceStatePuesto[index - numIceStateTotales] = b;
     }
 
 
@@ -214,12 +290,34 @@ public class Game  {
         botonAceleradorActivo[index - numMuellesTotales] = b;
     }
 
+    public static bool getBotonFireStateActivado(int index)
+    {
+        return botonFireStateActivo[index - numMuellesTotales - numAceleradoresTotales];
+    }
+    public static void setBotonFireStateActivado(int index, bool b)
+    {
+        botonFireStateActivo[index - numMuellesTotales - numAceleradoresTotales] = b;
+    }
+
+    public static bool getBotonIceStateActivado(int index)
+    {
+        return botonIceStateActivo[index - numIceStateTotales];
+    }
+    public static void setBotonIceStateActivado(int index, bool b)
+    {
+        botonIceStateActivo[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales] = b;
+    }
+
+    
+
     public static void resetAllValues()
     {
         cameraFollowsPlayer = true;
         coryDie = false;
         coryFly = false;
         coryEnd = false;
+
+        coryState = "noState";
 
         firstStarOfLevelAchieved = false;
         secondStarOfLevelAchieved = false;
@@ -232,5 +330,13 @@ public class Game  {
         numAceleradoresTotales = 0;
         aceleradorPuesto = null;
         botonAceleradorActivo = null;
+
+        numFireStateTotales = 0;
+        FireStatePuesto = null;
+        botonFireStateActivo = null;
+
+        numIceStateTotales = 0;
+        IceStatePuesto = null;
+        botonIceStateActivo = null;
     }
 }

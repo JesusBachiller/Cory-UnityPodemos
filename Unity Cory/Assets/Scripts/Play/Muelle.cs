@@ -9,6 +9,8 @@ public class Muelle : MonoBehaviour {
     private bool permitirClick()
     {
         bool permite = true;
+
+        Debug.Log(index);
         for (int i = 0; i < Game.getNumMuelles(); i++)
         {
             if (i != index)
@@ -26,7 +28,6 @@ public class Muelle : MonoBehaviour {
             {
                 if (i != index)
                 {
-                    //Debug.Log(i);
                     if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                     {
                         permite = false;
@@ -34,7 +35,26 @@ public class Muelle : MonoBehaviour {
                     }
                 }
             }
+            if (permite)
+            {
+                for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
+                {
+                    if (i != index)
+                    {
+                        if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
+                        {
+                            permite = false;
+                            break;
+                        }
+                    }
+                }
+            }
         }
+        if (Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie())
+        {
+            permite = false;
+        }
+
         return permite;
     }
 

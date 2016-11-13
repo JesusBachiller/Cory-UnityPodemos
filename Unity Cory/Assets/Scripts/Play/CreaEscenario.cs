@@ -23,6 +23,7 @@ public class CreaEscenario : MonoBehaviour
     private const char ESTRELLA_DOS = 'b';
     private const char ESTRELLA_TRES = 'c';
     private const char LEVEL_END = 'f';
+    private const char HIELO = 'h';
 
     public GameObject Aire;
     public GameObject Tierra;
@@ -39,11 +40,13 @@ public class CreaEscenario : MonoBehaviour
     public GameObject EstrellaUno;
     public GameObject EstrellaDos;
     public GameObject EstrellaTres;
+    public GameObject Hielo;
 
     public GameObject CanvasComments;
     public GameObject CanvasButtons;
     public GameObject ButtonMuelle;
     public GameObject ButtonAcelerador;
+    public GameObject ButtonFireState;
 
     public Camera CamaraPrincipal;
     public PhysicMaterial ReboteMaterial;
@@ -64,7 +67,7 @@ public class CreaEscenario : MonoBehaviour
             BM.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
             BM.transform.parent = CanvasButtons.transform;
             BM.GetComponent<buttonClick>().setIndex(i);
-            BM.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - (BM.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BM.GetComponent<RectTransform>().localScale.x * i, -20, 0);
+            BM.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - (BM.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BM.GetComponent<RectTransform>().localScale.x * i, -20, 0); // x, y, z
         }
         for (int i = 0; i < Game.getNumAceleradores(); i++)
         {
@@ -73,7 +76,23 @@ public class CreaEscenario : MonoBehaviour
             BA.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
             BA.transform.parent = CanvasButtons.transform;
             BA.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles());
-            BA.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BA.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BA.GetComponent<RectTransform>().localScale.x - (BA.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BA.GetComponent<RectTransform>().localScale.x * i, -20, 0);
+            BA.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BA.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BA.GetComponent<RectTransform>().localScale.x - // x
+                                                                                (BA.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BA.GetComponent<RectTransform>().localScale.x * i, // x,
+                                                                            -20, // y
+                                                                            0); // z
+        }
+        for (int i = 0; i < Game.getNumFireState(); i++)
+        {
+            Instantiate(ButtonFireState, Vector3.zero, Quaternion.identity);
+            GameObject BFS = GameObject.FindGameObjectsWithTag("BotonFireState")[i];
+            BFS.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
+            BFS.transform.parent = CanvasButtons.transform;
+            BFS.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles() + Game.getNumAceleradores());
+            BFS.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -
+                                                                                    Game.getNumAceleradores() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x * i, // x,
+                                                                            -20, // y
+                                                                            0);  // z
         }
 
         /*
@@ -90,13 +109,17 @@ public class CreaEscenario : MonoBehaviour
         GameObject planoInstanciado = new GameObject();
         Vector3 positionPlanoSobreCesped = new Vector3();
 
-
+        
         for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
             for (int j = 0; j < actualLevel.mapElements[i].Count; j++)
             {
                 Vector3 position = new Vector3(j, i + 1, 0);
 
+                if(actualLevel.mapElements[i][j] == HIELO)
+                {
+                    Instantiate(Hielo, position, Quaternion.identity);
+                }
                 if (actualLevel.mapElements[i][j] == ESTRELLA_UNO)
                 {
                     Instantiate(EstrellaUno, position, Quaternion.identity);
@@ -121,15 +144,8 @@ public class CreaEscenario : MonoBehaviour
                 if (actualLevel.mapElements[i][j] == CESPED)
                 {
                     Vector3 rotacionPlano = new Vector3();
-                    if (i != 0 && actualLevel.mapElements[i - 1][j] == AIRE)
-                    {
-                        Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180)));
 
-                        // Ponemos plano debajo y sin rotado 180
-                        positionPlanoSobreCesped = position + new Vector3(0, -0.51f, 0);
-                        rotacionPlano = new Vector3(0, 0, 180);
-                    }
-                    else
+                    if(i == 0)  // first row
                     {
                         Instantiate(Cesped, position, Quaternion.identity);
 
@@ -137,6 +153,48 @@ public class CreaEscenario : MonoBehaviour
                         positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
                         rotacionPlano = new Vector3(0, 0, 0);
                     }
+                    else
+                    {
+                        if (i == actualLevel.mapElements.Count - 2)     // last row
+                        {
+                            if(actualLevel.mapElements[i - 1][j] != TIERRA)
+                            {
+                                Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180)));
+
+                                // Ponemos plano debajo y rotado 180
+                                positionPlanoSobreCesped = position + new Vector3(0, -0.51f, 0);
+                                rotacionPlano = new Vector3(0, 0, 180);
+                            }
+                            else
+                            {
+                                Instantiate(Cesped, position, Quaternion.identity);
+
+                                // Ponemos plano encima y sin rotarlo
+                                positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
+                                rotacionPlano = new Vector3(0, 0, 0);
+                            }
+                        }
+                        else    // Midel rows
+                        {
+                            if (actualLevel.mapElements[i + 1][j] == TIERRA || actualLevel.mapElements[i + 1][j] == CESPED)
+                            {
+                                Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180)));
+
+                                // Ponemos plano debajo y rotado 180
+                                positionPlanoSobreCesped = position + new Vector3(0, -0.51f, 0);
+                                rotacionPlano = new Vector3(0, 0, 180);
+                            }
+                            else
+                            {
+                                Instantiate(Cesped, position, Quaternion.identity);
+
+                                // Ponemos plano encima y sin rotarlo
+                                positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
+                                rotacionPlano = new Vector3(0, 0, 0);
+                            }
+                        }
+                    }
+
                     if (tamanoPlanoSobreCesped == 0)
                     {
                         Vector3 posicionPlanoLateralIzquierdo = position + new Vector3(-0.51f, 0, 0);

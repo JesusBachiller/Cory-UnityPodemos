@@ -20,6 +20,8 @@
       <AvailableSprings>1</AvailableSprings>
       <AvailableAccelerators>0</AvailableAccelerators>
       <AvailablePortals>0</AvailablePortals>
+      <AvailableFireState>0</AvailableFireState>
+      <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-0</XmlCommentsPath>
@@ -42,7 +44,7 @@
         000000001100000000000000000000000000000000000000000-
         000000001100000000000000000000000000000000000000000-
         000000001100000000000000000000000000000000000000000-
-        000000001111111111111111111100000000000000000000000-
+        000000001122222222222222222200000000000000000000000-
         000000002222222222222222222200000000000000000000000-
         000000000000000000000000000000000000000000000000000-
         000000000000000000000000000000000000000000000000000-
@@ -51,6 +53,8 @@
       <AvailableSprings>1</AvailableSprings>
       <AvailableAccelerators>2</AvailableAccelerators>
       <AvailablePortals>0</AvailablePortals>
+      <AvailableFireState>0</AvailableFireState>
+      <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-1</XmlCommentsPath>
@@ -75,9 +79,35 @@
       <AvailableSprings>1</AvailableSprings>
       <AvailableAccelerators>3</AvailableAccelerators>
       <AvailablePortals>0</AvailablePortals>
+      <AvailableFireState>0</AvailableFireState>
+      <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-2</XmlCommentsPath>
+    </Level>
+    <Level name="Tutorial Cuatro" index="3">
+      <MapElements>
+
+        111222222222222222222222222222222111222222-
+        22200000000000000000000000000000022200000f-
+        090000000000000000000000000000000000000000-
+        0000000000000a000000hhh0000000000000000000-
+        00000000000000000000hhh0b0000000000c000000-
+        00000000000000000000hhh0000000000000000000-
+        000000000000000000002220000000000000000000-
+        000000000000222222221110000000000000000000-
+        000000000000222222222220000000000000000000-
+        000000000000000000000000000000000000000000-
+
+      </MapElements>
+      <AvailableSprings>0</AvailableSprings>
+      <AvailableAccelerators>0</AvailableAccelerators>
+      <AvailablePortals>0</AvailablePortals>
+      <AvailableFireState>2</AvailableFireState>
+      <AvailableIceState>0</AvailableIceState>
+      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <XmlCommentsPath>Comments/comments-tutorial-3</XmlCommentsPath>
     </Level>
   </Levels>
 </Stadium>

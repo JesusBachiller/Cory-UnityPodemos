@@ -85,6 +85,17 @@ public class lanzamiento : MonoBehaviour
                         return permite;
                     }
                 }
+                if (permite)
+                {
+                    for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
+                    {
+                        if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
+                        {
+                            permite = false;
+                            break;
+                        }
+                    }
+                }
             }
         }
 
