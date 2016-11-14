@@ -26,9 +26,11 @@ public class CameraController : MonoBehaviour {
 
         camera = this.GetComponent<Camera>();
 
-        if (GameObject.FindGameObjectsWithTag("Player").Length > 0)
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        if (players.Length > 0)
         {
-            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            player = players[0];
             
 
             offset = transform.position - player.transform.position;

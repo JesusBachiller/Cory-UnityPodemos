@@ -9,8 +9,7 @@ public class Muelle : MonoBehaviour {
     private bool permitirClick()
     {
         bool permite = true;
-
-        Debug.Log(index);
+        
         for (int i = 0; i < Game.getNumMuelles(); i++)
         {
             if (i != index)

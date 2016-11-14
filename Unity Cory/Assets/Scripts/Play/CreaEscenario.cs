@@ -258,7 +258,7 @@ public class CreaEscenario : MonoBehaviour
                 }
                 if (actualLevel.mapElements[i][j] == LEVEL_END)
                 {
-                    Instantiate(LevelEnd, new Vector3(position.x, position.y + 2, position.z), Quaternion.identity);
+                    Instantiate(LevelEnd, new Vector3(position.x + 2, position.y, position.z), Quaternion.identity);
                 }
                 if (actualLevel.mapElements[i][j] == CORY)
                 {
