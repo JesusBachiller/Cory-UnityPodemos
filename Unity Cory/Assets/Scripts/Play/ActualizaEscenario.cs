@@ -163,8 +163,18 @@ public class ActualizaEscenario : MonoBehaviour
                 // Creamos una nueva tira (plano sobre cesped)
                 Vector3 posicionPlanoLateralIzquierdo = suelosCesped[i].transform.position + new Vector3(-0.51f, 0, 0);
                 Instantiate(PlanoSuelo, posicionPlanoLateralIzquierdo, Quaternion.Euler(new Vector3(0, 0, 90)));
-                positionPlanoSobreCesped = suelosCesped[i].transform.position + new Vector3(0, 0.51f, 0);
-                planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.identity) as GameObject;
+                
+                if(suelosCesped[i].transform.rotation.z == 0)
+                {
+                    positionPlanoSobreCesped = suelosCesped[i].transform.position + new Vector3(0, 0.51f, 0);
+                    planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.identity) as GameObject;
+                }
+                else
+                {
+                    positionPlanoSobreCesped = suelosCesped[i].transform.position + new Vector3(0, -0.51f, 0);
+                    planoInstanciado = Instantiate(PlanoSuelo, positionPlanoSobreCesped, Quaternion.Euler(new Vector3(0, 0, 180))) as GameObject;
+                }
+                
             }
             if (suelosCesped[i].GetComponent<Renderer>().enabled)
             {
