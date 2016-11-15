@@ -34,8 +34,8 @@ public class WorldMapStadium : MonoBehaviour
 
     public void changeScene(string sceneName, Level actualLevel, Stadium actualStadium)
     {
-        Game.setCurrentLevel(actualLevel);
         Game.setCurrentStadium(actualStadium);
+        Game.setCurrentLevel(actualLevel);
         SceneManager.LoadScene(sceneName);
     }
 
