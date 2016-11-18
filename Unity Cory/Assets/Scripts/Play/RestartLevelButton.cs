@@ -8,6 +8,8 @@ public class RestartLevelButton : MonoBehaviour
     {
         if (!(Game.getCoryDie() || Game.getCoryEnd()))
         {
+            GameObject cory = GameObject.FindGameObjectWithTag("Player");
+
             Game.setCoryState("noState");
 
             foreach (GameObject PS in GameObject.FindGameObjectsWithTag("ParticleFire"))
@@ -16,7 +18,6 @@ public class RestartLevelButton : MonoBehaviour
                 PS.GetComponent<ParticleSystemFollowCory>().setIsStopped(true);
             }
 
-            GameObject cory = GameObject.FindGameObjectWithTag("Player");
 
             Material[] M = cory.GetComponent<MeshRenderer>().materials;
             M[0].color = Color.white;
@@ -43,6 +44,15 @@ public class RestartLevelButton : MonoBehaviour
             cory.GetComponent<TrailRenderer>().Clear();
             cory.GetComponent<Rigidbody>().isKinematic = false;
             Game.setCoryDie(false);
+
+            if (Game.isCoryInsidePortal())
+            {
+                Game.setCoryInsidePortal(false);
+                cory.GetComponent<SphereCollider>().enabled = true;
+                cory.GetComponent<MeshRenderer>().enabled = true;
+                cory.GetComponent<TrailRenderer>().enabled = true;
+            }
+
 
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>().setCameraFollowPlayer(true);
         }

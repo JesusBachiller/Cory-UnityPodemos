@@ -48,6 +48,21 @@ public class fireState : MonoBehaviour {
                         }
                     }
                 }
+
+                if (permite)
+                {
+                    for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumPortales(); i++)
+                    {
+                        if (i != index)
+                        {
+                            if (Game.getBotonPortalActivado(i) == true && Game.getPortalPuesto(i) == false)
+                            {
+                                permite = false;
+                                break;
+                            }
+                        }
+                    }
+                }
             }
 
         }

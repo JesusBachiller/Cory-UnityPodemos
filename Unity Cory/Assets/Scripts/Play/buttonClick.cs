@@ -53,6 +53,21 @@ public class buttonClick : MonoBehaviour {
                             }
                         }
                     }
+
+                    if (permite)
+                    {
+                        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumPortales(); i++)
+                        {
+                            if (i != indexButton)
+                            {
+                                if (Game.getBotonPortalActivado(i) == true && Game.getPortalPuesto(i) == false)
+                                {
+                                    permite = false;
+                                    return permite;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -153,6 +168,39 @@ public class buttonClick : MonoBehaviour {
                 Game.setFireStatePuesto(indexButton, false);
 
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleFireState();
+            }
+        }
+    }
+
+
+    public void onClickPortal()
+    {
+        bool permiteClick = permitirClick();
+
+        if (permiteClick)
+        {
+            if (!Game.getBotonPortalActivado(indexButton))
+            {
+                DarkColor();
+
+                Game.setBotonPortalActivado(indexButton, true);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortal(indexButton);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortal();
+
+            }
+            else
+            {
+                ClearColor();
+
+                Game.setBotonPortalActivado(indexButton, false);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().DestroyPortal(indexButton);
+
+                Game.setPortalPuesto(indexButton, false);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortal();
             }
         }
     }

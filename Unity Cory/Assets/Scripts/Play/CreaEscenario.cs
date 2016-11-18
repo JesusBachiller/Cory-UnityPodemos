@@ -47,6 +47,8 @@ public class CreaEscenario : MonoBehaviour
     public GameObject ButtonMuelle;
     public GameObject ButtonAcelerador;
     public GameObject ButtonFireState;
+    public GameObject ButtonIceState;
+    public GameObject ButtonPortal;
 
     public Camera CamaraPrincipal;
     public PhysicMaterial ReboteMaterial;
@@ -94,6 +96,40 @@ public class CreaEscenario : MonoBehaviour
                                                                             -20, // y
                                                                             0);  // z
         }
+
+
+        for (int i = 0; i < Game.getNumPortales(); i++)
+        {
+            Instantiate(ButtonPortal, Vector3.zero, Quaternion.identity);
+            GameObject BFS = GameObject.FindGameObjectsWithTag("BotonPortal")[i];
+            BFS.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
+            BFS.transform.parent = CanvasButtons.transform;
+            BFS.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState());
+            BFS.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -
+                                                                                    Game.getNumAceleradores() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    Game.getNumFireState() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x * i, // x,
+                                                                            -20, // y
+                                                                            0);  // z
+        }
+
+        /*for (int i = 0; i < Game.getNumIceState(); i++)
+        {
+            Instantiate(ButtonIceState, Vector3.zero, Quaternion.identity);
+            GameObject BFS = GameObject.FindGameObjectsWithTag("BotonIceState")[i];
+            BFS.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
+            BFS.transform.parent = CanvasButtons.transform;
+            BFS.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() +  Game.getNumPortales());
+            BFS.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -
+                                                                                    Game.getNumAceleradores() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    Game.getNumFireState() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    Game.getNumPortales() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x * i, // x,
+                                                                            -20, // y
+                                                                            0);  // z
+        }*/
+
+
 
         /*
          * Get selected Level to Play from previous Scene (Map)

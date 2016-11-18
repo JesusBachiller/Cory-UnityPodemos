@@ -9,6 +9,7 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
     public GameObject creaEscenario;
     private GameObject Acelerador;
     private GameObject FireState;
+    private GameObject PortalEntrada;
 
     private Vector3 home;
 
@@ -17,6 +18,7 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
     {
         Acelerador = null;
         FireState = null;
+        PortalEntrada = null;
 
         if (s == "Acelerador")
         {
@@ -50,6 +52,20 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
             return;
         }
 
+        if (s == "PortalEntrada")
+        {
+            GameObject[] Portales = GameObject.FindGameObjectsWithTag(s);
+            foreach (GameObject P in Portales)
+            {
+                int index = P.GetComponent<Portal>().index;
+                if (Game.getBotonPortalActivado(index) && !Game.getPortalPuesto(index))
+                {
+                    PortalEntrada = P;
+                    break;
+                }
+            }
+            return;
+        }
 
     }
 
@@ -68,6 +84,14 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
                 {
                     FireState.transform.position = transform.position;
                     FireState.GetComponent<fireState>().setAireBlock(this.gameObject);
+                }
+                else
+                {
+                    if (PortalEntrada != null)
+                    {
+                        PortalEntrada.transform.position = transform.position;
+                        PortalEntrada.GetComponent<Portal>().setAireBlock(this.gameObject);
+                    }
                 }
             }
         }

@@ -9,12 +9,52 @@ public class ActualizaEscenario : MonoBehaviour
     public GameObject Acelerador;
     public GameObject PlanoSuelo;
     public GameObject FireState;
+    public GameObject PortalEntrada;
 
     private GameObject[] ArraySuelos;
 
     public int posMouseClick_x;
     public int posMouseClick_y;
 
+
+
+    public void InstanciatePortal(int indexButton)
+    {
+        Instantiate(PortalEntrada, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject[] Portales = GameObject.FindGameObjectsWithTag(PortalEntrada.tag);
+        Portales[Portales.Length - 1].GetComponent<Portal>().setIndex(indexButton);
+    }
+    public void EnablePossiblePortal()
+    {
+        GameObject[] PossiblesPortales = GameObject.FindGameObjectsWithTag("Aire");
+
+        foreach (GameObject PPortal in PossiblesPortales)
+        {
+            PPortal.GetComponent<BoxCollider>().enabled = true;
+            PPortal.GetComponent<MouseOverPossibleAcelerador>().findObject(PortalEntrada.tag);
+        }
+
+    }
+    public void NotEnableDestroyPossiblePortal()
+    {
+        GameObject[] PossiblesPortales = GameObject.FindGameObjectsWithTag("Aire");
+
+        foreach (GameObject PPortal in PossiblesPortales)
+        {
+            PPortal.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+    public void DestroyPortal(int indexButton)
+    {
+        GameObject[] Portales = GameObject.FindGameObjectsWithTag(PortalEntrada.tag);
+        foreach (GameObject P in Portales)
+        {
+            if (P.GetComponent<Portal>().getIndex() == indexButton)
+            {
+                Destroy(P);
+            }
+        }
+    }
 
     public void InstanciateFireState(int indexButton)
     {
