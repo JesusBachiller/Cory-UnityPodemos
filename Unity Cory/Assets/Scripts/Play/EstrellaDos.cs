@@ -30,7 +30,7 @@ public class EstrellaDos : MonoBehaviour
             Game.setSecondStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.cyan;
+                m.color = new Color32(204, 153, 0, 1); // naranja
             }
         }
         else
@@ -38,7 +38,7 @@ public class EstrellaDos : MonoBehaviour
             Game.setSecondStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.red;
+                m.color = Color.white;
             }
         }
     }
@@ -52,7 +52,7 @@ public class EstrellaDos : MonoBehaviour
             Game.setSecondStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.cyan;
+                m.color = new Color32(204, 153, 0, 1); // naranja
             }
         }
         else
@@ -60,7 +60,7 @@ public class EstrellaDos : MonoBehaviour
             Game.setSecondStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.red;
+                m.color = Color.white;
             }
         }
     }
@@ -74,7 +74,7 @@ public class EstrellaDos : MonoBehaviour
                 Game.setSecondStarOfLevelAchieved(true);
                 foreach (Material m in GetComponent<Renderer>().materials)
                 {
-                    m.color = Color.white;
+                    m.color = Color.yellow;
                 }
             }
         }

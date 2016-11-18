@@ -30,7 +30,7 @@ public class EstrellaTres : MonoBehaviour
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 Game.setThirdStarOfLevelAchieved(true);
-                m.color = Color.cyan;
+                m.color = new Color32(204, 153, 0, 1); // naranja
             }
         }
         else
@@ -38,7 +38,7 @@ public class EstrellaTres : MonoBehaviour
             foreach (Material m in GetComponent<Renderer>().materials)
             {
                 Game.setThirdStarOfLevelAchieved(false);
-                m.color = Color.red;
+                m.color = Color.white;
             }
         }
     }
@@ -52,7 +52,7 @@ public class EstrellaTres : MonoBehaviour
             Game.setThirdStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.cyan;
+                m.color = new Color32(204, 153, 0, 1); // naranja
             }
         }
         else
@@ -60,7 +60,7 @@ public class EstrellaTres : MonoBehaviour
             Game.setThirdStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.red;
+                m.color = Color.white;
             }
         }
     }
@@ -73,7 +73,7 @@ public class EstrellaTres : MonoBehaviour
                 Game.setThirdStarOfLevelAchieved(true);
                 foreach (Material m in GetComponent<Renderer>().materials)
                 {
-                    m.color = Color.white;
+                    m.color = Color.yellow;
                 }
             }
 

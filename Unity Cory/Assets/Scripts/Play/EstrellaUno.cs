@@ -28,7 +28,7 @@ public class EstrellaUno : MonoBehaviour {
             Game.setFirstStarOfLevelAchieved(true);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.cyan;
+                m.color = new Color32(204, 153, 0, 1); // naranja
             }
         }
         else
@@ -36,7 +36,7 @@ public class EstrellaUno : MonoBehaviour {
             Game.setFirstStarOfLevelAchieved(false);
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.red;
+                m.color = Color.white;
             }
         }
     }
@@ -49,7 +49,7 @@ public class EstrellaUno : MonoBehaviour {
         {
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.cyan;
+                m.color = new Color32(204, 153, 0, 1); // naranja
             }
             Game.setFirstStarOfLevelAchieved(true);
         }
@@ -57,7 +57,7 @@ public class EstrellaUno : MonoBehaviour {
         {
             foreach (Material m in GetComponent<Renderer>().materials)
             {
-                m.color = Color.red;
+                m.color = Color.white;
             }
             Game.setFirstStarOfLevelAchieved(false);
         }
@@ -71,7 +71,7 @@ public class EstrellaUno : MonoBehaviour {
             {
                 foreach (Material m in GetComponent<Renderer>().materials)
                 {
-                    m.color = Color.white;
+                    m.color = Color.yellow;
                 }
                 Game.setFirstStarOfLevelAchieved(true);
             }
