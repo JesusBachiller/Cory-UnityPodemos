@@ -54,7 +54,7 @@ public class Muelle : MonoBehaviour {
                     {
                         if (i != index)
                         {
-                            if (Game.getBotonPortalActivado(i) == true && Game.getPortalPuesto(i) == false)
+                            if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
                             {
                                 permite = false;
                                 break;

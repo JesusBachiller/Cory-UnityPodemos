@@ -127,7 +127,7 @@
       </MapElements>
       <AvailableSprings>0</AvailableSprings>
       <AvailableAccelerators>0</AvailableAccelerators>
-      <AvailablePortals>1</AvailablePortals>
+      <AvailablePortals>2</AvailablePortals>
       <AvailableFireState>0</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>level-preview-image</PreviewImagePath>

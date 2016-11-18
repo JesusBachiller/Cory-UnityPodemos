@@ -13,7 +13,6 @@ public class Game  {
     private static bool coryDie = false;
     private static bool coryFly = false;
     private static bool coryEnd = false;
-    private static bool coryInsidePortal = false;
 
     private static string coryState = "noState";
 
@@ -34,8 +33,10 @@ public class Game  {
     private static bool[] botonAceleradorActivo = null;
 
     private static int numPortalesTotales = 0;
-    private static bool[] portalPuesto = null;
+    private static bool[] portalEntradaPuesto = null;
+    private static bool[] portalSalidaPuesto = null;
     private static bool[] botonPortalActivo = null;
+    private static bool[] coryInsidePortal = null;
 
     private static int numFireStateTotales = 0;
     private static bool[] FireStatePuesto = null;
@@ -63,14 +64,34 @@ public class Game  {
         }
     }
 
-    public static bool isCoryInsidePortal()
+    public static bool isCoryInsideSomePortal()
     {
-        return coryInsidePortal;
+        if (coryInsidePortal == null)
+        {
+            return false;
+        } else
+        {
+            foreach(bool b in coryInsidePortal)
+            {
+                if (b)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public static void setCoryInsidePortal(bool B)
+
+    public static void coryIsNotInsideAnyPortal()
     {
-        coryInsidePortal = B;
+        if (coryInsidePortal != null)
+        {
+            for(int i = 0; i < coryInsidePortal.Length -1; i++)
+            {
+                coryInsidePortal[i] = false;
+            }
+        }
     }
 
     public static int getCurrentStadiumLevelQuatity()
@@ -104,13 +125,15 @@ public class Game  {
             botonFireStateActivo = null;
 
             numPortalesTotales = 0;
-            portalPuesto = null;
+            portalEntradaPuesto = null;
+            portalSalidaPuesto = null;
             botonPortalActivo = null;
+            coryInsidePortal = null;
 
-            /*numIceStateTotales = 0;
-            IceStatePuesto = null;
-            botonIceStateActivo = null;*/
-        } else
+    /*numIceStateTotales = 0;
+    IceStatePuesto = null;
+    botonIceStateActivo = null;*/
+} else
         {
             numMuellesTotales = level.availableSprings;
             muellePuesto = new bool[numMuellesTotales];
@@ -125,8 +148,10 @@ public class Game  {
             botonFireStateActivo = new bool[numFireStateTotales];
 
             numPortalesTotales = level.availablePortals;
-            portalPuesto = new bool[numPortalesTotales];
+            portalEntradaPuesto = new bool[numPortalesTotales];
+            portalSalidaPuesto = new bool[numPortalesTotales];
             botonPortalActivo = new bool[numPortalesTotales];
+            coryInsidePortal = new bool[numPortalesTotales];
 
             /*numIceStateTotales = level.availableIceState;
             IceStatePuesto = new bool[numIceStateTotales];
@@ -299,14 +324,31 @@ public class Game  {
         FireStatePuesto[index - numMuellesTotales - numAceleradoresTotales] = b;
     }
 
-
-    public static bool getPortalPuesto(int index)
+    public static bool isCoryInsidePortal(int index)
     {
-        return portalPuesto[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales];
+        return coryInsidePortal[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales];
     }
-    public static void setPortalPuesto(int index, bool b)
+    public static void setCoryInsidePortal(int index, bool b)
     {
-        portalPuesto[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales] = b;
+        coryInsidePortal[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales] = b;
+    }
+
+    public static bool getPortalEntradaPuesto(int index)
+    {
+        return portalEntradaPuesto[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales];
+    }
+    public static void setPortalEntradaPuesto(int index, bool b)
+    {
+        portalEntradaPuesto[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales] = b;
+    }
+
+    public static bool getPortalSalidaPuesto(int index)
+    {
+        return portalSalidaPuesto[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales];
+    }
+    public static void setPortalSalidaPuesto(int index, bool b)
+    {
+        portalSalidaPuesto[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales] = b;
     }
 
     /*public static bool getIceStatePuesto(int index)
@@ -371,7 +413,6 @@ public class Game  {
         coryDie = false;
         coryFly = false;
         coryEnd = false;
-        coryInsidePortal = false;
 
         coryState = "noState";
 
@@ -388,8 +429,10 @@ public class Game  {
         botonAceleradorActivo = null;
 
         numPortalesTotales = 0;
-        portalPuesto = null;
+        portalEntradaPuesto = null;
+        portalSalidaPuesto = null;
         botonPortalActivo = null;
+        coryInsidePortal = null;
 
         numFireStateTotales = 0;
         FireStatePuesto = null;

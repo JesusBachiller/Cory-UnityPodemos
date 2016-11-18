@@ -10,6 +10,7 @@ public class ActualizaEscenario : MonoBehaviour
     public GameObject PlanoSuelo;
     public GameObject FireState;
     public GameObject PortalEntrada;
+    public GameObject PortalSalida;
 
     private GameObject[] ArraySuelos;
 
@@ -18,13 +19,13 @@ public class ActualizaEscenario : MonoBehaviour
 
 
 
-    public void InstanciatePortal(int indexButton)
+    public void InstanciatePortalEntrada(int indexButton)
     {
         Instantiate(PortalEntrada, new Vector3(-1f, -1f, -1f), Quaternion.identity);
         GameObject[] Portales = GameObject.FindGameObjectsWithTag(PortalEntrada.tag);
-        Portales[Portales.Length - 1].GetComponent<Portal>().setIndex(indexButton);
+        Portales[Portales.Length - 1].GetComponent<PortalEntrada>().setIndex(indexButton);
     }
-    public void EnablePossiblePortal()
+    public void EnablePossiblePortalEntrada()
     {
         GameObject[] PossiblesPortales = GameObject.FindGameObjectsWithTag("Aire");
 
@@ -35,7 +36,34 @@ public class ActualizaEscenario : MonoBehaviour
         }
 
     }
-    public void NotEnableDestroyPossiblePortal()
+    public void NotEnableDestroyPossiblePortalEntrada()
+    {
+        GameObject[] PossiblesPortales = GameObject.FindGameObjectsWithTag("Aire");
+
+        foreach (GameObject PPortal in PossiblesPortales)
+        {
+            PPortal.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
+    public void InstanciatePortalSalida(int indexButton)
+    {
+        Instantiate(PortalSalida, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject[] Portales = GameObject.FindGameObjectsWithTag(PortalSalida.tag);
+        Portales[Portales.Length - 1].GetComponent<PortalSalida>().setIndex(indexButton);
+    }
+    public void EnablePossiblePortalSalida()
+    {
+        GameObject[] PossiblesPortales = GameObject.FindGameObjectsWithTag("Aire");
+
+        foreach (GameObject PPortal in PossiblesPortales)
+        {
+            PPortal.GetComponent<BoxCollider>().enabled = true;
+            PPortal.GetComponent<MouseOverPossibleAcelerador>().findObject(PortalSalida.tag);
+        }
+
+    }
+    public void NotEnableDestroyPossiblePortalSalida()
     {
         GameObject[] PossiblesPortales = GameObject.FindGameObjectsWithTag("Aire");
 
@@ -46,10 +74,18 @@ public class ActualizaEscenario : MonoBehaviour
     }
     public void DestroyPortal(int indexButton)
     {
-        GameObject[] Portales = GameObject.FindGameObjectsWithTag(PortalEntrada.tag);
-        foreach (GameObject P in Portales)
+        GameObject[] PortalesEntrada = GameObject.FindGameObjectsWithTag(PortalEntrada.tag);
+        GameObject[] PortalesSalida = GameObject.FindGameObjectsWithTag(PortalSalida.tag);
+        foreach (GameObject P in PortalesEntrada)
         {
-            if (P.GetComponent<Portal>().getIndex() == indexButton)
+            if (P.GetComponent<PortalEntrada>().getIndex() == indexButton)
+            {
+                Destroy(P);
+            }
+        }
+        foreach (GameObject P in PortalesSalida)
+        {
+            if (P.GetComponent<PortalSalida>().getIndex() == indexButton)
             {
                 Destroy(P);
             }

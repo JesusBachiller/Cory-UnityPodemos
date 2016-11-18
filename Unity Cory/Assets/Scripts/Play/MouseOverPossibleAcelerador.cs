@@ -10,6 +10,7 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
     private GameObject Acelerador;
     private GameObject FireState;
     private GameObject PortalEntrada;
+    private GameObject PortalSalida;
 
     private Vector3 home;
 
@@ -19,6 +20,7 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
         Acelerador = null;
         FireState = null;
         PortalEntrada = null;
+        PortalSalida = null;
 
         if (s == "Acelerador")
         {
@@ -57,8 +59,8 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
             GameObject[] Portales = GameObject.FindGameObjectsWithTag(s);
             foreach (GameObject P in Portales)
             {
-                int index = P.GetComponent<Portal>().index;
-                if (Game.getBotonPortalActivado(index) && !Game.getPortalPuesto(index))
+                int index = P.GetComponent<PortalEntrada>().index;
+                if (Game.getBotonPortalActivado(index) && !Game.getPortalEntradaPuesto(index))
                 {
                     PortalEntrada = P;
                     break;
@@ -67,6 +69,20 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
             return;
         }
 
+        if (s == "PortalSalida")
+        {
+            GameObject[] Portales = GameObject.FindGameObjectsWithTag(s);
+            foreach (GameObject P in Portales)
+            {
+                int index = P.GetComponent<PortalSalida>().index;
+                if (Game.getBotonPortalActivado(index) && !Game.getPortalSalidaPuesto(index))
+                {
+                    PortalSalida = P;
+                    break;
+                }
+            }
+            return;
+        }
     }
 
     void OnMouseEnter()
@@ -90,7 +106,17 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
                     if (PortalEntrada != null)
                     {
                         PortalEntrada.transform.position = transform.position;
-                        PortalEntrada.GetComponent<Portal>().setAireBlock(this.gameObject);
+                        PortalEntrada.GetComponent<PortalEntrada>().setAireBlock(this.gameObject);
+
+
+                    }
+                    else
+                    {
+                        if (PortalSalida != null)
+                        {
+                            PortalSalida.transform.position = transform.position;
+                            PortalSalida.GetComponent<PortalSalida>().setAireBlock(this.gameObject);
+                        }
                     }
                 }
             }

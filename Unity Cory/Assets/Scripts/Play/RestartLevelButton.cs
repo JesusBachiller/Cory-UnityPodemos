@@ -45,9 +45,9 @@ public class RestartLevelButton : MonoBehaviour
             cory.GetComponent<Rigidbody>().isKinematic = false;
             Game.setCoryDie(false);
 
-            if (Game.isCoryInsidePortal())
+            if (Game.isCoryInsideSomePortal())
             {
-                Game.setCoryInsidePortal(false);
+                Game.coryIsNotInsideAnyPortal();
                 cory.GetComponent<SphereCollider>().enabled = true;
                 cory.GetComponent<MeshRenderer>().enabled = true;
                 cory.GetComponent<TrailRenderer>().enabled = true;

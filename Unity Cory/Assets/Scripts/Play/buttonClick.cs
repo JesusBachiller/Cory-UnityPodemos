@@ -60,7 +60,7 @@ public class buttonClick : MonoBehaviour {
                         {
                             if (i != indexButton)
                             {
-                                if (Game.getBotonPortalActivado(i) == true && Game.getPortalPuesto(i) == false)
+                                if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
                                 {
                                     permite = false;
                                     return permite;
@@ -185,9 +185,9 @@ public class buttonClick : MonoBehaviour {
 
                 Game.setBotonPortalActivado(indexButton, true);
 
-                creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortal(indexButton);
+                creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalEntrada(indexButton);
 
-                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortal();
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
 
             }
             else
@@ -198,9 +198,11 @@ public class buttonClick : MonoBehaviour {
 
                 creaEscenario.GetComponent<ActualizaEscenario>().DestroyPortal(indexButton);
 
-                Game.setPortalPuesto(indexButton, false);
+                Game.setPortalEntradaPuesto(indexButton, false);
+                Game.setPortalSalidaPuesto(indexButton, false);
 
-                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortal();
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalSalida();
             }
         }
     }

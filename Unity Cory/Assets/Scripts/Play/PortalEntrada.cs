@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PortalSalida : MonoBehaviour {
-
+public class PortalEntrada : MonoBehaviour
+{
     private GameObject cory;
+    private GameObject portalSalida;
+    private float speed;
+    private Vector3 speedBeforeColliding;
     public int index;
     public GameObject creaEscenario;
 
@@ -11,19 +14,63 @@ public class PortalSalida : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         cory = GameObject.FindGameObjectWithTag("Player");
+        portalSalida = null;
+        speed = 25;
+        speedBeforeColliding = new Vector3(0, 0, 0);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    void Update()
     {
-        if(cory != null) {
+        if (cory != null)
+        {
             this.transform.LookAt(cory.transform);
+        }
+
+        if (Game.isCoryInsidePortal(index) && portalSalida != null)
+        {            
+            if (cory.transform.position != portalSalida.transform.position)
+            {
+                float step = speed * Time.deltaTime;
+                cory.transform.position = Vector3.MoveTowards(cory.transform.position, portalSalida.transform.position, step);
+            }
+            else
+            {
+                Game.setCoryInsidePortal(index, false);
+                cory.GetComponent<SphereCollider>().enabled = true;
+                cory.GetComponent<Rigidbody>().isKinematic = false;
+                cory.GetComponent<Rigidbody>().velocity = speedBeforeColliding;
+                cory.GetComponent<MeshRenderer>().enabled = true;
+                cory.GetComponent<TrailRenderer>().Clear();
+                cory.GetComponent<TrailRenderer>().enabled = true;
+                speedBeforeColliding = new Vector3(0, 0, 0);
+            }
         }
     }
 
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == cory.tag && !Game.getCoryDie())
+        {
+            foreach (GameObject pS in GameObject.FindGameObjectsWithTag("PortalSalida"))
+            {
+                if (pS.GetComponent<PortalSalida>().getIndex() == index)
+                {
+                    portalSalida = pS;
+                }
+            }
+            speedBeforeColliding = cory.GetComponent<Rigidbody>().velocity;
+            cory.GetComponent<Rigidbody>().isKinematic = false;
+            cory.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            cory.GetComponent<SphereCollider>().enabled = false;
+            cory.GetComponent<MeshRenderer>().enabled = false;
+            cory.GetComponent<TrailRenderer>().enabled = false;
+            Game.setCoryInsidePortal(index, true);
+        }
+    }
 
     private bool permitirClick()
     {
@@ -94,17 +141,22 @@ public class PortalSalida : MonoBehaviour {
     {
         if (permitirClick())
         {
-            if (Game.getPortalSalidaPuesto(index))
+            if (Game.getPortalEntradaPuesto(index))
             {
-                Game.setPortalSalidaPuesto(index, false);
+                // Muevo portal
+                Game.setPortalEntradaPuesto(index, false);
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
-                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
             }
             else
             {
-                Game.setPortalSalidaPuesto(index, true);
+                // Pongo portal
+                Game.setPortalEntradaPuesto(index, true);
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
-                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalSalida();
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
+
+                creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalSalida(index);
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
             }
         }
     }
