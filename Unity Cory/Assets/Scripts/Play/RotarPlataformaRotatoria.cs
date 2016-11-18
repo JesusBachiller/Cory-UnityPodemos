@@ -15,7 +15,6 @@ public class RotarPlataformaRotatoria : MonoBehaviour {
 
     void Update()
     {
-        
         if (Input.GetMouseButtonDown(1))
         {
             //Debug.Log("AAAA");
@@ -56,21 +55,23 @@ public class RotarPlataformaRotatoria : MonoBehaviour {
     // Check for Right-Click
     void OnRightClick()
     {
-        // Cast a ray from the mouse
-        // cursors position
-        Ray clickPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitPoint;
+        if (!(Game.getCoryFly() || Game.getCoryDie()) ) {
+            // Cast a ray from the mouse
+            // cursors position
+            Ray clickPoint = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitPoint;
 
-        // See if the ray collided with an object
-        if (Physics.Raycast(clickPoint, out hitPoint))
-        {
-            // Make sure this object was the
-            // one that received the right-click
-            if (hitPoint.collider == this.GetComponent<Collider>())
+            // See if the ray collided with an object
+            if (Physics.Raycast(clickPoint, out hitPoint))
             {
-                // Put code for the right click event
-                //Debug.Log("Right Clicked on " + this.name);
-                CentroPR = this.gameObject;
+                // Make sure this object was the
+                // one that received the right-click
+                if (hitPoint.collider == this.GetComponent<Collider>())
+                {
+                    // Put code for the right click event
+                    //Debug.Log("Right Clicked on " + this.name);
+                    CentroPR = this.gameObject;
+                }
             }
         }
     }

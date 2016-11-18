@@ -144,7 +144,6 @@ public class CreaEscenario : MonoBehaviour
         float xMediaPlanoSobreCesped = 0;
         GameObject planoInstanciado = new GameObject();
         Vector3 positionPlanoSobreCesped = new Vector3();
-
         
         for (int i = 0; i < actualLevel.mapElements.Count; i++)
         {
@@ -294,7 +293,7 @@ public class CreaEscenario : MonoBehaviour
                 }
                 if (actualLevel.mapElements[i][j] == LEVEL_END)
                 {
-                    Instantiate(LevelEnd, new Vector3(position.x + 2, position.y, position.z), Quaternion.identity);
+                    Instantiate(LevelEnd, new Vector3(position.x + 2, position.y - 0.025f, position.z), Quaternion.identity);
                 }
                 if (actualLevel.mapElements[i][j] == CORY)
                 {

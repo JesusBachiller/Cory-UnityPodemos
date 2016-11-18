@@ -20,6 +20,8 @@ public class CameraController : MonoBehaviour {
 
     private int maxFOV;
     private int minFOV;
+    
+    private int maxXDisplacement;
 
     // Use this for initialization
     void Start () {
@@ -39,6 +41,7 @@ public class CameraController : MonoBehaviour {
 
         maxFOV = 50;
         minFOV = 30;
+        maxXDisplacement = findMaxXDisplacement();
 
         camButtons.GetComponent<Canvas>().enabled = false;
 
@@ -46,6 +49,19 @@ public class CameraController : MonoBehaviour {
         Game.cameraFollowsPlayer = true;
         responsiveMousePercentage = 0.05f;
         speedFreeCamera = 10.0f;
+    }
+
+    int findMaxXDisplacement()
+    {
+        int maxX = 0;
+        for (int i = 0; i < Game.getCurrentLevel().mapElements.Count; i++)
+        {
+            if (maxX < Game.getCurrentLevel().mapElements[i].Count - 1)
+            {
+                maxX = Game.getCurrentLevel().mapElements[i].Count - 1;
+            }
+        }
+        return maxX;
     }
 
 
@@ -130,7 +146,7 @@ public class CameraController : MonoBehaviour {
 
     public void moveRight()
     {
-        if (transform.position.x <= 30.0f)
+        if (transform.position.x <= maxXDisplacement - 10f)
         {
             transform.position += new Vector3(speedFreeCamera, 0, 0) * Time.deltaTime;
         }
