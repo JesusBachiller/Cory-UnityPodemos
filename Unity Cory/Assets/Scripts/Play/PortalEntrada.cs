@@ -155,8 +155,21 @@ public class PortalEntrada : MonoBehaviour
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
                 Color c = transform.FindChild("AroExterior").gameObject.GetComponent<MeshRenderer>().materials[0].color; // cojo el color del Aro Exterior
-                creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalSalida(index, c); // y se lo paso al portalSalida para que sea del mismo color
-                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
+
+                bool crearPortalSalida = true; // Si estoy poniendo el portal entrada, aun no he instanciado el portalSalida
+                GameObject[] PortalesSalida = GameObject.FindGameObjectsWithTag("PortalSalida");
+                foreach(GameObject pS in PortalesSalida)
+                {
+                    if(pS.GetComponent<PortalSalida>().getIndex() == index) // Si estoy moviendo el portal entrada, ya existe el portalSalida
+                    {
+                        crearPortalSalida = false; // Por tanto no instancio otro portalSalida
+                    }
+                }
+                if (crearPortalSalida)
+                {
+                    creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalSalida(index, c); // y se lo paso al portalSalida para que sea del mismo color
+                    creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
+                }
             }
         }
     }
