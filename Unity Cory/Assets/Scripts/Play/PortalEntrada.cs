@@ -154,8 +154,8 @@ public class PortalEntrada : MonoBehaviour
                 Game.setPortalEntradaPuesto(index, true);
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
-
-                creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalSalida(index);
+                Color c = transform.FindChild("AroExterior").gameObject.GetComponent<MeshRenderer>().materials[0].color; // cojo el color del Aro Exterior
+                creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalSalida(index, c); // y se lo paso al portalSalida para que sea del mismo color
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
             }
         }

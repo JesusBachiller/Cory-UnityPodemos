@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class ActualizaEscenario : MonoBehaviour
 {
@@ -21,7 +22,21 @@ public class ActualizaEscenario : MonoBehaviour
 
     public void InstanciatePortalEntrada(int indexButton)
     {
-        Instantiate(PortalEntrada, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject portalEntradaInstanciado = Instantiate(PortalEntrada, new Vector3(-1f, -1f, -1f), Quaternion.identity) as GameObject;
+
+        Color rgbRandomColor = Color.HSVToRGB(UnityEngine.Random.Range(0f, 1f), 1, 1);
+        Color c = new Color(rgbRandomColor.r, rgbRandomColor.g, rgbRandomColor.b,1);
+
+        GameObject aroExterior = portalEntradaInstanciado.transform.FindChild("AroExterior").gameObject;
+        foreach (Material m in aroExterior.GetComponentInChildren<Renderer>().materials) {
+            m.color = c;
+        }
+        /*GameObject aroInterior = portalEntradaInstanciado.transform.FindChild("AroInterior").gameObject;
+        foreach (Material m in aroInterior.GetComponentInChildren<Renderer>().materials)
+        {
+            m.color = c;
+        }*/
+
         GameObject[] Portales = GameObject.FindGameObjectsWithTag(PortalEntrada.tag);
         Portales[Portales.Length - 1].GetComponent<PortalEntrada>().setIndex(indexButton);
     }
@@ -46,9 +61,20 @@ public class ActualizaEscenario : MonoBehaviour
         }
     }
 
-    public void InstanciatePortalSalida(int indexButton)
+    public void InstanciatePortalSalida(int indexButton, Color c)
     {
-        Instantiate(PortalSalida, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject portalSalidaInstanciado = Instantiate(PortalSalida, new Vector3(-1f, -1f, -1f), Quaternion.identity) as GameObject;
+        GameObject aroExterior = portalSalidaInstanciado.transform.FindChild("AroExterior").gameObject;
+        foreach (Material m in aroExterior.GetComponentInChildren<Renderer>().materials)
+        {
+            m.color = c;
+        }
+        /*GameObject aroInterior = portalSalidaInstanciado.transform.FindChild("AroInterior").gameObject;
+        foreach (Material m in aroInterior.GetComponentInChildren<Renderer>().materials)
+        {
+            m.color = c;
+        }*/
+
         GameObject[] Portales = GameObject.FindGameObjectsWithTag(PortalSalida.tag);
         Portales[Portales.Length - 1].GetComponent<PortalSalida>().setIndex(indexButton);
     }
@@ -280,5 +306,70 @@ public class ActualizaEscenario : MonoBehaviour
             }
         }
 
+    }
+
+    public static Color HSVToRGB(float H, float S, float V)
+    {
+        if (S == 0f)
+            return new Color(V, V, V);
+        else if (V == 0f)
+            return Color.black;
+        else
+        {
+            Color col = Color.black;
+            float Hval = H * 6f;
+            int sel = Mathf.FloorToInt(Hval);
+            float mod = Hval - sel;
+            float v1 = V * (1f - S);
+            float v2 = V * (1f - S * mod);
+            float v3 = V * (1f - S * (1f - mod));
+            switch (sel + 1)
+            {
+                case 0:
+                    col.r = V;
+                    col.g = v1;
+                    col.b = v2;
+                    break;
+                case 1:
+                    col.r = V;
+                    col.g = v3;
+                    col.b = v1;
+                    break;
+                case 2:
+                    col.r = v2;
+                    col.g = V;
+                    col.b = v1;
+                    break;
+                case 3:
+                    col.r = v1;
+                    col.g = V;
+                    col.b = v3;
+                    break;
+                case 4:
+                    col.r = v1;
+                    col.g = v2;
+                    col.b = V;
+                    break;
+                case 5:
+                    col.r = v3;
+                    col.g = v1;
+                    col.b = V;
+                    break;
+                case 6:
+                    col.r = V;
+                    col.g = v1;
+                    col.b = v2;
+                    break;
+                case 7:
+                    col.r = V;
+                    col.g = v3;
+                    col.b = v1;
+                    break;
+            }
+            col.r = Mathf.Clamp(col.r, 0f, 1f);
+            col.g = Mathf.Clamp(col.g, 0f, 1f);
+            col.b = Mathf.Clamp(col.b, 0f, 1f);
+            return col;
+        }
     }
 }
