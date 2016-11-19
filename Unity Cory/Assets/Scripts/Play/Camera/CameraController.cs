@@ -102,51 +102,8 @@ public class CameraController : MonoBehaviour {
 
         if (Game.cameraFollowsPlayer)
         {
-            if (player != null)
-            {
-                transform.position = new Vector3(player.transform.position.x, 10, transform.position.z);
-                float maxYCory = 30;
-                float maxCamFOV = 70;
-                float initialFOV = 52;
-                float cameraFOV;
-
-                if (player.transform.position.y > maxYCory)
-                {
-                    transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y) + 7, 0));
-
-                    cameraFOV = player.transform.position.y * initialFOV;
-                    if (cameraFOV > maxCamFOV)
-                    {
-                        cameraFOV = maxCamFOV;
-                    }
-                }
-                else
-                {
-                    float porcentaje = (Mathf.Pow(player.transform.position.y, 2)*1) / Mathf.Pow(maxYCory, 2);
-
-                    transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y * porcentaje) + 7, 0));
-
-                    cameraFOV = player.transform.position.y * porcentaje + initialFOV;
-                    if (cameraFOV > maxCamFOV)
-                    {
-                        cameraFOV = maxCamFOV;
-                    }
-                }
-                camera.fieldOfView = cameraFOV;
-            }
-            /*if (player != null)
-            {
-                camera.fieldOfView = (player.transform.position.y * 2) + 55;
-
-                transform.position = new Vector3(player.transform.position.x, 10, transform.position.z);
-                transform.LookAt(new Vector3(player.transform.position.x + 10, player.transform.position.y + 4, player.transform.position.z));
-            }*/
-        } else
-        {
-            if (!Game.getCoryDie())
-            {
-                //moveCameraWithMouse();
-            }
+            camaraAerea();
+            //camaraPlana();
         }
 
         if (Game.getCoryFly())
@@ -165,6 +122,92 @@ public class CameraController : MonoBehaviour {
             camButtons.GetComponent<Canvas>().enabled = false;
         }
 
+    }
+
+    private void camaraPlana()
+    {
+        if (player != null)
+        {
+            transform.position = new Vector3(player.transform.position.x, 10, transform.position.z);
+            float maxYCory = 30;
+            float maxCamFOV = 70;
+            float initialFOV = 52;
+            float cameraFOV;
+
+            if (player.transform.position.y > maxYCory)
+            {
+                transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y) + 7, 0));
+
+                cameraFOV = player.transform.position.y * initialFOV;
+                if (cameraFOV >= maxCamFOV)
+                {
+                    cameraFOV = maxCamFOV;
+                }
+            }
+            else
+            {
+                float porcentaje = (Mathf.Pow(player.transform.position.y, 2) * 1) / Mathf.Pow(maxYCory, 2);
+
+                transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y * porcentaje) + 7, 0));
+
+                cameraFOV = player.transform.position.y * porcentaje + initialFOV;
+                if (cameraFOV >= maxCamFOV)
+                {
+                    cameraFOV = maxCamFOV;
+                }
+            }
+            camera.fieldOfView = cameraFOV;
+        }
+    }
+
+    private void camaraAerea()
+    {
+        if (player != null)
+        {
+            float maxYCory = 30;
+            float maxCamFOV = 57;
+            float initialFOV = 55;
+            float cameraFOV;
+
+            float incrementoYPosicion = 5;
+
+            float maxDecrementoLookAtY = 15;
+            float minDecrementoLookAtY = 0;
+
+
+
+            if (player.transform.position.y > maxYCory + incrementoYPosicion)
+            {
+                transform.position = new Vector3(player.transform.position.x, player.transform.position.y + incrementoYPosicion + 12, transform.position.z);
+
+                transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y + incrementoYPosicion) - maxDecrementoLookAtY, 0));
+
+                cameraFOV = player.transform.position.y * initialFOV;
+                if (cameraFOV >= maxCamFOV)
+                {
+                    cameraFOV = maxCamFOV;
+                }
+            }
+            else
+            {
+                float porcentajePosicion = (Mathf.Pow(player.transform.position.y, 1.2f) * 1) / Mathf.Pow(maxYCory + incrementoYPosicion, 1.2f);
+                float porcentajeRotacion = (Mathf.Pow(player.transform.position.y, 1.05f) * 1) / Mathf.Pow(maxYCory + incrementoYPosicion, 1.05f);
+                float porcentajeFOV = (Mathf.Pow(player.transform.position.y, 2f) * 1) / Mathf.Pow(maxYCory + incrementoYPosicion, 2f);
+
+                transform.position = new Vector3(player.transform.position.x, (player.transform.position.y + incrementoYPosicion) * porcentajePosicion + 12, transform.position.z);
+
+                float decrementoLookAtY = minDecrementoLookAtY + (porcentajeRotacion * (maxDecrementoLookAtY - minDecrementoLookAtY));
+                transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y + incrementoYPosicion) - decrementoLookAtY, 0));
+
+                cameraFOV = player.transform.position.y * porcentajeFOV + initialFOV;
+                if (cameraFOV >= maxCamFOV)
+                {
+                    cameraFOV = maxCamFOV;
+                }
+            }
+
+            camera.fieldOfView = cameraFOV;
+        }
     }
 
     public static Vector2 GetMainGameViewSize()
