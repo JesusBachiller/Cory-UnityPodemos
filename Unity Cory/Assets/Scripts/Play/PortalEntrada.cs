@@ -30,8 +30,8 @@ public class PortalEntrada : MonoBehaviour
         }
 
         if (Game.isCoryInsidePortal(index) && portalSalida != null)
-        {            
-            if (cory.transform.position != portalSalida.transform.position)
+        {
+            if (Vector3.Distance(cory.transform.position, portalSalida.transform.position) > 0.5)
             {
                 float step = speed * Time.deltaTime;
                 cory.transform.position = Vector3.MoveTowards(cory.transform.position, portalSalida.transform.position, step);
