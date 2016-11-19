@@ -38,6 +38,7 @@ public class CameraController : MonoBehaviour {
             offset = transform.position - player.transform.position;
 
         }
+        
 
         maxFOV = 50;
         minFOV = 30;
@@ -103,8 +104,43 @@ public class CameraController : MonoBehaviour {
         {
             if (player != null)
             {
-                transform.position = player.transform.position + offset;
+                transform.position = new Vector3(player.transform.position.x, 10, transform.position.z);
+                float maxYCory = 30;
+                float maxCamFOV = 70;
+                float initialFOV = 52;
+                float cameraFOV;
+
+                if (player.transform.position.y > maxYCory)
+                {
+                    transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y) + 7, 0));
+
+                    cameraFOV = player.transform.position.y * initialFOV;
+                    if (cameraFOV > maxCamFOV)
+                    {
+                        cameraFOV = maxCamFOV;
+                    }
+                }
+                else
+                {
+                    float porcentaje = (Mathf.Pow(player.transform.position.y, 2)*1) / Mathf.Pow(maxYCory, 2);
+
+                    transform.LookAt(new Vector3(player.transform.position.x + 10, (player.transform.position.y * porcentaje) + 7, 0));
+
+                    cameraFOV = player.transform.position.y * porcentaje + initialFOV;
+                    if (cameraFOV > maxCamFOV)
+                    {
+                        cameraFOV = maxCamFOV;
+                    }
+                }
+                camera.fieldOfView = cameraFOV;
             }
+            /*if (player != null)
+            {
+                camera.fieldOfView = (player.transform.position.y * 2) + 55;
+
+                transform.position = new Vector3(player.transform.position.x, 10, transform.position.z);
+                transform.LookAt(new Vector3(player.transform.position.x + 10, player.transform.position.y + 4, player.transform.position.z));
+            }*/
         } else
         {
             if (!Game.getCoryDie())
