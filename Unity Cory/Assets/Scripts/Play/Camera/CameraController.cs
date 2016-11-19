@@ -102,8 +102,8 @@ public class CameraController : MonoBehaviour {
 
         if (Game.cameraFollowsPlayer)
         {
-            camaraAerea();
-            //camaraPlana();
+            camaraPlana();
+            //camaraAerea();
         }
 
         if (Game.getCoryFly())
