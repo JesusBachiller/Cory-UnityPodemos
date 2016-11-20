@@ -60,7 +60,7 @@ public class buttonClick : MonoBehaviour {
                         {
                             if (i != indexButton)
                             {
-                                if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
+                                if (Game.getBotonPortalActivado(i) == true && (Game.getPortalEntradaPuesto(i) == false || Game.getPortalSalidaPuesto(i) == false))
                                 {
                                     permite = false;
                                     return permite;
