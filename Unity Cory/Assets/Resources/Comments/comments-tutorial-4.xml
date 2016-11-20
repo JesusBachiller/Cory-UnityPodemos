@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Level>
+  <Comments>
+    <Comment>
+      <Text>I'm trapped! It is physically impossible to cross these walls...</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>Unless we use the Portal tool to teleport me out of here.</Text>
+      <ImagePath>Comments/portal</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>Select the Portal tool, drag the Portal Entry and click over it. Afterwards, drag the Portal Exit and click over it.</Text>
+      <ImagePath>Comments/portal</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>Launch me inside the Portal Entry to teleport me to the Portal Exit.</Text>
+      <ImagePath>Comments/portal</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>Good luck!</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+  </Comments>
+</Level>

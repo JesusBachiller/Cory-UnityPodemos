@@ -2,7 +2,7 @@
 
 <Stadium>
   <Levels>
-    <Level name="Tutorial Uno" index="0">
+    <Level name="What is this about?" index="0">
       <MapElements>
 
         111222222222122222221112222222222222222222222222222f-
@@ -24,11 +24,11 @@
       <AvailablePortals>0</AvailablePortals>
       <AvailableFireState>0</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-0-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-0</XmlCommentsPath>
     </Level>
-    <Level name="Tutorial Dos" index="1">
+    <Level name="Fly over water" index="1">
       <MapElements>
 
         111333333333333333333333333333333311112222222222222222222222222222222222f-
@@ -51,11 +51,11 @@
       <AvailablePortals>0</AvailablePortals>
       <AvailableFireState>0</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-1-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-1</XmlCommentsPath>
     </Level>
-    <Level name="Tutorial Tres" index="2">
+    <Level name="Helpful platforms" index="2">
       <MapElements>
 
         11122222222222222222222222222222222222222222222f-
@@ -81,7 +81,7 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-2</XmlCommentsPath>
     </Level>
-    <Level name="Tutorial Cuatro" index="3">
+    <Level name="Burn me. Freeze me." index="3">
       <MapElements>
 
         11122222222222222222222222222222222222222f-
@@ -105,7 +105,7 @@
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <XmlCommentsPath>Comments/comments-tutorial-3</XmlCommentsPath>
     </Level>
-    <Level name="Tutorial Cinco" index="4">
+    <Level name="Teleportation" index="4">
       <MapElements>
 
         21122222222222221122222222222222222222222f-
@@ -130,7 +130,7 @@
       <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <XmlCommentsPath>Comments/comments-tutorial-3</XmlCommentsPath>
+      <XmlCommentsPath>Comments/comments-tutorial-4</XmlCommentsPath>
     </Level>
   </Levels>
 </Stadium>

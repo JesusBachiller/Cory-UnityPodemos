@@ -23,6 +23,11 @@
     </Comment>
 
     <Comment>
+      <Text>Sorry to tell you that I can not touch the water.</Text>
+      <ImagePath>Comments/agua</ImagePath>
+    </Comment>
+    
+    <Comment>
       <Text>Try to pass this level. With this tool, everything will be much easier.</Text>
       <ImagePath>Comments/cory</ImagePath>
     </Comment>

@@ -3,7 +3,19 @@
 <Level>
   <Comments>
     <Comment>
-      <Text>ICEEEEEEEEEEE</Text>
+      <Text>I wonder how we can get these two stars... How could I go through that walls?</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>Let's try one thing. Burn me up with the fire tool to go through the ice wall.</Text>
+      <ImagePath>Comments/herramienta-fuego</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>And freeze me with the ice tool to go through the fire wall.</Text>
+      <ImagePath>Comments/herramienta-hielo</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>Hope this works.</Text>
       <ImagePath>Comments/cory</ImagePath>
     </Comment>
   </Comments>
