@@ -133,8 +133,7 @@ public class Game  {
     /*numIceStateTotales = 0;
     IceStatePuesto = null;
     botonIceStateActivo = null;*/
-} else
-        {
+        } else {
             numMuellesTotales = level.availableSprings;
             muellePuesto = new bool[numMuellesTotales];
             botonMuelleActivo = new bool[numMuellesTotales];
@@ -156,10 +155,12 @@ public class Game  {
             /*numIceStateTotales = level.availableIceState;
             IceStatePuesto = new bool[numIceStateTotales];
             botonIceStateActivo = new bool[numIceStateTotales];*/
+            
 
             firstStarOfLevelAchieved = SaveLoad.savegame.stadiumsSavedData[currentStadium.index].levelSavedData[level.index].firstStarAchieved;
             secondStarOfLevelAchieved = SaveLoad.savegame.stadiumsSavedData[currentStadium.index].levelSavedData[level.index].secondStarAchieved;
             thirdStarOfLevelAchieved = SaveLoad.savegame.stadiumsSavedData[currentStadium.index].levelSavedData[level.index].thirdStarAchieved;
+            
 
         }
 

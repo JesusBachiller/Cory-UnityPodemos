@@ -11,6 +11,8 @@ public class WorldMapStadium : MonoBehaviour
     public Canvas levelSelector;
     private List<Level> stadiumLevels;
 
+
+
     private List<GameObject> levelBoxes;
 
     // Use this for initialization
@@ -46,6 +48,11 @@ public class WorldMapStadium : MonoBehaviour
             // Instantiate Canvas
             levelSelector.enabled = true;
 
+            if (!levelSelector.GetComponent<LevelSelector>().getVisible())
+            {
+                levelSelector.GetComponent<LevelSelector>().setVisible(true);
+            }
+
             // Change title of stadium
             Text stadiumName = levelSelector.transform.Find("BackgroundLevelSelector").FindChild("StadiumName").gameObject.GetComponent<Text>();
             stadiumName.text = "Error when loading stadium";
@@ -55,6 +62,10 @@ public class WorldMapStadium : MonoBehaviour
             Stadium stadium = Game.stadiums[stadiumNumber];
             // Instantiate Canvas
             levelSelector.enabled = true;
+            if (!levelSelector.GetComponent<LevelSelector>().getVisible())
+            {
+                levelSelector.GetComponent<LevelSelector>().setVisible(true);
+            }
 
             // Change title of stadium
             Text stadiumName = levelSelector.transform.Find("BackgroundLevelSelector").FindChild("StadiumName").gameObject.GetComponent<Text>();
@@ -71,6 +82,7 @@ public class WorldMapStadium : MonoBehaviour
                     currentLevelBox.GetComponent<Canvas>().enabled = true;
                     string sceneName = stadium.sceneName;
                     Level actualLevel = level;
+                    Debug.Log(actualLevel.name);
                     currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName, actualLevel, stadium));
 
                     Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
@@ -128,6 +140,11 @@ public class WorldMapStadium : MonoBehaviour
         {
             levelBox.GetComponent<Canvas>().enabled = false;
             levelBox.GetComponent<Button>().onClick.RemoveAllListeners();
+        }
+
+        if (levelSelector.GetComponent<LevelSelector>().getVisible())
+        {
+            levelSelector.GetComponent<LevelSelector>().setVisible(false);
         }
     }
 

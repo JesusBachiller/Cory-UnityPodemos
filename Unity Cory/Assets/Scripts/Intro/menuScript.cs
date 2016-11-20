@@ -34,7 +34,7 @@ public class menuScript : MonoBehaviour {
     {
         quitMenu.enabled = false;
         startText.enabled = true;
-        exitText.enabled = true;
+        exitText.enabled = true; 
     }
 
     public void StartMapScene()
