@@ -116,17 +116,27 @@ public class PortalSalida : MonoBehaviour {
         {
             if (Game.getPortalSalidaPuesto(index))
             {
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setPortalSalidaPuesto(index, false);
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
-                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 3.0f);
+
+                GameObject[] PortalesEntrada = GameObject.FindGameObjectsWithTag("PortalEntrada");
+
+                foreach (GameObject pE in PortalesEntrada)
+                {
+                    if (pE.GetComponent<PortalEntrada>().getIndex() == index)
+                    {
+                        pE.GetComponent<PortalEntrada>().showIndicators();
+                    }
+                }
             }
             else
             {
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 Game.setPortalSalidaPuesto(index, true);
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalSalida();
-                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 1.0f);
+
+                PortalEntrada.hideAllIndicators();
             }
         }
     }
@@ -143,5 +153,10 @@ public class PortalSalida : MonoBehaviour {
     public void setAireBlock(GameObject a)
     {
         aireBlock = a;
+    }
+
+    public GameObject getAireBlock()
+    {
+        return aireBlock;
     }
 }

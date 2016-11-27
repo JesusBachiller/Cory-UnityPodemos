@@ -37,6 +37,7 @@ public class Game  {
     private static bool[] portalSalidaPuesto = null;
     private static bool[] botonPortalActivo = null;
     private static bool[] coryInsidePortal = null;
+    public const int RADIO_MAX_PORTALES = 5;
 
     private static int numFireStateTotales = 0;
     private static bool[] FireStatePuesto = null;

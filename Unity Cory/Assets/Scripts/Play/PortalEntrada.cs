@@ -9,6 +9,7 @@ public class PortalEntrada : MonoBehaviour
     private Vector3 speedBeforeColliding;
     public int index;
     public GameObject creaEscenario;
+    public GameObject marcadorPosiblePortal;
 
     public GameObject aireBlock; // Block of air where I am
 
@@ -197,26 +198,40 @@ public class PortalEntrada : MonoBehaviour
             if (Game.getPortalEntradaPuesto(index))
             {
                 // Muevo portal
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setPortalEntradaPuesto(index, false);
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
                 GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 2.0f);
+
+                hideAllIndicators();
+
+                GameObject[] PortalesSalida = GameObject.FindGameObjectsWithTag("PortalSalida");
+                foreach (GameObject pS in PortalesSalida)
+                {
+                    if (pS.GetComponent<PortalSalida>().getIndex() == index)
+                    {
+                        pS.transform.position = new Vector3(-10, -10, 0);
+                        Game.setPortalSalidaPuesto(index, false);
+                        if (pS.GetComponent<PortalSalida>().getAireBlock() != null)
+                        {
+                            pS.GetComponent<PortalSalida>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                        }
+                    }
+                }
             }
             else
             {
                 // Pongo portal
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
-
                 Game.setPortalEntradaPuesto(index, true);
-
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
                 Color c = transform.FindChild("AroExterior").gameObject.GetComponent<MeshRenderer>().materials[0].color; // cojo el color del Aro Exterior
 
                 bool crearPortalSalida = true; // Si estoy poniendo el portal entrada, aun no he instanciado el portalSalida
                 GameObject[] PortalesSalida = GameObject.FindGameObjectsWithTag("PortalSalida");
-                foreach(GameObject pS in PortalesSalida)
+                foreach (GameObject pS in PortalesSalida)
                 {
-                    if(pS.GetComponent<PortalSalida>().getIndex() == index) // Si estoy moviendo el portal entrada, ya existe el portalSalida
+                    if (pS.GetComponent<PortalSalida>().getIndex() == index) // Si estoy moviendo el portal entrada, ya existe el portalSalida
                     {
                         crearPortalSalida = false; // Por tanto no instancio otro portalSalida
                     }
@@ -225,6 +240,21 @@ public class PortalEntrada : MonoBehaviour
                 {
                     creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalSalida(index, c); // y se lo paso al portalSalida para que sea del mismo color
                     creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
+                }
+
+                showIndicators();
+
+                foreach (GameObject pS in PortalesSalida)
+                {
+                    if (pS.GetComponent<PortalSalida>().getIndex() == index) // Si estoy moviendo el portal entrada, ya existe el portalSalida
+                    {
+                        Game.setPortalSalidaPuesto(index, false);
+                        if (pS.GetComponent<PortalSalida>().getAireBlock() != null)
+                        {
+                            pS.GetComponent<PortalSalida>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                        }
+                        creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
+                    }
                 }
                 GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 1.0f);
             }
@@ -243,5 +273,33 @@ public class PortalEntrada : MonoBehaviour
     public void setAireBlock(GameObject a)
     {
         aireBlock = a;
+    }
+
+
+    public void showIndicators()
+    {
+        // Crear paneles traseros indicativos del radio posible de distancia del portal de salida
+        for (float x = transform.position.x - Game.RADIO_MAX_PORTALES; x <= transform.position.x + Game.RADIO_MAX_PORTALES; x = x + 1)
+        {
+            for (float y = transform.position.y - Game.RADIO_MAX_PORTALES; y <= transform.position.y + Game.RADIO_MAX_PORTALES; y = y + 1)
+            {
+                foreach (GameObject air in GameObject.FindGameObjectsWithTag("Aire"))
+                {
+                    if (air.transform.position.x == x && air.transform.position.y == y && air.GetComponent<MouseOverPossibleAcelerador>().getContainTool() == false)
+                    {
+                        Instantiate(marcadorPosiblePortal, new Vector3(x, y, 0.75f), Quaternion.Euler(new Vector3(-90, 0, 0)));
+                    }
+                }
+            }
+        }
+    }
+
+    public static void hideAllIndicators()
+    {
+        GameObject[] marcadoresPosiblePortal = GameObject.FindGameObjectsWithTag("MarcadorPosiblePortal");
+        foreach (GameObject marcador in marcadoresPosiblePortal)
+        {
+            Destroy(marcador);
+        }
     }
 }
