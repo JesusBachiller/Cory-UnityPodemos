@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Level>
+  <Comments>
+    <Comment>
+      <Text>Well.. You have one tool of each type. Try your best to use as few tools as you can.</Text>
+      <ImagePath>Comments/cory</ImagePath>
+    </Comment>
+    <Comment>
+      <Text>Remember.. The less tools you use, the more points you get.</Text>
+      <ImagePath>Comments/portal</ImagePath>
+    </Comment>
+  </Comments>
+</Level>

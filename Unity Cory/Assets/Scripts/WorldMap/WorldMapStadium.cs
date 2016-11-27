@@ -43,6 +43,12 @@ public class WorldMapStadium : MonoBehaviour
 
     public void OnMouseDown()
     {
+        // Desactivar colliders de estadios para evitar problemas
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Estadio"))
+        {
+            go.GetComponent<BoxCollider>().enabled = false;
+        }
+
         if (stadiumNumber > Game.stadiums.Count - 1) // Check object number to avoid out of range exception
         {
             // Instantiate Canvas
@@ -144,6 +150,12 @@ public class WorldMapStadium : MonoBehaviour
         if (levelSelector.GetComponent<LevelSelector>().getVisible())
         {
             levelSelector.GetComponent<LevelSelector>().setVisible(false);
+        }
+
+        // Activar de nuevo colliders de estadios para poder seleccionarlos
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Estadio"))
+        {
+            go.GetComponent<BoxCollider>().enabled = true;
         }
     }
 
