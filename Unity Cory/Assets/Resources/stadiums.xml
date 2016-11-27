@@ -11,7 +11,7 @@
     <Stadium name="Football Stadium" index="1">
       <XmlLevelsPath>2-football-stadium-levels</XmlLevelsPath>
       <MinStarsToUnlock>3</MinStarsToUnlock>
-      <SceneName>Tutorial</SceneName>
+      <SceneName>Football</SceneName>
       <InitiallyUnlocked>false</InitiallyUnlocked>
     </Stadium>
   </Stadiums>
