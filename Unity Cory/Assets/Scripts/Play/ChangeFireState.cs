@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChangeFireState : MonoBehaviour {
-
-    private GameObject Cory;
+public class ChangeFireState : MonoBehaviour
+{
     public GameObject particleFire;
+    private GameObject myParticleF;
 
     private GameObject[] hielo_cubs;
 
@@ -12,62 +12,63 @@ public class ChangeFireState : MonoBehaviour {
 
     private float disappearEffectSec;
 
-	// Use this for initialization
-	void Start () {
-        Cory = GameObject.FindGameObjectWithTag("Player");
-
+    // Use this for initialization
+    void Start()
+    {
         disappearEffectSec = 4f;
 
         hielo_cubs = GameObject.FindGameObjectsWithTag("Hielo");
-	}
-    
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        //Esto solo sirve para solo 1 herramienta de cambio a fuego
-        Game.setCoryState("fire");
-
-        Material[] M = Cory.GetComponent<MeshRenderer>().materials;
-        M[0].color = Color.Lerp(Color.white, Color.red, 0.6f);
-        M[1].color = Color.Lerp(Color.white, Color.red, 0.6f);
-        M[2].color = Color.Lerp(Color.white, Color.red, 0.6f);
-        M[3].color = Color.Lerp(Color.white, Color.red, 0.6f);
-        M[4].color = Color.Lerp(Color.white, Color.red, 0.6f);
-
-        foreach (GameObject h in hielo_cubs)
+        if(other.gameObject.tag == "Player")
         {
-            h.GetComponent<BoxCollider>().enabled = false;
+            if (Game.getCoryState() == "fire")
+            {
+                GameObject PS = GameObject.FindGameObjectWithTag("ParticleFire");
+
+                Destroy(PS);
+            }
+            if (Game.getCoryState() == "ice")
+            {
+                GameObject PS = GameObject.FindGameObjectWithTag("ParticleIce");
+
+                Destroy(PS);
+            }
+            Game.setCoryState("fire");
+
+            Material[] M = other.gameObject.GetComponent<MeshRenderer>().materials;
+            M[0].color = Color.Lerp(Color.white, Color.red, 0.6f);
+            M[1].color = Color.Lerp(Color.white, Color.red, 0.6f);
+            M[2].color = Color.Lerp(Color.white, Color.red, 0.6f);
+            M[3].color = Color.Lerp(Color.white, Color.red, 0.6f);
+            M[4].color = Color.Lerp(Color.white, Color.red, 0.6f);
+
+            foreach (GameObject h in hielo_cubs)
+            {
+                h.GetComponent<BoxCollider>().enabled = false;
+            }
+
+            myParticleF = Instantiate(particleFire, other.gameObject.transform.position, Quaternion.identity) as GameObject;
+
+
+            Destroy(myParticleF, disappearEffectSec + 1);
+
+            StartCoroutine(disappearEffect(disappearEffectSec, other.gameObject, myParticleF));
         }
-
-        GameObject ParticleF = Instantiate(particleFire, other.gameObject.transform.position, Quaternion.identity) as GameObject;
-
-        Destroy(ParticleF, disappearEffectSec + 1);
-
-        StartCoroutine(disappearEffect(disappearEffectSec, other.gameObject, ParticleF));
     }
-    
+
     IEnumerator disappearEffect(float s, GameObject GO, GameObject PF)
     {
 
         yield return new WaitForSeconds(s);
-        
-        PF.GetComponent<ParticleSystem>().Stop();
-        PF.GetComponent<ParticleSystemFollowCory>().setIsStopped(true);
 
-        PS = GameObject.FindGameObjectsWithTag("ParticleFire");
-        bool allStopped = true;
-
-        foreach(GameObject part in PS)
+        if (myParticleF != null)
         {
-            if (!part.GetComponent<ParticleSystemFollowCory>().getIsStopped())
-            {
-                allStopped = false;
-                break;
-            }
-        }
+            PF.GetComponent<ParticleSystem>().Stop();
+            PF.GetComponent<ParticleSystemFollowCory>().setIsStopped(true);
 
-        if (allStopped)
-        {
             Game.setCoryState("noState");
 
             Material[] M = GO.GetComponent<MeshRenderer>().materials;

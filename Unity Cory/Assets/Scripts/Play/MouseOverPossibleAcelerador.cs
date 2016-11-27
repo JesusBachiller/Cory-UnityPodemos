@@ -4,11 +4,12 @@ using System.Collections;
 public class MouseOverPossibleAcelerador : MonoBehaviour
 {
 
-    public bool containTool; //Is there a tool inside of me?
+    private bool containTool; //Is there a tool inside of me?
 
     public GameObject creaEscenario;
     private GameObject Acelerador;
     private GameObject FireState;
+    private GameObject IceState;
     private GameObject PortalEntrada;
     private GameObject PortalSalida;
 
@@ -19,6 +20,7 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
     {
         Acelerador = null;
         FireState = null;
+        IceState = null;
         PortalEntrada = null;
         PortalSalida = null;
 
@@ -47,6 +49,22 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
                 if (Game.getBotonFireStateActivado(index) && !Game.getFireStatePuesto(index))
                 {
                     FireState = FS;
+
+                    break;
+                }
+            }
+            return;
+        }
+
+        if (s == "IceState")
+        {
+            GameObject[] IceStates = GameObject.FindGameObjectsWithTag(s);
+            foreach (GameObject IS in IceStates)
+            {
+                int index = IS.GetComponent<IceState>().index;
+                if (Game.getBotonIceStateActivado(index) && !Game.getIceStatePuesto(index))
+                {
+                    IceState = IS;
 
                     break;
                 }
@@ -103,21 +121,29 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
                 }
                 else
                 {
-                    if (PortalEntrada != null)
+                    if(IceState != null)
                     {
-                        PortalEntrada.transform.position = transform.position;
-                        PortalEntrada.GetComponent<PortalEntrada>().setAireBlock(this.gameObject);
-
+                        IceState.transform.position = transform.position;
+                        IceState.GetComponent<IceState>().setAireBlock(this.gameObject);
 
                     }
                     else
                     {
-                        if (PortalSalida != null)
+                        if (PortalEntrada != null)
                         {
-                            PortalSalida.transform.position = transform.position;
-                            PortalSalida.GetComponent<PortalSalida>().setAireBlock(this.gameObject);
+                            PortalEntrada.transform.position = transform.position;
+                            PortalEntrada.GetComponent<PortalEntrada>().setAireBlock(this.gameObject);
+                        }
+                        else
+                        {
+                            if (PortalSalida != null)
+                            {
+                                PortalSalida.transform.position = transform.position;
+                                PortalSalida.GetComponent<PortalSalida>().setAireBlock(this.gameObject);
+                            }
                         }
                     }
+                    
                 }
             }
         }

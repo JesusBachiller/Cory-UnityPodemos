@@ -45,6 +45,16 @@ public class PortalEntrada : MonoBehaviour
                 cory.GetComponent<MeshRenderer>().enabled = true;
                 cory.GetComponent<TrailRenderer>().Clear();
                 cory.GetComponent<TrailRenderer>().enabled = true;
+
+                foreach (GameObject Partc in GameObject.FindGameObjectsWithTag("ParticleFire"))
+                {
+                    Partc.GetComponent<ParticleSystem>().Play();
+                }
+                foreach (GameObject Partc in GameObject.FindGameObjectsWithTag("ParticleIce"))
+                {
+                    Partc.GetComponent<ParticleSystem>().Play();
+                }
+
                 speedBeforeColliding = new Vector3(0, 0, 0);
             }
         }
@@ -68,6 +78,16 @@ public class PortalEntrada : MonoBehaviour
             cory.GetComponent<SphereCollider>().enabled = false;
             cory.GetComponent<MeshRenderer>().enabled = false;
             cory.GetComponent<TrailRenderer>().enabled = false;
+
+            foreach (GameObject Partc in GameObject.FindGameObjectsWithTag("ParticleFire"))
+            {
+                Partc.GetComponent<ParticleSystem>().Stop();
+            }
+            foreach (GameObject Partc in GameObject.FindGameObjectsWithTag("ParticleIce"))
+            {
+                Partc.GetComponent<ParticleSystem>().Stop();
+            }
+
             Game.setCoryInsidePortal(index, true);
         }
     }
@@ -75,7 +95,9 @@ public class PortalEntrada : MonoBehaviour
     private bool permitirClick()
     {
         bool permite = true;
-        for (int i = 0; i < Game.getNumMuelles(); i++)
+        for (int i = 0;
+                 i < Game.getNumMuelles();
+                 i++)
         {
             if (i != index)
             {
@@ -86,49 +108,80 @@ public class PortalEntrada : MonoBehaviour
                 }
             }
         }
-        if (permite)
+
+        for (int i = Game.getNumMuelles();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores();
+                 i++)
         {
-            for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
+            if (i != index)
             {
-                if (i != index)
+                if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                 {
-                    if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
+                    permite = false;
+                    break;
+                }
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState();
+                 i++)
+        {
+            if (i != index)
+            {
+                if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState();
+                 i++)
+        {
+            if (i != index)
+            {
+                if (Game.getBotonIceStateActivado(i) == true && Game.getIceStatePuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState() + Game.getNumPortales();
+                 i++)
+        {
+            if (i != index)
+            {
+                if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+                if (Game.getBotonPortalActivado(i) == true && Game.getPortalSalidaPuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+            }
+            else
+            {
+                if(Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == true)
+                {
+                    if (Game.getPortalSalidaPuesto(i) == false)
                     {
                         permite = false;
                         break;
                     }
                 }
+                
             }
-            if (permite)
-            {
-                for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
-                {
-                    if (i != index)
-                    {
-                        if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
-                        {
-                            permite = false;
-                            break;
-                        }
-                    }
-                }
-                if (permite)
-                {
-                    for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumPortales(); i++)
-                    {
-                        if (i != index)
-                        {
-                            if (Game.getBotonPortalActivado(i) == true && (Game.getPortalEntradaPuesto(i) == false || Game.getPortalSalidaPuesto(i) == false))
-                            {
-                                permite = false;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
         }
+
         if (Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie())
         {
             permite = false;
@@ -144,15 +197,18 @@ public class PortalEntrada : MonoBehaviour
             if (Game.getPortalEntradaPuesto(index))
             {
                 // Muevo portal
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setPortalEntradaPuesto(index, false);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
+                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 3.0f);
             }
             else
             {
                 // Pongo portal
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
+
                 Game.setPortalEntradaPuesto(index, true);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
                 Color c = transform.FindChild("AroExterior").gameObject.GetComponent<MeshRenderer>().materials[0].color; // cojo el color del Aro Exterior
 
@@ -170,6 +226,7 @@ public class PortalEntrada : MonoBehaviour
                     creaEscenario.GetComponent<ActualizaEscenario>().InstanciatePortalSalida(index, c); // y se lo paso al portalSalida para que sea del mismo color
                     creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalSalida();
                 }
+                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 1.0f);
             }
         }
     }

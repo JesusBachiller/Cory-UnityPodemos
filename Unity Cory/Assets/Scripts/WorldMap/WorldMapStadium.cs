@@ -82,7 +82,6 @@ public class WorldMapStadium : MonoBehaviour
                     currentLevelBox.GetComponent<Canvas>().enabled = true;
                     string sceneName = stadium.sceneName;
                     Level actualLevel = level;
-                    Debug.Log(actualLevel.name);
                     currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName, actualLevel, stadium));
 
                     Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();

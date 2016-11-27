@@ -10,6 +10,7 @@ public class ActualizaEscenario : MonoBehaviour
     public GameObject Acelerador;
     public GameObject PlanoSuelo;
     public GameObject FireState;
+    public GameObject IceState;
     public GameObject PortalEntrada;
     public GameObject PortalSalida;
 
@@ -152,6 +153,45 @@ public class ActualizaEscenario : MonoBehaviour
             if (FS.GetComponent<fireState>().getIndex() == indexButton)
             {
                 Destroy(FS);
+            }
+        }
+    }
+
+
+    public void InstanciateIceState(int indexButton)
+    {
+        Instantiate(IceState, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject[] IceStates = GameObject.FindGameObjectsWithTag(IceState.tag);
+        IceStates[IceStates.Length - 1].GetComponent<IceState>().setIndex(indexButton);
+    }
+    public void EnablePossibleIceState()
+    {
+        GameObject[] PossiblesIceState = GameObject.FindGameObjectsWithTag("Aire");
+
+        foreach (GameObject PIS in PossiblesIceState)
+        {
+            PIS.GetComponent<BoxCollider>().enabled = true;
+            PIS.GetComponent<MouseOverPossibleAcelerador>().findObject(IceState.tag);
+        }
+
+    }
+    public void NotEnableDestroyPossibleIceState()
+    {
+        GameObject[] PossiblesIceStates = GameObject.FindGameObjectsWithTag("Aire");
+
+        foreach (GameObject PIS in PossiblesIceStates)
+        {
+            PIS.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+    public void DestroyIceState(int indexButton)
+    {
+        GameObject[] IceStates = GameObject.FindGameObjectsWithTag(IceState.tag);
+        foreach (GameObject IS in IceStates)
+        {
+            if (IS.GetComponent<IceState>().getIndex() == indexButton)
+            {
+                Destroy(IS);
             }
         }
     }

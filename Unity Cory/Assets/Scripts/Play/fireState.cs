@@ -22,50 +22,61 @@ public class fireState : MonoBehaviour {
                 }
             }
         }
-        if (permite)
+
+        for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
         {
-            for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
+            if (i != index)
             {
-                if (i != index)
+                if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                 {
-                    if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
-                    {
-                        permite = false;
-                        break;
-                    }
+                    permite = false;
+                    break;
                 }
             }
-            if(permite)
-            {
-                for(int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
-                {
-                    if(i != index)
-                    {
-                        if(Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
-                        {
-                            permite = false;
-                            break;
-                        }
-                    }
-                }
-
-                if (permite)
-                {
-                    for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumPortales(); i++)
-                    {
-                        if (i != index)
-                        {
-                            if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
-                            {
-                                permite = false;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
         }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
+        {
+            if (i != index)
+            {
+                if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState(); i++)
+        {
+            if (i != index)
+            {
+                if (Game.getBotonIceStateActivado(i) == true && Game.getIceStatePuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState();
+             i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState() + Game.getNumPortales(); i++)
+        {
+            if (i != index)
+            {
+                if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+                if (Game.getBotonPortalActivado(i) == true && Game.getPortalSalidaPuesto(i) == false)
+                {
+                    permite = false;
+                    break;
+                }
+            }
+        }
+
         if (Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie())
         {
             permite = false;
@@ -80,14 +91,14 @@ public class fireState : MonoBehaviour {
         {
             if (Game.getFireStatePuesto(index))
             {
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setFireStatePuesto(index, false);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleFireState();
             }
             else
             {
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 Game.setFireStatePuesto(index, true);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleFireState();
             }
         }

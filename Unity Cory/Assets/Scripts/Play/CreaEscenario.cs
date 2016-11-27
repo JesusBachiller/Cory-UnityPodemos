@@ -24,6 +24,7 @@ public class CreaEscenario : MonoBehaviour
     private const char ESTRELLA_TRES = 'c';
     private const char LEVEL_END = 'f';
     private const char HIELO = 'h';
+    private const char FUEGO = 'i';
 
     public GameObject Aire;
     public GameObject Tierra;
@@ -41,6 +42,7 @@ public class CreaEscenario : MonoBehaviour
     public GameObject EstrellaDos;
     public GameObject EstrellaTres;
     public GameObject Hielo;
+    public GameObject Fuego;
 
     public GameObject CanvasComments;
     public GameObject CanvasButtons;
@@ -97,6 +99,20 @@ public class CreaEscenario : MonoBehaviour
                                                                             0);  // z
         }
 
+        for (int i = 0; i < Game.getNumIceState(); i++)
+        {
+            Instantiate(ButtonIceState, Vector3.zero, Quaternion.identity);
+            GameObject BFS = GameObject.FindGameObjectsWithTag("BotonIceState")[i];
+            BFS.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
+            BFS.transform.parent = CanvasButtons.transform;
+            BFS.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState());
+            BFS.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -
+                                                                                    Game.getNumAceleradores() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -
+                                                                                    Game.getNumFireState() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x * i, // x,
+                                                                            -20, // y
+                                                                            0);  // z
+        }
 
         for (int i = 0; i < Game.getNumPortales(); i++)
         {
@@ -104,10 +120,11 @@ public class CreaEscenario : MonoBehaviour
             GameObject BFS = GameObject.FindGameObjectsWithTag("BotonPortal")[i];
             BFS.GetComponent<RectTransform>().localScale = new Vector3((float)(Screen.width - Screen.height) / 300, (float)(Screen.width - Screen.height) / 300, 0);
             BFS.transform.parent = CanvasButtons.transform;
-            BFS.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState());
+            BFS.GetComponent<buttonClick>().setIndex(i + Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState());
             BFS.GetComponent<RectTransform>().anchoredPosition = new Vector3(-20 - Game.getNumMuelles() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -
                                                                                     Game.getNumAceleradores() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
-                                                                                    Game.getNumFireState() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x - // x
+                                                                                    Game.getNumFireState() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -
+                                                                                    Game.getNumIceState() * (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x -// x
                                                                                     (BFS.GetComponent<RectTransform>().sizeDelta.x + buttonOffset) * BFS.GetComponent<RectTransform>().localScale.x * i, // x,
                                                                             -20, // y
                                                                             0);  // z
@@ -154,6 +171,10 @@ public class CreaEscenario : MonoBehaviour
                 if(actualLevel.mapElements[i][j] == HIELO)
                 {
                     Instantiate(Hielo, position, Quaternion.identity);
+                }
+                if (actualLevel.mapElements[i][j] == FUEGO)
+                {
+                    Instantiate(Fuego, position, Quaternion.identity);
                 }
                 if (actualLevel.mapElements[i][j] == ESTRELLA_UNO)
                 {

@@ -61,48 +61,70 @@ public class lanzamiento : MonoBehaviour
 
     private bool permitirClick()
     {
-        bool permite = false;
-        if (!Game.getCommentsEnabled())
-        {
-
-            permite = true;
-
-            for (int i = 0; i < Game.getNumMuelles(); i++)
+        bool permite = true;
+        for (int i = 0;
+                 i < Game.getNumMuelles();
+                 i++)
+        {   
+            if (Game.getBotonMuelleActivado(i) == true && Game.getMuellePuesto(i) == false)
             {
-                if (Game.getBotonMuelleActivado(i) == true && Game.getMuellePuesto(i) == false)
-                    {
-                        permite = false;
-                        return permite;
-                    }
+                permite = false;
+                break;
             }
-            if (permite)
+        }
+
+        for (int i = Game.getNumMuelles();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores();
+                 i++)
+        {
+            if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
             {
-                for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
-                {
-                    if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
-                    {
-                        permite = false;
-                        return permite;
-                    }
-                }
-                if (permite)
-                {
-                    for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
-                    {
-                        if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
-                        {
-                            permite = false;
-                            break;
-                        }
-                    }
-                }
+                permite = false;
+                break;
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState();
+                 i++)
+        {
+            if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
+            {
+                permite = false;
+                break;
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState();
+                 i++)
+        {
+            if (Game.getBotonIceStateActivado(i) == true && Game.getIceStatePuesto(i) == false)
+            {
+                permite = false;
+                break;
+            }
+        }
+
+        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState();
+                 i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState() + Game.getNumPortales();
+                 i++)
+        {
+            if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
+            {
+                permite = false;
+                break;
+            }
+            if (Game.getBotonPortalActivado(i) == true && Game.getPortalSalidaPuesto(i) == false)
+            {
+                permite = false;
+                break;
             }
         }
 
         if (Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie())
         {
             permite = false;
-            return permite;
         }
 
         return permite;

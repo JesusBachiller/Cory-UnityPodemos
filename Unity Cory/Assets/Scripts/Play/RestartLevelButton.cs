@@ -10,15 +10,22 @@ public class RestartLevelButton : MonoBehaviour
         {
             GameObject cory = GameObject.FindGameObjectWithTag("Player");
 
-            Game.setCoryState("noState");
-
-            foreach (GameObject PS in GameObject.FindGameObjectsWithTag("ParticleFire"))
+            if (Game.getCoryState() == "fire")
             {
-                PS.GetComponent<ParticleSystem>().Stop();
-                PS.GetComponent<ParticleSystemFollowCory>().setIsStopped(true);
+                GameObject PS = GameObject.FindGameObjectWithTag("ParticleFire");
+
+                Destroy(PS);
+            }
+            if (Game.getCoryState() == "ice")
+            {
+                GameObject PS = GameObject.FindGameObjectWithTag("ParticleIce");
+
+                Destroy(PS);
             }
 
+            Game.setCoryState("noState");
 
+            
             Material[] M = cory.GetComponent<MeshRenderer>().materials;
             M[0].color = Color.white;
             M[1].color = Color.white;
@@ -30,6 +37,10 @@ public class RestartLevelButton : MonoBehaviour
             foreach (GameObject h in GameObject.FindGameObjectsWithTag("Hielo"))
             {
                 h.GetComponent<BoxCollider>().enabled = true;
+            }
+            foreach (GameObject f in GameObject.FindGameObjectsWithTag("Fuego"))
+            {
+                f.GetComponent<BoxCollider>().enabled = true;
             }
 
             Game.setCoryDie(true);

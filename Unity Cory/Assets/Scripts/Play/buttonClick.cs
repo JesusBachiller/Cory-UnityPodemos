@@ -16,7 +16,9 @@ public class buttonClick : MonoBehaviour {
         {
             permite = true;
 
-            for (int i = 0; i < Game.getNumMuelles(); i++)
+            for (int i = 0;
+                     i < Game.getNumMuelles();
+                     i++)
             {
                 if (i != indexButton)
                 {
@@ -27,46 +29,64 @@ public class buttonClick : MonoBehaviour {
                     }
                 }
             }
-            if (permite)
+
+            for (int i = Game.getNumMuelles();
+                     i < Game.getNumMuelles() + Game.getNumAceleradores();
+                     i++)
             {
-                for (int i = Game.getNumMuelles(); i < Game.getNumMuelles() + Game.getNumAceleradores(); i++)
+                if (i != indexButton)
                 {
-                    if (i != indexButton)
+                    if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
                     {
-                        if (Game.getBotonAceleradorActivado(i) == true && Game.getAceleradorPuesto(i) == false)
-                        {
-                            permite = false;
-                            return permite;
-                        }
+                        permite = false;
+                        return permite;
                     }
                 }
-                if (permite)
-                {
-                    for (int i = Game.getNumMuelles() + Game.getNumAceleradores(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i++)
-                    {
-                        if (i != indexButton)
-                        {
-                            if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
-                            {
-                                permite = false;
-                                return permite;
-                            }
-                        }
-                    }
+            }
 
-                    if (permite)
+            for (int i = Game.getNumMuelles() + Game.getNumAceleradores();
+                     i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState();
+                     i++)
+            {
+                if (i != indexButton)
+                {
+                    if (Game.getBotonFireStateActivado(i) == true && Game.getFireStatePuesto(i) == false)
                     {
-                        for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState(); i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumPortales(); i++)
-                        {
-                            if (i != indexButton)
-                            {
-                                if (Game.getBotonPortalActivado(i) == true && (Game.getPortalEntradaPuesto(i) == false || Game.getPortalSalidaPuesto(i) == false))
-                                {
-                                    permite = false;
-                                    return permite;
-                                }
-                            }
-                        }
+                        permite = false;
+                        return permite;
+                    }
+                }
+            }
+
+            for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState();
+                     i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState();
+                     i++)
+            {
+                if (i != indexButton)
+                {
+                    if (Game.getBotonIceStateActivado(i) == true && Game.getIceStatePuesto(i) == false)
+                    {
+                        permite = false;
+                        break;
+                    }
+                }
+            }
+
+            for (int i = Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState();
+                     i < Game.getNumMuelles() + Game.getNumAceleradores() + Game.getNumFireState() + Game.getNumIceState() + Game.getNumPortales();
+                     i++)
+            {
+                if (i != indexButton)
+                {
+                    if (Game.getBotonPortalActivado(i) == true && Game.getPortalEntradaPuesto(i) == false)
+                    {
+                        permite = false;
+                        break;
+                    }
+                    if (Game.getBotonPortalActivado(i) == true && Game.getPortalSalidaPuesto(i) == false)
+                    {
+                        permite = false;
+                        break;
                     }
                 }
             }
@@ -172,6 +192,37 @@ public class buttonClick : MonoBehaviour {
         }
     }
 
+    public void onClickIceState()
+    {
+        bool permiteClick = permitirClick();
+
+        if (permiteClick)
+        {
+            if (!Game.getBotonIceStateActivado(indexButton))
+            {
+                DarkColor();
+
+                Game.setBotonIceStateActivado(indexButton, true);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().InstanciateIceState(indexButton);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleIceState();
+
+            }
+            else
+            {
+                ClearColor();
+
+                Game.setBotonIceStateActivado(indexButton, false);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().DestroyIceState(indexButton);
+
+                Game.setIceStatePuesto(indexButton, false);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleIceState();
+            }
+        }
+    }
 
     public void onClickPortal()
     {
