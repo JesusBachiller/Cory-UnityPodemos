@@ -107,6 +107,10 @@ public class ActualizaEscenario : MonoBehaviour
         {
             if (P.GetComponent<PortalEntrada>().getIndex() == indexButton)
             {
+                if (P.GetComponent<PortalEntrada>().getAireBlock() != null)
+                {
+                    P.GetComponent<PortalEntrada>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                }
                 Destroy(P);
             }
         }
@@ -114,6 +118,10 @@ public class ActualizaEscenario : MonoBehaviour
         {
             if (P.GetComponent<PortalSalida>().getIndex() == indexButton)
             {
+                if (P.GetComponent<PortalSalida>().getAireBlock() != null)
+                {
+                    P.GetComponent<PortalSalida>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                }
                 Destroy(P);
             }
         }
@@ -152,6 +160,10 @@ public class ActualizaEscenario : MonoBehaviour
         {
             if (FS.GetComponent<fireState>().getIndex() == indexButton)
             {
+                if (FS.GetComponent<fireState>().getAireBlock() != null)
+                {
+                    FS.GetComponent<fireState>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                }
                 Destroy(FS);
             }
         }
@@ -191,6 +203,10 @@ public class ActualizaEscenario : MonoBehaviour
         {
             if (IS.GetComponent<IceState>().getIndex() == indexButton)
             {
+                if (IS.GetComponent<IceState>().getAireBlock() != null)
+                {
+                    IS.GetComponent<IceState>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                }
                 Destroy(IS);
             }
         }
@@ -229,6 +245,10 @@ public class ActualizaEscenario : MonoBehaviour
         {
             if (A.GetComponent<Acelerador>().getIndex() == indexButton)
             {
+                if(A.GetComponent<Acelerador>().getAireBlock() != null)
+                {
+                    A.GetComponent<Acelerador>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                }
                 Destroy(A);
             }
         }

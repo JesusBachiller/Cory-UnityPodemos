@@ -249,6 +249,8 @@ public class buttonClick : MonoBehaviour {
 
                 creaEscenario.GetComponent<ActualizaEscenario>().DestroyPortal(indexButton);
 
+                PortalEntrada.hideAllIndicators();
+
                 Game.setPortalEntradaPuesto(indexButton, false);
                 Game.setPortalSalidaPuesto(indexButton, false);
 

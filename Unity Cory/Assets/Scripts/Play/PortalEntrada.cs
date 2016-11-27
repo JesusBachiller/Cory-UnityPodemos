@@ -275,6 +275,10 @@ public class PortalEntrada : MonoBehaviour
         aireBlock = a;
     }
 
+    public GameObject getAireBlock()
+    {
+        return aireBlock;
+    }
 
     public void showIndicators()
     {

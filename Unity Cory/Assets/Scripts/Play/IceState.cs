@@ -125,4 +125,8 @@ public class IceState : MonoBehaviour {
     {
         aireBlock = a;
     }
+    public GameObject getAireBlock()
+    {
+        return aireBlock;
+    }
 }

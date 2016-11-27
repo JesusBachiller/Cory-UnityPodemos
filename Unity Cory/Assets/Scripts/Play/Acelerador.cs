@@ -129,4 +129,9 @@ public class Acelerador : MonoBehaviour {
     {
         aireBlock = A;
     }
+
+    public GameObject getAireBlock()
+    {
+        return aireBlock;
+    }
 }

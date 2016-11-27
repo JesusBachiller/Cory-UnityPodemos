@@ -117,4 +117,9 @@ public class fireState : MonoBehaviour {
     {
         aireBlock = a;
     }
+
+    public GameObject getAireBlock()
+    {
+        return aireBlock;
+    }
 }
