@@ -200,7 +200,7 @@ public class PortalEntrada : MonoBehaviour
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setPortalEntradaPuesto(index, false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
-                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 3.0f);
+                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 2.0f);
             }
             else
             {
