@@ -22,9 +22,9 @@ public class CreaEscenario : MonoBehaviour
     private const char ESTRELLA_UNO = 'a';
     private const char ESTRELLA_DOS = 'b';
     private const char ESTRELLA_TRES = 'c';
-    private const char LEVEL_END = 'f';
+    private const char LEVEL_END = 'p';
     private const char HIELO = 'h';
-    private const char FUEGO = 'i';
+    private const char FUEGO = 'f';
 
     public GameObject Aire;
     public GameObject Tierra;
