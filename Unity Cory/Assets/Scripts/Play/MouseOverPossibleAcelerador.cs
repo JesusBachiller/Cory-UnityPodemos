@@ -138,8 +138,22 @@ public class MouseOverPossibleAcelerador : MonoBehaviour
                         {
                             if (PortalSalida != null)
                             {
-                                PortalSalida.transform.position = transform.position;
-                                PortalSalida.GetComponent<PortalSalida>().setAireBlock(this.gameObject);
+                                GameObject[] PortalesEntrada = GameObject.FindGameObjectsWithTag("PortalEntrada");
+                                foreach (GameObject pE in PortalesEntrada)
+                                {
+                                    if (pE.GetComponent<PortalEntrada>().getIndex() == PortalSalida.GetComponent<PortalSalida>().getIndex())
+                                    {
+                                        if ((transform.position.x - pE.transform.position.x <= Game.RADIO_MAX_PORTALES &&
+                                            transform.position.x - pE.transform.position.x >= -Game.RADIO_MAX_PORTALES) &&
+                                            (transform.position.y - pE.transform.position.y <= Game.RADIO_MAX_PORTALES &&
+                                            transform.position.y - pE.transform.position.y >= -Game.RADIO_MAX_PORTALES))
+                                        {
+                                            PortalSalida.transform.position = transform.position;
+                                            PortalSalida.GetComponent<PortalSalida>().setAireBlock(this.gameObject);
+                                        }
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
