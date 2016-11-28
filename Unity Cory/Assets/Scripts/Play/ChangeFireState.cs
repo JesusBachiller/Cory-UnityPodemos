@@ -29,12 +29,19 @@ public class ChangeFireState : MonoBehaviour
                 GameObject PS = GameObject.FindGameObjectWithTag("ParticleFire");
 
                 Destroy(PS);
+                
             }
             if (Game.getCoryState() == "ice")
             {
                 GameObject PS = GameObject.FindGameObjectWithTag("ParticleIce");
 
                 Destroy(PS);
+
+                foreach (GameObject f in GameObject.FindGameObjectsWithTag("Fuego"))
+                {
+                    Debug.Log("fuego");
+                    f.GetComponent<BoxCollider>().enabled = true;
+                }
             }
             Game.setCoryState("fire");
 

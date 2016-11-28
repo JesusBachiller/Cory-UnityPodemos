@@ -32,12 +32,18 @@ public class ChangeIceState : MonoBehaviour
                 GameObject PS = GameObject.FindGameObjectWithTag("ParticleFire");
 
                 Destroy(PS);
+                foreach (GameObject i in GameObject.FindGameObjectsWithTag("Hielo"))
+                {
+                    i.GetComponent<BoxCollider>().enabled = true;
+                }
             }
             if (Game.getCoryState() == "ice")
             {
                 GameObject PS = GameObject.FindGameObjectWithTag("ParticleIce");
 
                 Destroy(PS);
+
+                
             }
 
             Game.setCoryState("ice");

@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour {
         }
         
 
-        maxFOV = 50;
+        maxFOV = 60;
         minFOV = 30;
         maxXDisplacement = findMaxXDisplacement();
 
