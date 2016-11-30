@@ -26,7 +26,10 @@ public class SummaryLevel : MonoBehaviour {
         thirdStar.sprite = Resources.Load<Sprite>("LevelPreviewImages/star") as Sprite;
         thirdStar.color = Color.grey;
 
-        if (Game.getCurrentLevel().index >= Game.getCurrentStadiumLevelQuatity() - 1)
+        Debug.Log(Game.getCurrentStadium().levels[Game.getCurrentLevel().index + 1].minStarsToUnlock);
+        Debug.Log(SaveLoad.savegame.starsAchieved);
+
+        if (    Game.getCurrentLevel().index >= Game.getCurrentStadiumLevelQuatity() - 1 )
         {
             transform.FindChild("NextLevel").gameObject.GetComponent<Button>().interactable = false;
         }
@@ -39,6 +42,12 @@ public class SummaryLevel : MonoBehaviour {
 
     public void enableCanvas()
     {
+        if (Game.getCurrentLevel().index + 1 <= Game.getCurrentStadiumLevelQuatity() - 1 &&
+            Game.getCurrentStadium().levels[Game.getCurrentLevel().index + 1].minStarsToUnlock > SaveLoad.savegame.starsAchieved)
+        {
+            transform.FindChild("NextLevel").gameObject.GetComponent<Button>().interactable = false;
+        }
+        
         GetComponent<Canvas>().enabled = true;
 
         //cargar las estrellas cogidas.

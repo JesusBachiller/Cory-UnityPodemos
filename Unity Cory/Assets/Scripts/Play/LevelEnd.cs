@@ -21,9 +21,15 @@ public class LevelEnd : MonoBehaviour {
         if (col.gameObject.tag == cory.tag && !Game.getCoryDie())
         {
             StartCoroutine(reloadScene(2));
+
+            SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].completed = true;
+
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].firstStarAchieved = Game.getFirstStarOfLevelAchieved();
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].secondStarAchieved = Game.getSecondStarOfLevelAchieved();
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].thirdStarAchieved = Game.getThirdStarOfLevelAchieved();
+
+            SaveLoad.savegame.updateTotalStarsAchieved();
+
             SaveLoad.Save();
         }
     }

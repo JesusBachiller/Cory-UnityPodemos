@@ -77,6 +77,8 @@ public class WorldMapStadium : MonoBehaviour
             Text stadiumName = levelSelector.transform.Find("BackgroundLevelSelector").FindChild("StadiumName").gameObject.GetComponent<Text>();
             stadiumName.text = stadium.name;
 
+            Text starsAchieved = levelSelector.transform.Find("BackgroundLevelSelector").FindChild("StarsAchieved").gameObject.GetComponent<Text>();
+            starsAchieved.text = SaveLoad.savegame.starsAchieved + " " + starsAchieved.name;
 
             //GameObject levelBox = levelSelector.transform.Find("BackgroundLevelSelector").FindChild("LevelBox").gameObject;
             int levelNumber = 0;
@@ -127,10 +129,39 @@ public class WorldMapStadium : MonoBehaviour
                     Text levelName = currentLevelBox.transform.FindChild("LevelName").gameObject.GetComponent<Text>();
                     levelName.text = level.name;
 
-                    if (SaveLoad.savegame.starsAchieved < level.minStarsToUnlock)
+                    if (
+                        SaveLoad.savegame.starsAchieved < level.minStarsToUnlock ||
+                        (level.index != 0 && SaveLoad.savegame.stadiumsSavedData[stadium.index].levelSavedData[level.index - 1].completed == false))
                     {
-                        levelName.text = "BLOQUEADO " + levelName.text;
-                    }                    
+                        levelPreviewImage.GetComponent<Image>().color = ActualizaEscenario.HSVToRGB(0, 0, 0.4f);
+                        firstStar.GetComponent<Image>().color = ActualizaEscenario.HSVToRGB(0, 0, 0.4f);
+                        secondStar.GetComponent<Image>().color = ActualizaEscenario.HSVToRGB(0, 0, 0.4f);
+                        thirdStar.GetComponent<Image>().color = ActualizaEscenario.HSVToRGB(0, 0, 0.4f);
+                        levelName.color = Color.yellow;
+                        if (SaveLoad.savegame.starsAchieved < level.minStarsToUnlock)
+                        {
+                            levelName.fontSize = 14;
+                            int restantes = level.minStarsToUnlock - SaveLoad.savegame.starsAchieved;
+                            if (restantes == 1)
+                            {
+                                levelName.text = restantes + " STAR LEFT TO PLAY";
+                            } else
+                            {
+                                levelName.text = restantes + " STARS LEFT TO PLAY";
+                            }
+                        } else
+                        {
+                            levelName.fontSize = 12;
+                            levelName.text = "PASS THE PREVIOUS LEVEL";
+                        }
+                    }
+                    else
+                    {
+                        levelPreviewImage.GetComponent<Image>().color = Color.white;
+                        currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName, actualLevel, stadium));
+                        levelName.color = Color.white;
+                        levelName.fontSize = 14;
+                    }
                 }
 
                 levelNumber++;

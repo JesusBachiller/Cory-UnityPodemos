@@ -3,12 +3,14 @@ using System.Collections;
 
 [System.Serializable]
 public class LevelSavedData {
-    
+
+
     public int maxScore;
     public int fastestTime;
     public bool firstStarAchieved;
     public bool secondStarAchieved;
     public bool thirdStarAchieved;
+    public bool completed;
 
 
     public LevelSavedData()
@@ -18,5 +20,6 @@ public class LevelSavedData {
         firstStarAchieved = false;
         secondStarAchieved = false;
         thirdStarAchieved = false;
+        completed = false;
     }
 }

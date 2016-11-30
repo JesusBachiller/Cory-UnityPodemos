@@ -28,7 +28,7 @@
       <AvailableIceState>0</AvailableIceState>
       <AvailablePortals>2</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
-      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <MinStarsToUnlock>6</MinStarsToUnlock>
     </Level>
     <Level name="Football Two" index="1">
       <MapElements>
@@ -54,7 +54,7 @@
       <AvailableIceState>0</AvailableIceState>
       <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
-      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <MinStarsToUnlock>7</MinStarsToUnlock>
     </Level>
     <Level name="Football Three" index="2">
       <MapElements>
@@ -82,7 +82,7 @@
       <AvailableIceState>1</AvailableIceState>
       <AvailablePortals>1</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
-      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <MinStarsToUnlock>10</MinStarsToUnlock>
     </Level>
     <Level name="Football Four" index="3">
       <MapElements>
@@ -102,7 +102,7 @@
       <AvailableIceState>1</AvailableIceState>
       <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
-      <MinStarsToUnlock>0</MinStarsToUnlock>
+      <MinStarsToUnlock>12</MinStarsToUnlock>
     </Level>
   </Levels>
 </Stadium>

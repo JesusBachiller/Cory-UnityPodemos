@@ -39,7 +39,6 @@ public class menuScript : MonoBehaviour {
 
     public void StartMapScene()
     {
-        SaveLoad.savegame.vecesClickadasBotonPlay += 1;
         SaveLoad.Save();
         SceneManager.LoadScene("WorldMap");
     }
