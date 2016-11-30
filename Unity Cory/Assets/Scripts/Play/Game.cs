@@ -342,7 +342,21 @@ public class Game  {
 
     public static bool isCoryInsidePortal(int index)
     {
-        return coryInsidePortal[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales - numIceStateTotales];
+        Debug.Log("i: " + index);
+        Debug.Log("numMuellesTotales: " + numMuellesTotales);
+        Debug.Log("numAceleradoresTotales: " + numAceleradoresTotales);
+        Debug.Log("numFireStateTotales: " + numFireStateTotales);
+        Debug.Log("numIceStateTotales: " + numIceStateTotales);
+        Debug.Log(coryInsidePortal != null);
+
+        if ((index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales - numIceStateTotales) >= 0 && coryInsidePortal != null){
+            return coryInsidePortal[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales - numIceStateTotales];
+
+        }
+        else
+        {
+            return false;
+        }
     }
     public static void setCoryInsidePortal(int index, bool b)
     {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class CameraController : MonoBehaviour {
 
     public GameObject camButtons;
-    private GameObject player;
+    public GameObject player;
     private Camera camera;
     private Vector3 offset;
     private Vector3 mousePosition;
@@ -54,6 +54,7 @@ public class CameraController : MonoBehaviour {
 
     int findMaxXDisplacement()
     {
+        
         int maxX = 0;
         for (int i = 0; i < Game.getCurrentLevel().mapElements.Count; i++)
         {

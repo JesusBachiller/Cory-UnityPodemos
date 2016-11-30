@@ -23,7 +23,7 @@ public class PortalEntrada : MonoBehaviour
         speedBeforeColliding = new Vector3(0, 0, 0);
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (cory != null)
         {

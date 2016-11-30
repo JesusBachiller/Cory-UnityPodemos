@@ -15,6 +15,7 @@ public class LevelEnd : MonoBehaviour {
         summary = GameObject.Find("SummaryLevel");
     }
 
+
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == cory.tag && !Game.getCoryDie())
@@ -32,30 +33,7 @@ public class LevelEnd : MonoBehaviour {
 
         yield return new WaitForSeconds(s);
 
-
-        /*Game.resetAllValues();
-
-        if (Game.getCurrentLevel().index >= Game.getCurrentStadiumLevelQuatity() - 1)
-        {
-            Game.setCurrentLevel(null);
-            SceneManager.LoadScene("WorldMap");
-        }
-        else
-        {
-            foreach (Level level in Game.getStadiumLevels())
-            {
-                if (level.index - 1 == Game.getCurrentLevel().index)
-                {
-                    Game.setCurrentLevel(level);
-                    break;
-                }
-            }
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
-        }*/
-
-
-
+        summary.GetComponent<SummaryLevel>().enableCanvas();
 
     }
 }
