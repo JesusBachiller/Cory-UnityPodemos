@@ -6,10 +6,13 @@ public class LevelEnd : MonoBehaviour {
 
     private GameObject cory;
 
+    public GameObject summary;
+
     // Use this for initialization
     void Start()
     {
         cory = GameObject.FindGameObjectWithTag("Player");
+        summary = GameObject.Find("SummaryLevel");
     }
 
     void OnTriggerEnter(Collider col)
@@ -30,7 +33,7 @@ public class LevelEnd : MonoBehaviour {
         yield return new WaitForSeconds(s);
 
 
-        Game.resetAllValues();
+        /*Game.resetAllValues();
 
         if (Game.getCurrentLevel().index >= Game.getCurrentStadiumLevelQuatity() - 1)
         {
@@ -49,7 +52,7 @@ public class LevelEnd : MonoBehaviour {
             }
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
-        }
+        }*/
 
 
 
