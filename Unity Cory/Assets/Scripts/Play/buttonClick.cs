@@ -7,8 +7,22 @@ public class buttonClick : MonoBehaviour {
     public int indexButton;
 
     public GameObject creaEscenario;
-    
+    public GameObject NumAnimRest;
+    public GameObject NumAnimSum;
+    public GameObject CanvasButtons;
 
+    private GameObject ScoreCanvas;
+    public int myPrice;
+    public GameObject PriceObj;
+
+    
+    public void Start()
+    {
+        myPrice = 1000;
+        PriceObj = GameObject.Find("Price(Clone)");
+        CanvasButtons = GameObject.Find("HerramientasHUD");
+        ScoreCanvas = GameObject.Find("Score");
+    }
     private bool permitirClick()
     {
         bool permite = false;
@@ -113,6 +127,9 @@ public class buttonClick : MonoBehaviour {
                 DarkColor();
 
                 Game.setBotonMuelleActivado(indexButton, true);
+
+                animNumbers(transform.position, NumAnimRest);
+                StartCoroutine(ActualizaScore(1.255f, -myPrice));
             }
             else
             {
@@ -123,6 +140,9 @@ public class buttonClick : MonoBehaviour {
                 Game.setMuellePuesto(indexButton, false);
 
                 creaEscenario.GetComponent<ActualizaEscenario>().DestroyMuelle(indexButton);
+
+                animNumbers(transform.position, NumAnimSum);
+                StartCoroutine(ActualizaScore(0f, myPrice));
             }
         }
             
@@ -143,6 +163,9 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().InstanciateAcelerador(indexButton);
 
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleAcelerador();
+                
+                animNumbers(transform.position, NumAnimRest);
+                StartCoroutine(ActualizaScore(1.255f, -myPrice));
 
             }
             else
@@ -156,6 +179,9 @@ public class buttonClick : MonoBehaviour {
                 Game.setAceleradorPuesto(indexButton, false);
 
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleAceleradores();
+
+                animNumbers(transform.position, NumAnimSum);
+                StartCoroutine(ActualizaScore(0f, myPrice));
             }
         }
     }
@@ -176,6 +202,8 @@ public class buttonClick : MonoBehaviour {
 
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleFireState();
 
+                animNumbers(transform.position, NumAnimRest);
+                StartCoroutine(ActualizaScore(1.255f, -myPrice));
             }
             else
             {
@@ -188,6 +216,9 @@ public class buttonClick : MonoBehaviour {
                 Game.setFireStatePuesto(indexButton, false);
 
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleFireState();
+
+                animNumbers(transform.position, NumAnimSum);
+                StartCoroutine(ActualizaScore(0f, myPrice));
             }
         }
     }
@@ -208,6 +239,8 @@ public class buttonClick : MonoBehaviour {
 
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleIceState();
 
+                animNumbers(transform.position, NumAnimRest);
+                StartCoroutine(ActualizaScore(1.255f, -myPrice));
             }
             else
             {
@@ -220,6 +253,9 @@ public class buttonClick : MonoBehaviour {
                 Game.setIceStatePuesto(indexButton, false);
 
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleIceState();
+
+                animNumbers(transform.position, NumAnimSum);
+                StartCoroutine(ActualizaScore(0f, myPrice));
             }
         }
     }
@@ -240,6 +276,8 @@ public class buttonClick : MonoBehaviour {
 
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
 
+                animNumbers(transform.position, NumAnimRest);
+                StartCoroutine(ActualizaScore(1.255f, -myPrice));
             }
             else
             {
@@ -256,11 +294,46 @@ public class buttonClick : MonoBehaviour {
 
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalSalida();
+
+                animNumbers(transform.position, NumAnimSum);
+                StartCoroutine(ActualizaScore(0f, myPrice));
             }
         }
     }
 
+    public void onMouseEnter()
+    {
+        if(PriceObj == null)
+{
+            PriceObj = GameObject.Find("Price(Clone)");
+        }
+        if (!(Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie()))
+        {
+            transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            PriceObj.GetComponentInChildren<Text>().text = myPrice.ToString();
+            PriceObj.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 13, transform.localPosition.z);
+        }
+    }
+    public void onMouseExit()
+    {
+        if (!(Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie()))
+        {
+            transform.localScale = new Vector3(0.84f, 0.84f, 0.84f);
+            PriceObj.transform.position = new Vector3(-5f, -5f - 5f);
+        }
+    }
 
+    public void animNumbers(Vector3 posIni, GameObject numanim)
+    {
+        GameObject NA = Instantiate(numanim, posIni, Quaternion.identity) as GameObject;
+        NA.GetComponent<Text>().text = myPrice.ToString();
+        NA.transform.parent = CanvasButtons.transform;
+
+
+        Destroy(NA, 1.255f);
+
+    }
+    
     private void ClearColor()
     {
         ColorBlock cb = gameObject.GetComponent<Button>().colors;
@@ -283,5 +356,15 @@ public class buttonClick : MonoBehaviour {
     public int getIndex()
     {
         return indexButton;
+    }
+
+    IEnumerator ActualizaScore(float s, int price)
+    {
+        yield return new WaitForSeconds(s);
+
+        Game.setScore(Game.getScore() + price);
+
+        GameObject ScoreCanvas = GameObject.Find("Score");
+        ScoreCanvas.GetComponent<Text>().text = ("Score: " + Game.getScore());
     }
 }
