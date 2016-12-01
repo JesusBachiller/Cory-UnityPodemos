@@ -69,7 +69,7 @@ public class EstrellaDos : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            if (!Game.getCoryDie())
+            if (!Game.getCoryDie() || !Game.getCoryEnd())
             {
                 Game.setSecondStarOfLevelAchieved(true);
                 foreach (Material m in GetComponent<Renderer>().materials)

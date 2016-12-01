@@ -22,6 +22,7 @@ public class Game  {
     
     private static bool commentsEnabled = false;
 
+    private static int score = 0;
 
     /* Esto coge valor al arrancar un nivel en setCurrentLevel y se resetea en resetAllValues */
     private static int numMuellesTotales = 0;
@@ -113,6 +114,8 @@ public class Game  {
     {
         if (level == null)
         {
+            score = 0;
+
             numMuellesTotales = 0;
             muellePuesto = null;
             botonMuelleActivo = null;
@@ -136,6 +139,9 @@ public class Game  {
             botonIceStateActivo = null;
 
         } else {
+
+            score = level.startScore;
+
             numMuellesTotales = level.availableSprings;
             muellePuesto = new bool[numMuellesTotales];
             botonMuelleActivo = new bool[numMuellesTotales];
@@ -228,6 +234,15 @@ public class Game  {
     }
 
 
+    public static int getScore()
+    {
+        return score;
+    }
+    public static void setScore(int newScore)
+    {
+        score = newScore;
+    }
+    
     public static bool getFirstStarOfLevelAchieved()
     {
         return firstStarOfLevelAchieved;
@@ -342,12 +357,6 @@ public class Game  {
 
     public static bool isCoryInsidePortal(int index)
     {
-        Debug.Log("i: " + index);
-        Debug.Log("numMuellesTotales: " + numMuellesTotales);
-        Debug.Log("numAceleradoresTotales: " + numAceleradoresTotales);
-        Debug.Log("numFireStateTotales: " + numFireStateTotales);
-        Debug.Log("numIceStateTotales: " + numIceStateTotales);
-        Debug.Log(coryInsidePortal != null);
 
         if ((index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales - numIceStateTotales) >= 0 && coryInsidePortal != null){
             return coryInsidePortal[index - numMuellesTotales - numAceleradoresTotales - numFireStateTotales - numIceStateTotales];

@@ -52,6 +52,10 @@ public class CreaEscenario : MonoBehaviour
     public GameObject ButtonIceState;
     public GameObject ButtonPortal;
 
+    public GameObject ScoreCanvas;
+
+    public GameObject PriceTools;
+
     public Camera CamaraPrincipal;
     public PhysicMaterial ReboteMaterial;
 
@@ -147,6 +151,9 @@ public class CreaEscenario : MonoBehaviour
         }*/
 
 
+        GameObject PT = Instantiate(PriceTools, new Vector3(-5f, -5f, -5f), Quaternion.identity) as GameObject;
+        PT.transform.parent = CanvasButtons.transform;
+
 
         /*
          * Get selected Level to Play from previous Scene (Map)
@@ -156,6 +163,8 @@ public class CreaEscenario : MonoBehaviour
 
         // ESTO PINTA PLANOS SOBRE LOS CUBOS
         actualLevel = Game.getCurrentLevel();
+        ScoreCanvas = GameObject.Find("Score");
+        ScoreCanvas.GetComponent<Text>().text = ("Score: " + actualLevel.startScore.ToString());
         int tamanoPlanoSobreCesped = 0;
         float sumaX = 0;
         float xMediaPlanoSobreCesped = 0;

@@ -67,7 +67,7 @@ public class EstrellaUno : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            if (!Game.getCoryDie())
+            if (!Game.getCoryDie() || !Game.getCoryEnd())
             {
                 foreach (Material m in GetComponent<Renderer>().materials)
                 {

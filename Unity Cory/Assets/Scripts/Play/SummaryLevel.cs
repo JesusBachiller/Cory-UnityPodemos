@@ -26,9 +26,6 @@ public class SummaryLevel : MonoBehaviour {
         thirdStar.sprite = Resources.Load<Sprite>("LevelPreviewImages/star") as Sprite;
         thirdStar.color = Color.grey;
 
-        Debug.Log(Game.getCurrentStadium().levels[Game.getCurrentLevel().index + 1].minStarsToUnlock);
-        Debug.Log(SaveLoad.savegame.starsAchieved);
-
         if (    Game.getCurrentLevel().index >= Game.getCurrentStadiumLevelQuatity() - 1 )
         {
             transform.FindChild("NextLevel").gameObject.GetComponent<Button>().interactable = false;
@@ -78,13 +75,21 @@ public class SummaryLevel : MonoBehaviour {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+    public void restartLevel()
+    {
+        Game.resetAllValues();
 
+        Game.setCurrentLevel(Game.getCurrentLevel());
+
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
     IEnumerator showStar1(float s)
     {
 
         yield return new WaitForSeconds(s);
 
-        if (Game.getFirstStarOfLevelAchieved())
+        if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].firstStarAchieved)
         {
             firstStar.color = Color.white;
         }
@@ -94,7 +99,7 @@ public class SummaryLevel : MonoBehaviour {
 
         yield return new WaitForSeconds(s);
 
-        if (Game.getSecondStarOfLevelAchieved())
+        if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].secondStarAchieved)
         {
             secondStar.color = Color.white;
         }
@@ -104,7 +109,7 @@ public class SummaryLevel : MonoBehaviour {
 
         yield return new WaitForSeconds(s);
 
-        if (Game.getThirdStarOfLevelAchieved())
+        if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].thirdStarAchieved)
         {
             thirdStar.color = Color.white;
         }

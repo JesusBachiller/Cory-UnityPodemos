@@ -33,6 +33,9 @@ public class Level {
     [XmlElement("MinStarsToUnlock")]
     public int minStarsToUnlock;
 
+    [XmlElement("StartScore")]
+    public int startScore;
+
     [XmlElement("PreviewImagePath")]
     public string previewImagePath;
 
