@@ -75,7 +75,10 @@ public class EstrellaUno : MonoBehaviour {
                 }
                 Game.setFirstStarOfLevelAchieved(true);
             }
+            GameObject padre = transform.parent.gameObject;
+            padre.GetComponentInChildren<ParticleSystem>().Play();
         }
+
     }
 
 }

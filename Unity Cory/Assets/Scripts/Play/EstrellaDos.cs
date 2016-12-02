@@ -77,6 +77,9 @@ public class EstrellaDos : MonoBehaviour
                     m.color = Color.yellow;
                 }
             }
+
+            GameObject padre = transform.parent.gameObject;
+            padre.GetComponentInChildren<ParticleSystem>().Play();
         }
     }
 

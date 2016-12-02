@@ -77,6 +77,8 @@ public class EstrellaTres : MonoBehaviour
                 }
             }
 
+            GameObject padre = transform.parent.gameObject;
+            padre.GetComponentInChildren<ParticleSystem>().Play();
         }
     }
 
