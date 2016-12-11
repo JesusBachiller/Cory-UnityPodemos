@@ -204,15 +204,23 @@ public class CreaEscenario : MonoBehaviour
                 }
                 if (actualLevel.mapElements[i][j] == TIERRA)
                 {
-                    Instantiate(Tierra, position, Quaternion.identity);
+                    GameObject tierra = Instantiate(Tierra, position, Quaternion.identity) as GameObject;
+
+                    float color = UnityEngine.Random.Range(0.85f, 1f);
+                    foreach (Material m in tierra.GetComponent<Renderer>().materials)
+                    {
+                        m.color = ActualizaEscenario.HSVToRGB(0, 0, color);
+                    }
                 }
                 if (actualLevel.mapElements[i][j] == CESPED)
                 {
                     Vector3 rotacionPlano = new Vector3();
+                    float colorTierra = UnityEngine.Random.Range(0.85f, 1f);
+                    GameObject cesped = null;
 
-                    if(i == 0)  // first row
+                    if (i == 0)  // first row
                     {
-                        Instantiate(Cesped, position, Quaternion.identity);
+                        cesped = Instantiate(Cesped, position, Quaternion.identity) as GameObject;
 
                         // Ponemos plano encima y sin rotarlo
                         positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
@@ -224,7 +232,7 @@ public class CreaEscenario : MonoBehaviour
                         {
                             if(actualLevel.mapElements[i - 1][j] != TIERRA)
                             {
-                                Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180)));
+                                cesped = Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180))) as GameObject;
 
                                 // Ponemos plano debajo y rotado 180
                                 positionPlanoSobreCesped = position + new Vector3(0, -0.51f, 0);
@@ -232,7 +240,7 @@ public class CreaEscenario : MonoBehaviour
                             }
                             else
                             {
-                                Instantiate(Cesped, position, Quaternion.identity);
+                                cesped = Instantiate(Cesped, position, Quaternion.identity) as GameObject;
 
                                 // Ponemos plano encima y sin rotarlo
                                 positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
@@ -243,7 +251,7 @@ public class CreaEscenario : MonoBehaviour
                         {
                             if (actualLevel.mapElements[i + 1][j] == TIERRA || actualLevel.mapElements[i + 1][j] == CESPED)
                             {
-                                Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180)));
+                                cesped = Instantiate(Cesped, position, Quaternion.Euler(new Vector3(0, 0, 180))) as GameObject;
 
                                 // Ponemos plano debajo y rotado 180
                                 positionPlanoSobreCesped = position + new Vector3(0, -0.51f, 0);
@@ -251,13 +259,19 @@ public class CreaEscenario : MonoBehaviour
                             }
                             else
                             {
-                                Instantiate(Cesped, position, Quaternion.identity);
+                                cesped = Instantiate(Cesped, position, Quaternion.identity) as GameObject;
 
                                 // Ponemos plano encima y sin rotarlo
                                 positionPlanoSobreCesped = position + new Vector3(0, 0.51f, 0);
                                 rotacionPlano = new Vector3(0, 0, 0);
                             }
                         }
+                    }
+
+                    //foreach (Material m in cesped.transform.FindChild("TierraDelCesped").GetComponent<Renderer>().materials)
+                    foreach (Material m in cesped.transform.GetComponent<Renderer>().materials)
+                    {
+                        m.color = ActualizaEscenario.HSVToRGB(0, 0, colorTierra);
                     }
 
                     if (tamanoPlanoSobreCesped == 0)
