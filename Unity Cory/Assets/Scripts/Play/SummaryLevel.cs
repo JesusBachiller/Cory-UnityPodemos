@@ -9,8 +9,19 @@ public class SummaryLevel : MonoBehaviour {
     Image secondStar;
     Image thirdStar;
 
+    public Text score;
+    private Text levelName;
+
+    private int con;
+
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        con = 0;
+        score = transform.FindChild("ScoreSummary").gameObject.GetComponent<Text>();
+
+        levelName = transform.FindChild("LevelName").gameObject.GetComponent<Text>();
+        levelName.text = Game.getCurrentLevel().name;
 
         firstStar = transform.FindChild("FirstStar").gameObject.GetComponent<Image>();
         firstStar.sprite = Resources.Load<Sprite>("LevelPreviewImages/star") as Sprite;
@@ -39,6 +50,8 @@ public class SummaryLevel : MonoBehaviour {
 
     public void enableCanvas()
     {
+        InvokeRepeating("cont", 1.5f, 0.01f);
+
         if (Game.getCurrentLevel().index + 1 <= Game.getCurrentStadiumLevelQuatity() - 1 &&
             Game.getCurrentStadium().levels[Game.getCurrentLevel().index + 1].minStarsToUnlock > SaveLoad.savegame.starsAchieved)
         {
@@ -61,6 +74,25 @@ public class SummaryLevel : MonoBehaviour {
     }
     public void nextLevel()
     {
+        foreach (GameObject star in GameObject.FindGameObjectsWithTag("Star"))
+        {
+            Component estrella1 = star.GetComponent<EstrellaUno>();
+            Component estrella2 = star.GetComponent<EstrellaDos>();
+            Component estrella3 = star.GetComponent<EstrellaTres>();
+
+            if (estrella1 != null)
+            {
+                estrella1.GetComponent<EstrellaUno>().check = false;
+            }
+            if (estrella2 != null)
+            {
+                estrella2.GetComponent<EstrellaDos>().check = false;
+            }
+            if (estrella3 != null)
+            {
+                estrella3.GetComponent<EstrellaTres>().check = false;
+            }
+        }
 
         Game.resetAllValues();
 
@@ -75,8 +107,29 @@ public class SummaryLevel : MonoBehaviour {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
     public void restartLevel()
     {
+        foreach (GameObject star in GameObject.FindGameObjectsWithTag("Star"))
+        {
+            Component estrella1 = star.GetComponent<EstrellaUno>();
+            Component estrella2 = star.GetComponent<EstrellaDos>();
+            Component estrella3 = star.GetComponent<EstrellaTres>();
+
+            if (estrella1 != null)
+            {
+                estrella1.GetComponent<EstrellaUno>().check = false;
+            }
+            if (estrella2 != null)
+            {
+                estrella2.GetComponent<EstrellaDos>().check = false;
+            }
+            if (estrella3 != null)
+            {
+                estrella3.GetComponent<EstrellaTres>().check = false;
+            }
+        }
+
         Game.resetAllValues();
 
         Game.setCurrentLevel(Game.getCurrentLevel());
@@ -112,6 +165,15 @@ public class SummaryLevel : MonoBehaviour {
         if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].thirdStarAchieved)
         {
             thirdStar.color = Color.white;
+        }
+    }
+
+    void cont()
+    {
+        if (con <= Game.getScore())
+        {
+            score.text = "score: " + con;
+            con += 5;
         }
     }
 }

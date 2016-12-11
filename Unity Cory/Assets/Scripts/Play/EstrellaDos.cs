@@ -1,13 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class EstrellaDos : MonoBehaviour
 {
+    private int priceStar;
 
+    public GameObject NumAnimStar;
+
+    public bool check;
     // Use this for initialization
     void Start()
     {
+        priceStar = 25;
+        
         checkIfAchieved();
+
+        check = false;
     }
 
     void Update()
@@ -24,6 +33,15 @@ public class EstrellaDos : MonoBehaviour
 
     void checkIfAchieved()
     {
+        if (check)
+        {
+            Game.setScore(Game.getScore() - priceStar);
+
+            GameObject ScoreCanvas = GameObject.Find("Score");
+            ScoreCanvas.GetComponent<Text>().text = ("Score: " + Game.getScore());
+
+            check = false;
+        }
 
         if (SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].secondStarAchieved)
         {
@@ -69,18 +87,36 @@ public class EstrellaDos : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            if (!Game.getCoryDie() || !Game.getCoryEnd())
+            if (!Game.getCoryDie() && !Game.getCoryEnd())
             {
-                Game.setSecondStarOfLevelAchieved(true);
-                foreach (Material m in GetComponent<Renderer>().materials)
+                if (!check)
                 {
-                    m.color = Color.yellow;
+                    Game.setSecondStarOfLevelAchieved(true);
+                    check = true;
+                    foreach (Material m in GetComponent<Renderer>().materials)
+                    {
+                        m.color = Color.yellow;
+                    }
+
+                    GameObject padre = transform.parent.gameObject;
+                    padre.GetComponentInChildren<ParticleSystem>().Play();
+
+                    Game.setScore(Game.getScore() + priceStar);
+
+                    GameObject ScoreCanvas = GameObject.Find("Score");
+                    ScoreCanvas.GetComponent<Text>().text = ("Score: " + Game.getScore());
+
+                    animNumbers(NumAnimStar);
                 }
             }
-
-            GameObject padre = transform.parent.gameObject;
-            padre.GetComponentInChildren<ParticleSystem>().Play();
         }
     }
 
+    public void animNumbers(GameObject numanim)
+    {
+        GameObject NA = Instantiate(numanim, transform.position, Quaternion.identity) as GameObject;
+
+        Destroy(NA, 0.8f);
+
+    }
 }

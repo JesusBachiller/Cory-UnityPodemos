@@ -18,7 +18,7 @@ public class buttonClick : MonoBehaviour {
     
     public void Start()
     {
-        myPrice = 1000;
+        myPrice = 100;
         PriceObj = GameObject.Find("Price(Clone)");
         CanvasButtons = GameObject.Find("HerramientasHUD");
         ScoreCanvas = GameObject.Find("Score");
@@ -361,7 +361,7 @@ public class buttonClick : MonoBehaviour {
     IEnumerator ActualizaScore(float s, int price)
     {
         yield return new WaitForSeconds(s);
-
+        
         Game.setScore(Game.getScore() + price);
 
         GameObject ScoreCanvas = GameObject.Find("Score");

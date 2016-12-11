@@ -443,6 +443,8 @@ public class Game  {
 
     public static void resetAllValues()
     {
+        score = 0;
+
         cameraFollowsPlayer = true;
         coryDie = false;
         coryFly = false;
