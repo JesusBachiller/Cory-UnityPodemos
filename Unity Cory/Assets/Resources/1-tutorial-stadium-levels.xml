@@ -2,7 +2,7 @@
 
 <Stadium>
   <Levels>
-    <Level name="What is this about?" index="0">
+    <Level name="#1" index="0">
       <MapElements>
 
         1112222222221222222211122222222222222222222222222222p-
@@ -24,12 +24,12 @@
       <AvailablePortals>0</AvailablePortals>
       <AvailableFireState>0</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-0-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
       <StartScore>1000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-0</XmlCommentsPath>
     </Level>
-    <Level name="Fly over water" index="1">
+    <Level name="#2" index="1">
       <MapElements>
 
         1113333333333333333333333333333333111122222222222222222222222222222222222p-
@@ -52,12 +52,12 @@
       <AvailablePortals>0</AvailablePortals>
       <AvailableFireState>0</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-1-preview-image</PreviewImagePath>
       <MinStarsToUnlock>1</MinStarsToUnlock>
       <StartScore>1000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-1</XmlCommentsPath>
     </Level>
-    <Level name="Helpful platforms" index="2">
+    <Level name="#3" index="2">
       <MapElements>
 
         111222222222222222222222222222222222222222222222p-
@@ -79,12 +79,12 @@
       <AvailablePortals>0</AvailablePortals>
       <AvailableFireState>0</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-2-preview-image</PreviewImagePath>
       <MinStarsToUnlock>2</MinStarsToUnlock>
       <StartScore>1000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-2</XmlCommentsPath>
     </Level>
-    <Level name="Burn me, freeze me" index="3">
+    <Level name="#4" index="3">
       <MapElements>
 
         111222222222222222222222222222222222222222p-
@@ -106,12 +106,12 @@
       <AvailablePortals>0</AvailablePortals>
       <AvailableFireState>1</AvailableFireState>
       <AvailableIceState>1</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-3-preview-image</PreviewImagePath>
       <MinStarsToUnlock>3</MinStarsToUnlock>
       <StartScore>1000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-3</XmlCommentsPath>
     </Level>
-    <Level name="Teleportation" index="4">
+    <Level name="#5" index="4">
       <MapElements>
 
         211221112222222211222222222222222222222222p-
@@ -134,12 +134,12 @@
       <AvailablePortals>1</AvailablePortals>
       <AvailableFireState>0</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-4-preview-image</PreviewImagePath>
       <MinStarsToUnlock>4</MinStarsToUnlock>
       <StartScore>1000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-4</XmlCommentsPath>
     </Level>
-    <Level name="Try your tools" index="5">
+    <Level name="#6" index="5">
       <MapElements>
 
         11211123333333333322233333333333333333333332222222112222222222222222222222222222p-
@@ -168,7 +168,7 @@
       <AvailablePortals>1</AvailablePortals>
       <AvailableFireState>1</AvailableFireState>
       <AvailableIceState>0</AvailableIceState>
-      <PreviewImagePath>level-preview-image</PreviewImagePath>
+      <PreviewImagePath>tutorial-5-preview-image</PreviewImagePath>
       <MinStarsToUnlock>6</MinStarsToUnlock>
       <StartScore>1000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-5</XmlCommentsPath>
