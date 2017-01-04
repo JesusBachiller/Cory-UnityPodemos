@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour {
         if (movingDown) { moveDown(); }
         if (movingUp) { moveUp(); }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !Game.getCoryFly() && !Game.getCoryDie() && !Game.getCoryEnd()) //Free Camera
+        if (Input.GetKeyDown(KeyCode.C) && !Game.getCoryFly() && !Game.getCoryDie() && !Game.getCoryEnd()) //Free Camera
         {
             if (Game.cameraFollowsPlayer) {
                 Game.cameraFollowsPlayer = false;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class LevelEnd : MonoBehaviour {
 
@@ -20,6 +21,9 @@ public class LevelEnd : MonoBehaviour {
     {
         if (col.gameObject.tag == cory.tag && !Game.getCoryDie())
         {
+            BoxCollider bc = transform.GetComponent<BoxCollider>();
+            bc.enabled = false;
+
             StartCoroutine(reloadScene(2));
 
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].completed = true;
@@ -29,6 +33,8 @@ public class LevelEnd : MonoBehaviour {
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].thirdStarAchieved = Game.getThirdStarOfLevelAchieved();
 
             SaveLoad.savegame.updateTotalStarsAchieved();
+            SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].scores.Add(Game.getScore());
+            SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].scores.Sort((a, b) => -1 * a.CompareTo(b));
 
             SaveLoad.Save();
         }

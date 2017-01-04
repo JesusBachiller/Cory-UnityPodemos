@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System;
 
 public class SummaryLevel : MonoBehaviour {
 
@@ -11,6 +13,7 @@ public class SummaryLevel : MonoBehaviour {
 
     public Text score;
     private Text levelName;
+    private Text rankingList;
 
     private int con;
 
@@ -45,7 +48,9 @@ public class SummaryLevel : MonoBehaviour {
         else
         {
             transform.FindChild("NextLevel").gameObject.GetComponent<Button>().interactable = true;
-        } 
+        }
+
+        rankingList = transform.FindChild("RankingList").gameObject.GetComponent<Text>();
     }
 
     public void enableCanvas()
@@ -59,6 +64,29 @@ public class SummaryLevel : MonoBehaviour {
         }
         
         GetComponent<Canvas>().enabled = true;
+
+        // cargar listado de puntuaciones
+
+        List<int> scores = SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].scores;
+        
+
+        rankingList.text = "";
+        for (int i = 0; i < scores.Count; i++)
+        {
+            if (i != 0)
+            {
+                rankingList.text += "\r\n"; // Salto de linea
+            }
+            string posicion = (i + 1).ToString();
+            if (posicion.Length == 1)
+            {
+                posicion = posicion + "-\t\t"; // Tabulaciones, se necesitan dos  para una correcta visualizacion si el número es de una cifra
+            } else
+            {
+                posicion = posicion + "-\t"; // Tabulacion, se necesita una para una correcta visualizacion si el número es de dos cifras
+            }
+            rankingList.text += posicion + scores[i];
+        }
 
         //cargar las estrellas cogidas.
         StartCoroutine(showStar1(0.5f));

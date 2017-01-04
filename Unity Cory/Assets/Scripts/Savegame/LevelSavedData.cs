@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 [System.Serializable]
 public class LevelSavedData {
 
-
+    public List<int> scores;
     public int maxScore;
     public int fastestTime;
     public bool firstStarAchieved;
@@ -15,6 +17,7 @@ public class LevelSavedData {
 
     public LevelSavedData()
     {
+        scores = new List<int>();
         maxScore = 0;
         fastestTime = 0;
         firstStarAchieved = false;
