@@ -78,14 +78,7 @@ public class SummaryLevel : MonoBehaviour {
                 rankingList.text += "\r\n"; // Salto de linea
             }
             string posicion = (i + 1).ToString();
-            if (posicion.Length == 1)
-            {
-                posicion = posicion + "-\t\t"; // Tabulaciones, se necesitan dos  para una correcta visualizacion si el número es de una cifra
-            } else
-            {
-                posicion = posicion + "-\t"; // Tabulacion, se necesita una para una correcta visualizacion si el número es de dos cifras
-            }
-            rankingList.text += posicion + scores[i];
+            rankingList.text += posicion + "-\t\t" + scores[i];
         }
 
         //cargar las estrellas cogidas.
