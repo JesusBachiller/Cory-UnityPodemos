@@ -21,6 +21,8 @@ public class LevelEnd : MonoBehaviour {
     {
         if (col.gameObject.tag == cory.tag && !Game.getCoryDie())
         {
+            cory.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
             BoxCollider bc = transform.GetComponent<BoxCollider>();
             bc.enabled = false;
 
