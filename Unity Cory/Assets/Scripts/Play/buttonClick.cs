@@ -124,6 +124,9 @@ public class buttonClick : MonoBehaviour {
         {
             if (!Game.getBotonMuelleActivado(indexButton))
             {
+                AudioSource audio = gameObject.AddComponent<AudioSource>();
+                audio.PlayOneShot((AudioClip)Resources.Load("muelle1"));
+
                 DarkColor();
 
                 Game.setBotonMuelleActivado(indexButton, true);
@@ -156,6 +159,8 @@ public class buttonClick : MonoBehaviour {
         {
             if (!Game.getBotonAceleradorActivado(indexButton))
             {
+                AudioSource audio = gameObject.AddComponent<AudioSource>();
+                audio.PlayOneShot((AudioClip)Resources.Load("acelerat1"));
                 DarkColor();
 
                 Game.setBotonAceleradorActivado(indexButton, true);
@@ -194,6 +199,9 @@ public class buttonClick : MonoBehaviour {
         {
             if (!Game.getBotonFireStateActivado(indexButton))
             {
+                AudioSource audio = gameObject.AddComponent<AudioSource>();
+                audio.PlayOneShot((AudioClip)Resources.Load("fuego1"));
+
                 DarkColor();
 
                 Game.setBotonFireStateActivado(indexButton, true);
@@ -231,6 +239,9 @@ public class buttonClick : MonoBehaviour {
         {
             if (!Game.getBotonIceStateActivado(indexButton))
             {
+
+                AudioSource audio = gameObject.AddComponent<AudioSource>();
+                audio.PlayOneShot((AudioClip)Resources.Load("hielo1"));
                 DarkColor();
 
                 Game.setBotonIceStateActivado(indexButton, true);
@@ -268,6 +279,9 @@ public class buttonClick : MonoBehaviour {
         {
             if (!Game.getBotonPortalActivado(indexButton))
             {
+                AudioSource audio = gameObject.AddComponent<AudioSource>();
+                audio.PlayOneShot((AudioClip)Resources.Load("portal3"));
+
                 DarkColor();
 
                 Game.setBotonPortalActivado(indexButton, true);
