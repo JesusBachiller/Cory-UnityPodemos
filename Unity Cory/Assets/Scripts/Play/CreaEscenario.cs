@@ -356,6 +356,10 @@ public class CreaEscenario : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Game.resetAllValues();
+            GameObject go2 = GameObject.Find("MusicaTutorial");
+            Destroy(go2);
+            GameObject go3 = GameObject.Find("MusicaFutbol");
+            Destroy(go3);
             SceneManager.LoadScene("WorldMap");
         }
     }

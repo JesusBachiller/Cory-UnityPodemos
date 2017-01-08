@@ -38,6 +38,10 @@ public class WorldMapStadium : MonoBehaviour
     {
         Game.setCurrentStadium(actualStadium);
         Game.setCurrentLevel(actualLevel);
+        GameObject go = GameObject.Find("Musica");
+        Destroy(go);
+        GameObject go2 = GameObject.Find("MusicRandom");
+        Destroy(go2);
         SceneManager.LoadScene(sceneName);
     }
 
@@ -194,6 +198,8 @@ public class WorldMapStadium : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GameObject go = GameObject.Find("MusicRandom");
+            DontDestroyOnLoad(go);
             SceneManager.LoadScene("Intro");
         }
     }

@@ -91,6 +91,8 @@ public class EstrellaDos : MonoBehaviour
             {
                 if (!check)
                 {
+                    AudioSource audio = gameObject.AddComponent<AudioSource>();
+                    audio.PlayOneShot((AudioClip)Resources.Load("Star1"));
                     Game.setSecondStarOfLevelAchieved(true);
                     check = true;
                     foreach (Material m in GetComponent<Renderer>().materials)

@@ -64,6 +64,8 @@ public class PortalEntrada : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("portal3"));
         if (col.gameObject.tag == cory.tag && !Game.getCoryDie())
         {
             foreach (GameObject pS in GameObject.FindGameObjectsWithTag("PortalSalida"))

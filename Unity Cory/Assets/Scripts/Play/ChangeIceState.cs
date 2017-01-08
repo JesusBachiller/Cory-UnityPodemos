@@ -25,7 +25,9 @@ public class ChangeIceState : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("hielo1"));
+        if (other.gameObject.tag == "Player")
         {
             if (Game.getCoryState() == "fire")
             {

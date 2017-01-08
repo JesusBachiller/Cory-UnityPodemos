@@ -26,6 +26,8 @@ public class ImpulsoAcelerador : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        audio.PlayOneShot((AudioClip)Resources.Load("acelerat1"));
         Vector3 velocity = other.gameObject.GetComponent<Rigidbody>().velocity;
 
         float magnitude = velocity.magnitude;

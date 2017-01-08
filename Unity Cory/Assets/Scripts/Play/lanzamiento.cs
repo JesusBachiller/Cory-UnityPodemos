@@ -218,6 +218,9 @@ public class lanzamiento : MonoBehaviour
             }
             else
             {
+                AudioSource audio = gameObject.AddComponent<AudioSource>();
+                audio.PlayOneShot((AudioClip)Resources.Load("lanzamiento1"));
+
                 Game.setCoryFly(true);
 
                 ReturnHome();

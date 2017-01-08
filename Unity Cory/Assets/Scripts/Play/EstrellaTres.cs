@@ -92,6 +92,8 @@ public class EstrellaTres : MonoBehaviour
             {
                 if (!check)
                 {
+                    AudioSource audio = gameObject.AddComponent<AudioSource>();
+                    audio.PlayOneShot((AudioClip)Resources.Load("Star1"));
                     Game.setThirdStarOfLevelAchieved(true);
                     check = true;
                     foreach (Material m in GetComponent<Renderer>().materials)
