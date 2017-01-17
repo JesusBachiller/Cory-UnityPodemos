@@ -12,13 +12,17 @@ public class buttonClick : MonoBehaviour {
     public GameObject CanvasButtons;
 
     private GameObject ScoreCanvas;
-    public int myPrice;
+    public int precioEtiqueta;
+    public int costeBajo, costeMedio, costeAlto;
     public GameObject PriceObj;
 
     
     public void Start()
     {
-        myPrice = 100;
+        precioEtiqueta = 100;
+        costeBajo = 50;
+        costeMedio = 200;
+        costeAlto = 500;
         PriceObj = GameObject.Find("Price(Clone)");
         CanvasButtons = GameObject.Find("HerramientasHUD");
         ScoreCanvas = GameObject.Find("Score");
@@ -122,6 +126,7 @@ public class buttonClick : MonoBehaviour {
 
         if (permiteClick)
         {
+            precioEtiqueta = costeBajo;
             if (!Game.getBotonMuelleActivado(indexButton))
             {
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
@@ -136,7 +141,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleMuelle();
 
                 animNumbers(transform.position, NumAnimRest);
-                StartCoroutine(ActualizaScore(1.255f, -myPrice));
+                StartCoroutine(ActualizaScore(1.255f, -costeBajo));
             }
             else
             {
@@ -151,7 +156,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleMuelle();
 
                 animNumbers(transform.position, NumAnimSum);
-                StartCoroutine(ActualizaScore(0f, myPrice));
+                StartCoroutine(ActualizaScore(0f, costeBajo));
             }
         }
             
@@ -163,6 +168,7 @@ public class buttonClick : MonoBehaviour {
 
         if (permiteClick)
         {
+            precioEtiqueta = costeAlto;
             if (!Game.getBotonAceleradorActivado(indexButton))
             {
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
@@ -177,7 +183,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleAcelerador();
                 
                 animNumbers(transform.position, NumAnimRest);
-                StartCoroutine(ActualizaScore(1.255f, -myPrice));
+                StartCoroutine(ActualizaScore(1.255f, -costeAlto));
 
             }
             else
@@ -193,7 +199,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleAceleradores();
 
                 animNumbers(transform.position, NumAnimSum);
-                StartCoroutine(ActualizaScore(0f, myPrice));
+                StartCoroutine(ActualizaScore(0f, costeAlto));
             }
         }
     }
@@ -206,6 +212,7 @@ public class buttonClick : MonoBehaviour {
         {
             if (!Game.getBotonFireStateActivado(indexButton))
             {
+                precioEtiqueta = costeMedio;
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 audio.PlayOneShot((AudioClip)Resources.Load("fuego1"));
 
@@ -218,7 +225,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleFireState();
 
                 animNumbers(transform.position, NumAnimRest);
-                StartCoroutine(ActualizaScore(1.255f, -myPrice));
+                StartCoroutine(ActualizaScore(1.255f, -costeMedio));
             }
             else
             {
@@ -233,7 +240,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleFireState();
 
                 animNumbers(transform.position, NumAnimSum);
-                StartCoroutine(ActualizaScore(0f, myPrice));
+                StartCoroutine(ActualizaScore(0f, costeMedio));
             }
         }
     }
@@ -247,6 +254,7 @@ public class buttonClick : MonoBehaviour {
             if (!Game.getBotonIceStateActivado(indexButton))
             {
 
+                precioEtiqueta = costeMedio;
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 audio.PlayOneShot((AudioClip)Resources.Load("hielo1"));
                 DarkColor();
@@ -258,7 +266,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleIceState();
 
                 animNumbers(transform.position, NumAnimRest);
-                StartCoroutine(ActualizaScore(1.255f, -myPrice));
+                StartCoroutine(ActualizaScore(1.255f, -costeMedio));
             }
             else
             {
@@ -273,7 +281,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleIceState();
 
                 animNumbers(transform.position, NumAnimSum);
-                StartCoroutine(ActualizaScore(0f, myPrice));
+                StartCoroutine(ActualizaScore(0f, costeMedio));
             }
         }
     }
@@ -286,6 +294,7 @@ public class buttonClick : MonoBehaviour {
         {
             if (!Game.getBotonPortalActivado(indexButton))
             {
+                precioEtiqueta = costeAlto;
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 audio.PlayOneShot((AudioClip)Resources.Load("portal3"));
 
@@ -298,7 +307,7 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
 
                 animNumbers(transform.position, NumAnimRest);
-                StartCoroutine(ActualizaScore(1.255f, -myPrice));
+                StartCoroutine(ActualizaScore(1.255f, -costeAlto));
             }
             else
             {
@@ -317,23 +326,41 @@ public class buttonClick : MonoBehaviour {
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalSalida();
 
                 animNumbers(transform.position, NumAnimSum);
-                StartCoroutine(ActualizaScore(0f, myPrice));
+                StartCoroutine(ActualizaScore(0f, costeAlto));
             }
         }
     }
 
     public void onMouseEnter()
     {
-        if(PriceObj == null)
+        precioEtiqueta = updateEtiquetaPrecio(transform.gameObject.tag);
+        if (PriceObj == null)
 {
             PriceObj = GameObject.Find("Price(Clone)");
         }
         if (!(Game.getCoryFly() || Game.getCoryEnd() || Game.getCoryDie()))
         {
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            PriceObj.GetComponentInChildren<Text>().text = myPrice.ToString();
+            PriceObj.GetComponentInChildren<Text>().text = precioEtiqueta.ToString();
             PriceObj.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + 13, transform.localPosition.z);
         }
+    }
+    private int updateEtiquetaPrecio(string tag)
+    {
+        int precioDelBotonActual = 0;
+        if (tag == "BotonMuelle")
+        {
+            precioDelBotonActual = costeBajo;
+        }
+        else if (tag == "BotonAcelerador" || tag == "BotonPortal")
+        {
+            precioDelBotonActual = costeAlto;
+        }
+        else if (tag == "BotonFireState" || tag == "BotonIceState")
+        {
+            precioDelBotonActual = costeMedio;
+        }
+        return precioDelBotonActual;
     }
     public void onMouseExit()
     {
@@ -347,7 +374,7 @@ public class buttonClick : MonoBehaviour {
     public void animNumbers(Vector3 posIni, GameObject numanim)
     {
         GameObject NA = Instantiate(numanim, posIni, Quaternion.identity) as GameObject;
-        NA.GetComponent<Text>().text = myPrice.ToString();
+        NA.GetComponent<Text>().text = precioEtiqueta.ToString();
         NA.transform.parent = CanvasButtons.transform;
 
 
