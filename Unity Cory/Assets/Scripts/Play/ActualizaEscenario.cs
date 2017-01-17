@@ -294,6 +294,9 @@ public class ActualizaEscenario : MonoBehaviour
                 {
                     M.GetComponent<Muelle>().getSueloBlock().GetComponent<MouseOverSuelo>().setContainTool(false);
                 }
+
+                M.GetComponent<Muelle>().getSueloBlock().GetComponent<Renderer>().enabled = true;
+
                 Destroy(M);
             }
         }

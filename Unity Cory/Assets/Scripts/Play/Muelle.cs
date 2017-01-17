@@ -104,8 +104,6 @@ public class Muelle : MonoBehaviour {
                 Game.setMuellePuesto(index, true);
                 sueloBlock.GetComponent<MouseOverSuelo>().setContainTool(true);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleMuelle();
-                /*creaEscenario.GetComponent<ActualizaEscenario>().DestroyMuelle(index);
-                Game.setMuellePuesto(index, false);*/
             }
         }
     }
