@@ -2,6 +2,3 @@ sceneSetups:
 - path: Assets/Escenas/Intro.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Escenas/Tutorial.unity
-  isLoaded: 1
-  isActive: 0

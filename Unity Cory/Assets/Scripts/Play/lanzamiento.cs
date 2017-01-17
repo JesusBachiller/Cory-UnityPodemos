@@ -17,9 +17,9 @@ public class lanzamiento : MonoBehaviour
     private float moduloVelocidad;
 
     public float AlcanceMax;
-    
+
     private int samples;
-    
+
     private Vector3 posInitCory;
 
     private Vector3 home;
@@ -65,7 +65,7 @@ public class lanzamiento : MonoBehaviour
         for (int i = 0;
                  i < Game.getNumMuelles();
                  i++)
-        {   
+        {
             if (Game.getBotonMuelleActivado(i) == true && Game.getMuellePuesto(i) == false)
             {
                 permite = false;
@@ -138,7 +138,7 @@ public class lanzamiento : MonoBehaviour
         }
         ShowHideIndicators(true);
     }
-    
+
     private void ShowHideIndicators(bool show)
     {
         for (var i = 0; i < argo.Length; i++)
@@ -160,7 +160,7 @@ public class lanzamiento : MonoBehaviour
             v3 += velocidad * spacing;
             t += spacing;
             v3.y = y * t + 0.5f * -300 * t * t + transform.position.y;
-            argo[i].transform.position =v3;
+            argo[i].transform.position = v3;
         }
     }
 
@@ -169,6 +169,9 @@ public class lanzamiento : MonoBehaviour
         if (permitirClick())
         {
             posInicial_Mouse = Input.mousePosition;
+            GetComponent<LineRenderer>().SetPosition(0, transform.position);
+            GetComponent<LineRenderer>().SetPosition(1, transform.position);
+            GetComponent<LineRenderer>().enabled = true;
             ShowHideIndicators(true);
         }
     }
@@ -181,6 +184,7 @@ public class lanzamiento : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 ReturnHome();
+                GetComponent<LineRenderer>().enabled = false;
                 ShowHideIndicators(false);
                 AnuladoLanzamiento = true;
             }
@@ -188,7 +192,13 @@ public class lanzamiento : MonoBehaviour
             {
                 if (!AnuladoLanzamiento)
                 {
-                    posFinal_Mouse = Input.mousePosition;
+                    posFinal_Mouse = Input.mousePosition; // En coordenadas de pantalla
+
+                    // Flecha de diego
+                    Camera camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+                    Vector3 posMouseCoordenadasDelMundo = camera.ScreenToWorldPoint(new Vector3(posFinal_Mouse.x, posFinal_Mouse.y, camera.nearClipPlane));
+                    GetComponent<LineRenderer>().SetPosition(0, transform.position);
+                    GetComponent<LineRenderer>().SetPosition(1, posMouseCoordenadasDelMundo);
 
                     velocidad = posInicial_Mouse - posFinal_Mouse;
                     velocidad.x = ((velocidad.x * 100) / Screen.width) * fuerzaExtra;
@@ -212,6 +222,7 @@ public class lanzamiento : MonoBehaviour
     {
         if (permitirClick())
         {
+            GetComponent<LineRenderer>().enabled = false;
             if (AnuladoLanzamiento)
             {
                 AnuladoLanzamiento = false;
