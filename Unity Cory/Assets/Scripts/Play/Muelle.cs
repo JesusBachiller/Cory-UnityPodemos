@@ -6,6 +6,8 @@ public class Muelle : MonoBehaviour {
     public int index;
     public GameObject creaEscenario;
 
+    public GameObject sueloBlock; // Block of suelo where I am
+
     private bool permitirClick()
     {
         bool permite = true;
@@ -92,14 +94,36 @@ public class Muelle : MonoBehaviour {
         return permite;
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
     {
         if (permitirClick())
         {
-            creaEscenario.GetComponent<ActualizaEscenario>().DestroyMuelle(index);
-            Game.setMuellePuesto(index, false);
+            if (!Game.getMuellePuesto(index))
+            {
+                sueloBlock.GetComponent<MouseOverSuelo>().setContainTool(true);
+                Game.setMuellePuesto(index, true);
+                sueloBlock.GetComponent<MouseOverSuelo>().setContainTool(true);
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleMuelle();
+                /*creaEscenario.GetComponent<ActualizaEscenario>().DestroyMuelle(index);
+                Game.setMuellePuesto(index, false);*/
+            }
         }
     }
+
+    void OnMouseDrag()
+    {
+        if (permitirClick())
+        {
+            if (Game.getMuellePuesto(index))
+            {
+                sueloBlock.GetComponent<MouseOverSuelo>().setContainTool(false);
+                Game.setMuellePuesto(index, false);
+                sueloBlock.GetComponent<MouseOverSuelo>().setContainTool(false);
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleMuelle();
+            }
+        }
+    }
+    
 
     public void setIndex(int i)
     {
@@ -109,5 +133,22 @@ public class Muelle : MonoBehaviour {
     public int getIndex()
     {
         return index;
+    }
+
+    public void setSueloBlock(GameObject S)
+    {
+        if(sueloBlock != null)
+        {
+            sueloBlock.GetComponent<Renderer>().enabled = true;
+        }
+
+        sueloBlock = S;
+
+        sueloBlock.GetComponent<Renderer>().enabled = false;
+    }
+
+    public GameObject getSueloBlock()
+    {
+        return sueloBlock;
     }
 }

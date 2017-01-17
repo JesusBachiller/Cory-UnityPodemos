@@ -85,7 +85,20 @@ public class fireState : MonoBehaviour {
         return permite;
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
+    {
+        if (permitirClick())
+        {
+            if (!Game.getFireStatePuesto(index))
+            {
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
+                Game.setFireStatePuesto(index, true);
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleFireState();
+            }
+        }
+    }
+
+    void OnMouseDrag()
     {
         if (permitirClick())
         {
@@ -94,12 +107,6 @@ public class fireState : MonoBehaviour {
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setFireStatePuesto(index, false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleFireState();
-            }
-            else
-            {
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
-                Game.setFireStatePuesto(index, true);
-                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleFireState();
             }
         }
     }

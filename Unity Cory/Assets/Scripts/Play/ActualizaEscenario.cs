@@ -13,7 +13,10 @@ public class ActualizaEscenario : MonoBehaviour
     public GameObject IceState;
     public GameObject PortalEntrada;
     public GameObject PortalSalida;
-
+    /*
+    public GameObject myMuelle;
+    public GameObject mySuelo;
+    */
     private GameObject[] ArraySuelos;
 
     public int posMouseClick_x;
@@ -254,7 +257,49 @@ public class ActualizaEscenario : MonoBehaviour
         }
     }
 
-    public void InstanciateMuelle(Vector3 Pos, int index)
+    public void InstanciateMuelle(int indexButton)
+    {
+        Instantiate(Muelle, new Vector3(-1f, -1f, -1f), Quaternion.identity);
+        GameObject[] muelles = GameObject.FindGameObjectsWithTag(Muelle.tag);
+        muelles[muelles.Length - 1].GetComponent<Muelle>().setIndex(indexButton);
+    }
+    public void EnablePossibleMuelle()
+    {
+        GameObject[] PossiblesMuelles = GameObject.FindGameObjectsWithTag("Suelo");
+        Debug.Log(PossiblesMuelles.Length);
+        foreach (GameObject PM in PossiblesMuelles)
+        {
+            PM.GetComponent<BoxCollider>().enabled = true;
+            PM.GetComponent<MouseOverSuelo>().findObject(Muelle.tag);
+        }
+
+    }
+    public void NotEnableDestroyPossibleMuelle()
+    {
+        GameObject[] PossiblesMuelles = GameObject.FindGameObjectsWithTag("Suelo");
+
+        foreach (GameObject PM in PossiblesMuelles)
+        {
+            PM.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+    public void DestroyMuelle(int indexButton)
+    {
+        GameObject[] Muelles = GameObject.FindGameObjectsWithTag(Muelle.tag);
+        foreach (GameObject M in Muelles)
+        {
+            if (M.GetComponent<Muelle>().getIndex() == indexButton)
+            {
+                if (M.GetComponent<Muelle>().getSueloBlock() != null)
+                {
+                    M.GetComponent<Muelle>().getSueloBlock().GetComponent<MouseOverSuelo>().setContainTool(false);
+                }
+                Destroy(M);
+            }
+        }
+    }
+
+    /*public void InstanciateMuelle(Vector3 Pos, int index)
     {
         posMouseClick_x = (int)Pos.x;
         posMouseClick_y = (int)Pos.y;
@@ -289,14 +334,40 @@ public class ActualizaEscenario : MonoBehaviour
                     if (s.transform.position.x == M.transform.position.x && s.transform.position.y == M.transform.position.y && M.transform.position.z == 0)
                     {
                         s.GetComponent<Renderer>().enabled = true;
+                        break;
                     }
                 }
-                //Instantiate(GetComponent<CreaEscenario>().Cesped, M.transform.position, Quaternion.identity);
                 Destroy(M);
+                break;
             }
         }
         updatePlanosSobreCesped();
     }
+
+    public void ChangePosMuelle(int index)
+    {
+        GameObject[] Muelles = GameObject.FindGameObjectsWithTag("Muelle");
+        
+
+        foreach (GameObject M in Muelles)
+        {
+            if (M.GetComponent<Muelle>().getIndex() == index)
+            {
+                GameObject[] suelosCesped = GameObject.FindGameObjectsWithTag("Suelo");
+                foreach (GameObject s in suelosCesped)
+                {
+                    if (s.transform.position.x == M.transform.position.x && s.transform.position.y == M.transform.position.y && M.transform.position.z == 0)
+                    {
+                        myMuelle = M;
+                        mySuelo = s;
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
+    }*/
 
     public void destroyPlanosSobreCesped()
     {

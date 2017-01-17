@@ -110,7 +110,22 @@ public class PortalSalida : MonoBehaviour {
 
         return permite;
     }
-    void OnMouseDown()
+    void OnMouseUp()
+    {
+        if (permitirClick())
+        {
+            if (!Game.getPortalSalidaPuesto(index))
+            {
+                Game.setPortalSalidaPuesto(index, true);
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalSalida();
+
+                PortalEntrada.hideAllIndicators();
+            }
+        }
+    }
+
+    void OnMouseDrag()
     {
         if (permitirClick())
         {
@@ -130,17 +145,8 @@ public class PortalSalida : MonoBehaviour {
                     }
                 }
             }
-            else
-            {
-                Game.setPortalSalidaPuesto(index, true);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
-                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalSalida();
-
-                PortalEntrada.hideAllIndicators();
-            }
         }
     }
-
     public void setIndex(int i)
     {
         index = i;

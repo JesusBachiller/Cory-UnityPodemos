@@ -131,6 +131,10 @@ public class buttonClick : MonoBehaviour {
 
                 Game.setBotonMuelleActivado(indexButton, true);
 
+                creaEscenario.GetComponent<ActualizaEscenario>().InstanciateMuelle(indexButton);
+
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleMuelle();
+
                 animNumbers(transform.position, NumAnimRest);
                 StartCoroutine(ActualizaScore(1.255f, -myPrice));
             }
@@ -140,9 +144,11 @@ public class buttonClick : MonoBehaviour {
 
                 Game.setBotonMuelleActivado(indexButton, false);
 
+                creaEscenario.GetComponent<ActualizaEscenario>().DestroyMuelle(indexButton);
+
                 Game.setMuellePuesto(indexButton, false);
 
-                creaEscenario.GetComponent<ActualizaEscenario>().DestroyMuelle(indexButton);
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleMuelle();
 
                 animNumbers(transform.position, NumAnimSum);
                 StartCoroutine(ActualizaScore(0f, myPrice));
@@ -161,6 +167,7 @@ public class buttonClick : MonoBehaviour {
             {
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 audio.PlayOneShot((AudioClip)Resources.Load("acelerat1"));
+
                 DarkColor();
 
                 Game.setBotonAceleradorActivado(indexButton, true);

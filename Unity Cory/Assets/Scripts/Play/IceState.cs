@@ -93,7 +93,20 @@ public class IceState : MonoBehaviour {
         return permite;
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
+    {
+        if (permitirClick())
+        {
+            if (!Game.getIceStatePuesto(index))
+            {
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
+                Game.setIceStatePuesto(index, true);
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleIceState();
+            }
+        }
+    }
+
+    void OnMouseDrag()
     {
         if (permitirClick())
         {
@@ -102,12 +115,6 @@ public class IceState : MonoBehaviour {
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setIceStatePuesto(index, false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleIceState();
-            }
-            else
-            {
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
-                Game.setIceStatePuesto(index, true);
-                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleIceState();
             }
         }
     }

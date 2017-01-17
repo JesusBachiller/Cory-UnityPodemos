@@ -193,37 +193,12 @@ public class PortalEntrada : MonoBehaviour
         return permite;
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
     {
         if (permitirClick())
         {
-            if (Game.getPortalEntradaPuesto(index))
-            {
-                // Muevo portal
-                Game.setPortalEntradaPuesto(index, false);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
-                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
-                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 2.0f);
-
-                hideAllIndicators();
-
-                GameObject[] PortalesSalida = GameObject.FindGameObjectsWithTag("PortalSalida");
-                foreach (GameObject pS in PortalesSalida)
-                {
-                    if (pS.GetComponent<PortalSalida>().getIndex() == index)
-                    {
-                        pS.transform.position = new Vector3(-10, -10, 0);
-                        Game.setPortalSalidaPuesto(index, false);
-                        if (pS.GetComponent<PortalSalida>().getAireBlock() != null)
-                        {
-                            pS.GetComponent<PortalSalida>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // Pongo portal
+            if (!Game.getPortalEntradaPuesto(index))
+            {// Pongo portal
                 Game.setPortalEntradaPuesto(index, true);
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
                 creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossiblePortalEntrada();
@@ -263,6 +238,37 @@ public class PortalEntrada : MonoBehaviour
         }
     }
 
+    void OnMouseDrag()
+    {
+        if (permitirClick())
+        {
+            if (Game.getPortalEntradaPuesto(index))
+            {
+                // Muevo portal
+                Game.setPortalEntradaPuesto(index, false);
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                creaEscenario.GetComponent<ActualizaEscenario>().EnablePossiblePortalEntrada();
+                GetComponent<BoxCollider>().size = new Vector3(1.0f, 1.0f, 2.0f);
+
+                hideAllIndicators();
+
+                GameObject[] PortalesSalida = GameObject.FindGameObjectsWithTag("PortalSalida");
+                foreach (GameObject pS in PortalesSalida)
+                {
+                    if (pS.GetComponent<PortalSalida>().getIndex() == index)
+                    {
+                        pS.transform.position = new Vector3(-10, -10, 0);
+                        Game.setPortalSalidaPuesto(index, false);
+                        if (pS.GetComponent<PortalSalida>().getAireBlock() != null)
+                        {
+                            pS.GetComponent<PortalSalida>().getAireBlock().GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
+                        }
+                    }
+                }
+            }
+
+        }
+    }
     public void setIndex(int i)
     {
         index = i;

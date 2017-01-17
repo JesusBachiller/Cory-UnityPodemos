@@ -93,7 +93,21 @@ public class Acelerador : MonoBehaviour {
 
         return permite;
     }
-    void OnMouseDown()
+    void OnMouseUp()
+    {
+        if (permitirClick())
+        {
+            if (!Game.getAceleradorPuesto(index))
+            {
+                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
+                Game.setAceleradorPuesto(index, true);
+                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleAceleradores();
+                GetComponent<BoxCollider>().size = new Vector3(0.5f, 0.5f, 0.5f);
+            }
+        }
+    }
+
+    void OnMouseDrag()
     {
         if (permitirClick())
         {
@@ -101,21 +115,12 @@ public class Acelerador : MonoBehaviour {
             {
                 aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 Game.setAceleradorPuesto(index, false);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(false);
                 creaEscenario.GetComponent<ActualizaEscenario>().EnablePossibleAcelerador();
                 GetComponent<BoxCollider>().size = new Vector3(0.5f, 0.5f, 1.1f);
             }
-            else
-            {
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
-                Game.setAceleradorPuesto(index, true);
-                aireBlock.GetComponent<MouseOverPossibleAcelerador>().setContainTool(true);
-                creaEscenario.GetComponent<ActualizaEscenario>().NotEnableDestroyPossibleAceleradores();
-                GetComponent<BoxCollider>().size = new Vector3(0.5f, 0.5f, 0.5f);
-            }
         }
     }
-    
+
     public void setIndex(int i)
     {
         index = i;

@@ -3,67 +3,55 @@ using System.Collections;
 
 public class MouseOverSuelo : MonoBehaviour {
 
-    private Material[] materiales;
+    private bool containTool; //Is there a tool inside of me?
+
     public GameObject creaEscenario;
+    private GameObject Muelle;
 
-    int index;
+    private Material[] materiales;
  
-    void Start()
+    public void findObject(string s)
     {
-        index = -1;
-        materiales = GetComponent<Renderer>().materials;
-    }
+        Muelle = null;
 
-    private bool permite()
-    {
-        for (int i = 0; i < Game.getNumMuelles(); i++)
+        if (s == "Muelle")
         {
-            if (Game.getBotonMuelleActivado(i) && !Game.getMuellePuesto(i))
+            GameObject[] Muelles = GameObject.FindGameObjectsWithTag(s);
+            foreach (GameObject M in Muelles)
             {
-                index = i;
-                return true;
+                int index = M.GetComponent<Muelle>().index;
+                if (Game.getBotonMuelleActivado(index) && !Game.getMuellePuesto(index))
+                {
+                    Muelle = M;
+
+                    break;
+                }
             }
+            return;
         }
-        
-        index = -1;
-        return false;
     }
 
     void OnMouseEnter()
     {
-        if (permite())
+        if (!containTool)
         {
-            foreach (Material m in materiales)
+            if (Muelle != null)
             {
-                m.color = Color.red;
+                Muelle.transform.position = transform.position;
+                Muelle.GetComponent<Muelle>().setSueloBlock(this.gameObject);
+
+                GetComponent<Renderer>().enabled = false;
             }
-            GetComponent<Renderer>().material.color = Color.red;
         }
-        
     }
 
-    void OnMouseDown()
+    public void setContainTool(bool b)
     {
-        if (permite())
-        {
-            creaEscenario.GetComponent<ActualizaEscenario>().InstanciateMuelle(transform.position, index);
-            Game.setMuellePuesto(index, true);
-
-            foreach (Material m in materiales)
-            {
-                m.color = Color.white;
-            }
-        }
+        containTool = b;
     }
-
-    void OnMouseExit()
+    public bool getContainTool()
     {
-        if (permite())
-        {
-            foreach (Material m in materiales)
-            {
-                m.color = Color.white;
-            }
-        }
+        return containTool;
     }
+    
 }
