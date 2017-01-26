@@ -37,6 +37,7 @@ public class LevelEnd : MonoBehaviour {
             SaveLoad.savegame.updateTotalStarsAchieved();
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].scores.Add(Game.getScore());
             SaveLoad.savegame.stadiumsSavedData[Game.getCurrentStadium().index].levelSavedData[Game.getCurrentLevel().index].scores.Sort((a, b) => -1 * a.CompareTo(b));
+            
 
             SaveLoad.Save();
         }

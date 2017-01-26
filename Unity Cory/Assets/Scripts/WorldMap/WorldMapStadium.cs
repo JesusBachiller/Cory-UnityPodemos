@@ -42,7 +42,7 @@ public class WorldMapStadium : MonoBehaviour
         Destroy(go);
         GameObject go2 = GameObject.Find("MusicRandom");
         Destroy(go2);
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName); 
     }
 
     public void OnMouseDown()
@@ -94,8 +94,8 @@ public class WorldMapStadium : MonoBehaviour
                     currentLevelBox.GetComponent<Canvas>().enabled = true;
                     string sceneName = stadium.sceneName;
                     Level actualLevel = level;
-                    currentLevelBox.GetComponent<Button>().onClick.AddListener(() => changeScene(sceneName, actualLevel, stadium));
 
+                    
                     Image levelPreviewImage = currentLevelBox.transform.FindChild("LevelImage").gameObject.GetComponent<Image>();
                     levelPreviewImage.sprite = Resources.Load<Sprite>("LevelPreviewImages/" + level.previewImagePath) as Sprite;
 

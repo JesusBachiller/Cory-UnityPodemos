@@ -16,7 +16,7 @@ public class Savegame
         starsAchieved = 0;
         timesDied = 0;
         //stadiumsSavedData = new List<StadiumSavedData>();
-    }
+}
 
     public void updateTotalStarsAchieved()
     {
