@@ -26,7 +26,7 @@
       <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>tutorial-0-preview-image</PreviewImagePath>
       <MinStarsToUnlock>0</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-0</XmlCommentsPath>
     </Level>
     <Level name="#2" index="1">
@@ -54,7 +54,7 @@
       <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>tutorial-1-preview-image</PreviewImagePath>
       <MinStarsToUnlock>1</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-1</XmlCommentsPath>
     </Level>
     <Level name="#3" index="2">
@@ -81,7 +81,7 @@
       <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>tutorial-2-preview-image</PreviewImagePath>
       <MinStarsToUnlock>2</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-2</XmlCommentsPath>
     </Level>
     <Level name="#4" index="3">
@@ -108,7 +108,7 @@
       <AvailableIceState>1</AvailableIceState>
       <PreviewImagePath>tutorial-3-preview-image</PreviewImagePath>
       <MinStarsToUnlock>3</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-3</XmlCommentsPath>
     </Level>
     <Level name="#5" index="4">
@@ -136,7 +136,7 @@
       <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>tutorial-4-preview-image</PreviewImagePath>
       <MinStarsToUnlock>4</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-4</XmlCommentsPath>
     </Level>
     <Level name="#6" index="5">
@@ -170,7 +170,7 @@
       <AvailableIceState>0</AvailableIceState>
       <PreviewImagePath>tutorial-5-preview-image</PreviewImagePath>
       <MinStarsToUnlock>6</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
       <XmlCommentsPath>Comments/comments-tutorial-5</XmlCommentsPath>
     </Level>
   </Levels>

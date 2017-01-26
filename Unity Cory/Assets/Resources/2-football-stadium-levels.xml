@@ -29,7 +29,7 @@
       <AvailablePortals>2</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>6</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
     </Level>
     <Level name="Football Two" index="1">
       <MapElements>
@@ -56,7 +56,7 @@
       <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>7</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
     </Level>
     <Level name="Football Three" index="2">
       <MapElements>
@@ -85,7 +85,7 @@
       <AvailablePortals>1</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>10</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
     </Level>
     <Level name="Football Four" index="3">
       <MapElements>
@@ -106,7 +106,7 @@
       <AvailablePortals>0</AvailablePortals>
       <PreviewImagePath>level-preview-image</PreviewImagePath>
       <MinStarsToUnlock>12</MinStarsToUnlock>
-      <StartScore>1000</StartScore>
+      <StartScore>100000</StartScore>
     </Level>
   </Levels>
 </Stadium>
