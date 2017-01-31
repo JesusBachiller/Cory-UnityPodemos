@@ -198,7 +198,10 @@ public class SummaryLevel : MonoBehaviour {
         if (con <= Game.getScore())
         {
             score.text = "score: " + con;
-            con += 5;
+            con += Game.getScore() * 5 / 1000;
+        } else
+        {
+            con = Game.getScore();
         }
     }
 }
